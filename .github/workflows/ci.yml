@@ -21,5 +21,7 @@ jobs:
         run: yarn set version stable
       - name: yarn install
         run: yarn install
+      - name: yarn prepare
+        run: yarn prepare
       - name: yarn check
         run: yarn check

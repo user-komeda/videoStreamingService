@@ -9,7 +9,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "check": "turbo run check"
+    "check": "turbo run check",
+    "prepare": "turbo run prepare"
   },
   "packageManager": "yarn@4.9.1"
 }
