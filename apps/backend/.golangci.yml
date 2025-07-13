@@ -1,0 +1,14 @@
+# See the dedicated "version" documentation section.
+version: "2"
+linters:
+  # See the dedicated "linters" documentation section.
+  enable-all: true
+formatters:
+  # See the dedicated "formatters" documentation section.
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+    - swaggo

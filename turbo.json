@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "dev": {
+      "dependsOn": ["^dev"],
+      "persistent": true,
+      "cache": false,
+      "env": ["GOPATH", "GOMODCACHE"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".react-router/**", "build/**"],
+      "cache": true
+    },
+    "check": {
+      "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
+    },
+    "test": {}
+  }
+}
