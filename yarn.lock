@@ -1591,7 +1591,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:8.36.0":
+"@typescript-eslint/type-utils@npm:8.36.0, @typescript-eslint/type-utils@npm:^8.36.0":
   version: 8.36.0
   resolution: "@typescript-eslint/type-utils@npm:8.36.0"
   dependencies:
@@ -3724,6 +3724,7 @@ __metadata:
     "@types/node": "npm:^20"
     "@types/react": "npm:^19.1.2"
     "@types/react-dom": "npm:^19.1.2"
+    "@typescript-eslint/type-utils": "npm:^8.36.0"
     "@typescript-eslint/types": "npm:^8.36.0"
     "@vitest/eslint-plugin": "npm:^1.1.44"
     concurrently: "npm:^9.2.0"
