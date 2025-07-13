@@ -4,14 +4,6 @@
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
  pre-commit:
-   parallel: true
    commands:
-     go-vet:
-       glob: "*.go"
-       run: go vet ./...
-     go-test:
-       glob: "*.go"
-       run: go test ./...
-     staticCheck:
-       glob: "*.go"
-       run: staticcheck ./...
+     check:
+       run: "yarn check"

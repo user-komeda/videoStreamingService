@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "scripts": {
+    "dev": "go run main.go",
+    "check": "concurrently 'golangci-lint fmt' 'golangci-lint run -c .golangci.yml'"
+  },
+  "packageManager": "yarn@4.9.1",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
