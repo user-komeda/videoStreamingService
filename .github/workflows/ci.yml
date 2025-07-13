@@ -20,7 +20,7 @@ jobs:
       - name: yarn set v4
         run: yarn set version stable
       - name: yarn install
-        run: yarn install
+        run: yarn install --immutable --immutable-cache
       - name: yarn prepare
         run: yarn prepare
       - name: yarn check
