@@ -1,22 +1,34 @@
-FROM node:20-alpine AS development-dependencies-env
-COPY . /app
-WORKDIR /app
-RUN npm ci
+FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS base
 
-FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
-WORKDIR /app
-RUN npm ci --omit=dev
+FROM base AS builder
+#RUN microdnf update -y
+#RUN apk add --no-cache libc6-compat
+RUN yarn global add turbo
+#RUN corepack enable
+#RUN yarn set version stable
+COPY . .
+RUN turbo prune --scope=anime-site-front --docker
 
-FROM node:20-alpine AS build-env
-COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
+FROM base AS installer
+#RUN microdnf update -y
 WORKDIR /app
-RUN npm run build
 
-FROM node:20-alpine
-COPY ./package.json package-lock.json /app/
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
-COPY --from=build-env /app/build /app/build
+COPY --from=builder /out/json/ .
+RUN corepack enable
+RUN corepack install -g yarn@stable 
+RUN yarn install
+COPY --from=builder /out/full/ .
+RUN yarn build
+
+
+FROM base AS runner
 WORKDIR /app
-CMD ["npm", "run", "start"]
+RUN corepack enable
+RUN corepack install -g yarn@stable
+#RUN addgroup --system --gid 1001 nodejs
+#RUN adduser --system --uid 1001 nextjs
+#USER nextjs
+COPY --from=installer /app/apps/frontend/ /app/build/
+COPY --from=installer /app/apps/frontend/package.json /app/
+COPY --from=installer /app/node_modules /app/node_modules/
+CMD ["npm","start"]
