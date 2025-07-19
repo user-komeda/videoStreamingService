@@ -1,18 +1,17 @@
 # ======== ビルドステージ ========
-FROM golang:1.22-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 # 作業ディレクトリ
 WORKDIR /app
 
 # 必要なパッケージを追加（gitなど）
 RUN apk add --no-cache git
-
 # 依存キャッシュを効かせるために先に go.mod と go.sum をコピー
-COPY go.mod go.sum ./
+COPY /apps/backend/go.mod /apps/backend/go.sum ./
 RUN go mod download
 
 # ソースをコピー
-COPY . .
+COPY /apps/backend/ .
 
 # 本番向けビルド（静的リンク、不要なシンボル削除）
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
