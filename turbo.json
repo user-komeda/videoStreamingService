@@ -15,6 +15,9 @@
     "check": {
       "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
     },
+    "prepare": {
+      "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
+    },
     "test": {}
   }
 }

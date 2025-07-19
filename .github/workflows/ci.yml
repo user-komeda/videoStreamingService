@@ -1,7 +1,7 @@
 name: "CI"
 on:
   pull_request:
-    types: [ opened, synchronize ]
+    types: [opened, synchronize]
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -12,8 +12,16 @@ jobs:
       - uses: WillAbides/setup-go-faster@a0ff5217a7d2567ed6ff1aa2b7d8f9d58173b2c9 # v1.14.0
         with:
           go-version: stable
-      - run: "go test ./..."
-      - run: "go vet ./..."
-      - uses: dominikh/staticcheck-action@fe1dd0c3658873b46f8c9bb3291096a617310ca6 # v1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          version: "latest"
+          node-version: 22
+      - name: enable corepack
+        run: corepack enable
+      - name: yarn set v4
+        run: yarn set version stable
+      - name: yarn install
+        run: yarn install
+      - name: yarn prepare
+        run: yarn prepare
+      - name: yarn check
+        run: yarn check

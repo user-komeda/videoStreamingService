@@ -1,0 +1,17 @@
+services:
+  video-streaming-service-frontend:
+    container_name: video-streaming-service-frontend
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+  video-streaming-service-backend:
+    container_name: video-streaming-service-backend
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
