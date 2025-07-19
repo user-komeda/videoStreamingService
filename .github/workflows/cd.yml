@@ -1,0 +1,84 @@
+name: Docker Image Cd
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "docker buildxが使えるようにする"
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
+      - name: "ghcr.ioにログインする"
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: "メタデータを作成する"
+        id: meta # 後段で参照できるようにoutputsに登録する
+        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha
+          labels: |
+            org.opencontainers.image.title=sample-app
+            org.opencontainers.image.vendor="AP Communications Co.,Ltd."
+            org.opencontainers.image.licenses=Apache-2.0
+      - name: "コンテナイメージをビルドしてghcr.ioにコンテナイメージをpushする"
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
+        with:
+          file: ./apps/frontend/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }} # 前ステップで設定したタグを参照する
+          labels: ${{ steps.meta.outputs.labels }} # 前ステップで設定したラベルを参照する
+  build-backend:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "docker buildxが使えるようにする"
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
+      - name: "ghcr.ioにログインする"
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: "メタデータを作成する"
+        id: meta # 後段で参照できるようにoutputsに登録する
+        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha
+          labels: |
+            org.opencontainers.image.title=sample-app
+            org.opencontainers.image.vendor="AP Communications Co.,Ltd."
+            org.opencontainers.image.licenses=Apache-2.0
+      - name: "コンテナイメージをビルドしてghcr.ioにコンテナイメージをpushする"
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
+        with:
+          file: ./apps/backend/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }} # 前ステップで設定したタグを参照する
+          labels: ${{ steps.meta.outputs.labels }} # 前ステップで設定したラベルを参照する
+
