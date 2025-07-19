@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "go run main.go",
     "check": "concurrently 'golangci-lint fmt' 'golangci-lint run -c .golangci.yml'",
-    "prepare": "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.2.2"
+    "prepare": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
   },
   "packageManager": "yarn@4.9.1",
   "devDependencies": {
