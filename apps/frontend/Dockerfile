@@ -7,7 +7,7 @@ RUN yarn global add turbo
 #RUN corepack enable
 #RUN yarn set version stable
 COPY . .
-RUN turbo prune --scope=anime-site-front --docker
+RUN turbo prune --scope=frontend --docker
 
 FROM base AS installer
 #RUN microdnf update -y
@@ -15,7 +15,7 @@ WORKDIR /app
 
 COPY --from=builder /out/json/ .
 RUN corepack enable
-RUN corepack install -g yarn@stable 
+RUN corepack install -g yarn@stable
 RUN yarn install
 COPY --from=builder /out/full/ .
 RUN yarn build
@@ -28,7 +28,7 @@ RUN corepack install -g yarn@stable
 #RUN addgroup --system --gid 1001 nodejs
 #RUN adduser --system --uid 1001 nextjs
 #USER nextjs
-COPY --from=installer /app/apps/frontend/ /app/build/
+COPY --from=installer /app/apps/frontend/build/ /app/build/
 COPY --from=installer /app/apps/frontend/package.json /app/
 COPY --from=installer /app/node_modules /app/node_modules/
 CMD ["npm","start"]
