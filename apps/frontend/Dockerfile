@@ -20,7 +20,7 @@ FROM base AS runner
 WORKDIR /app
 RUN corepack enable
 RUN corepack install -g yarn@stable
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN groupadd appgroup && useradd -r -g appgroup appuser
 USER appuser
 COPY --from=installer /app/apps/frontend/build/ /app/build/
 COPY --from=installer /app/apps/frontend/package.json /app/
