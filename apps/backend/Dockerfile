@@ -17,7 +17,7 @@ COPY /apps/backend/ .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
 
 # ======== 実行ステージ ========
-FROM alpine:3.20 AS runner
+FROM alpine:3.22@sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44de311d1 AS runner
 
 # 作業ディレクトリ
 WORKDIR /app
