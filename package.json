@@ -12,5 +12,5 @@
     "check": "turbo run check",
     "prepare": "turbo run prepare"
   },
-  "packageManager": "yarn@4.9.3"
+  "packageManager": "yarn@4.9.4"
 }
