@@ -14,7 +14,7 @@ jobs:
           go-version: stable
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: 22
+          node-version: 24
           package-manager-cache: false
       - name: enable corepack
         run: corepack enable
