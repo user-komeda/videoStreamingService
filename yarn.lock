@@ -4271,7 +4271,7 @@ __metadata:
     globals: "npm:16.5.0"
     isbot: "npm:^5.1.27"
     jsdom: "npm:27.2.0"
-    lefthook: "npm:2.0.4"
+    lefthook: "npm:2.0.5"
     prettier: "npm:3.7.3"
     prettier-plugin-tailwindcss: "npm:0.7.1"
     react: "npm:^19.1.0"
@@ -5220,90 +5220,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lefthook-darwin-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-darwin-arm64@npm:2.0.4"
+"lefthook-darwin-arm64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-darwin-arm64@npm:2.0.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"lefthook-darwin-x64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-darwin-x64@npm:2.0.4"
+"lefthook-darwin-x64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-darwin-x64@npm:2.0.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"lefthook-freebsd-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-freebsd-arm64@npm:2.0.4"
+"lefthook-freebsd-arm64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-freebsd-arm64@npm:2.0.5"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"lefthook-freebsd-x64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-freebsd-x64@npm:2.0.4"
+"lefthook-freebsd-x64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-freebsd-x64@npm:2.0.5"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"lefthook-linux-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-linux-arm64@npm:2.0.4"
+"lefthook-linux-arm64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-linux-arm64@npm:2.0.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"lefthook-linux-x64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-linux-x64@npm:2.0.4"
+"lefthook-linux-x64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-linux-x64@npm:2.0.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"lefthook-openbsd-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-openbsd-arm64@npm:2.0.4"
+"lefthook-openbsd-arm64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-openbsd-arm64@npm:2.0.5"
   conditions: os=openbsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"lefthook-openbsd-x64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-openbsd-x64@npm:2.0.4"
+"lefthook-openbsd-x64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-openbsd-x64@npm:2.0.5"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"lefthook-windows-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-windows-arm64@npm:2.0.4"
+"lefthook-windows-arm64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-windows-arm64@npm:2.0.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"lefthook-windows-x64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook-windows-x64@npm:2.0.4"
+"lefthook-windows-x64@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook-windows-x64@npm:2.0.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"lefthook@npm:2.0.4":
-  version: 2.0.4
-  resolution: "lefthook@npm:2.0.4"
+"lefthook@npm:2.0.5":
+  version: 2.0.5
+  resolution: "lefthook@npm:2.0.5"
   dependencies:
-    lefthook-darwin-arm64: "npm:2.0.4"
-    lefthook-darwin-x64: "npm:2.0.4"
-    lefthook-freebsd-arm64: "npm:2.0.4"
-    lefthook-freebsd-x64: "npm:2.0.4"
-    lefthook-linux-arm64: "npm:2.0.4"
-    lefthook-linux-x64: "npm:2.0.4"
-    lefthook-openbsd-arm64: "npm:2.0.4"
-    lefthook-openbsd-x64: "npm:2.0.4"
-    lefthook-windows-arm64: "npm:2.0.4"
-    lefthook-windows-x64: "npm:2.0.4"
+    lefthook-darwin-arm64: "npm:2.0.5"
+    lefthook-darwin-x64: "npm:2.0.5"
+    lefthook-freebsd-arm64: "npm:2.0.5"
+    lefthook-freebsd-x64: "npm:2.0.5"
+    lefthook-linux-arm64: "npm:2.0.5"
+    lefthook-linux-x64: "npm:2.0.5"
+    lefthook-openbsd-arm64: "npm:2.0.5"
+    lefthook-openbsd-x64: "npm:2.0.5"
+    lefthook-windows-arm64: "npm:2.0.5"
+    lefthook-windows-x64: "npm:2.0.5"
   dependenciesMeta:
     lefthook-darwin-arm64:
       optional: true
@@ -5327,7 +5327,7 @@ __metadata:
       optional: true
   bin:
     lefthook: bin/index.js
-  checksum: 10c0/7283dacf89d5ceeffbc782157e8d0416210ad8550226105c2499ca170f02bfdd5c5045c0faf03755a2d5bb129df7102a9508384aae797d24c59830d63d76a964
+  checksum: 10c0/8ad32128957a493ed64cdbba719f01245e7d71ec2de7154ad1fb1a4c63823bc2d6cc9f7046e155f266ebbf1cedec193f1956134f647bcd01a152b59b43930bc6
   languageName: node
   linkType: hard
 
