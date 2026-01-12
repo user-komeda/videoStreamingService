@@ -1,6 +1,8 @@
 services:
   video-streaming-service-frontend:
     container_name: video-streaming-service-frontend
+    profiles:
+      - frontend
     build:
       context: .
       dockerfile: ./apps/frontend/Dockerfile
@@ -9,9 +11,25 @@ services:
       - 3000:3000
   video-streaming-service-backend:
     container_name: video-streaming-service-backend
+    profiles:
+      - backend
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
     restart: always
     ports:
       - 8080:8080
+  db:
+    container_name: db-video-streaming-service
+    image: postgres:18@sha256:bfe50b2b0ddd9b55eadedd066fe24c7c6fe06626185b73358c480ea37868024d
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+volumes:
+  postgres_data:
