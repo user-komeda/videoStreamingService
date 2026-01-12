@@ -12,5 +12,8 @@
     "check": "turbo run check",
     "prepare": "turbo run prepare"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.12.0",
+  "dependencies": {
+    "@uppy/file-input": "^4.2.2"
+  }
 }
