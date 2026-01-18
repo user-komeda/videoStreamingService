@@ -1,8 +1,8 @@
+import { useState } from 'react'
+
 import Uppy from '@uppy/core'
 import { UppyContextProvider } from '@uppy/react'
 import Tus from '@uppy/tus'
-import { useState } from 'react'
-import { layout } from '@react-router/dev/routes'
 import { Outlet } from 'react-router'
 const createUppy = () => {
   return new Uppy({ debug: true, autoProceed: true }).use(Tus, {
