@@ -34,7 +34,6 @@ export const Welcome = () => {
                     rel="noreferrer"
                   >
                     {icon}
-                    {text}
                   </a>
                 </li>
               ))}
