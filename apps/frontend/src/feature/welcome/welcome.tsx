@@ -25,16 +25,15 @@ export const Welcome = () => {
               What&apos;s next?
             </p>
             <ul>
-              {resources.map(({ href, text, icon }) => (
+              {resources.map(({ href }) => (
                 <li key={href}>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                   <a
                     className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                  >
-                    {icon}
-                  </a>
+                  ></a>
                 </li>
               ))}
             </ul>
