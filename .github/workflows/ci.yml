@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
+      - name: Install atlas
+        run: |
+          curl -sSf https://atlasgo.sh | sh -s -- -y
       - name: enable corepack
         run: corepack enable
       - name: yarn set v4
