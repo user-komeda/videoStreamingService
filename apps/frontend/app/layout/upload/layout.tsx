@@ -1,5 +1,4 @@
 const Layout = () => {
-  console.log('layout')
   return (
     <>
       <div>layout</div>
