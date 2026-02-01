@@ -5,7 +5,7 @@ import { UppyContextProvider } from '@uppy/react'
 import Tus from '@uppy/tus'
 import { Outlet } from 'react-router'
 const createUppy = () => {
-  return new Uppy({ debug: true, autoProceed: true }).use(Tus, {
+  return new Uppy({ debug: true, autoProceed: false }).use(Tus, {
     endpoint: 'http://localhost:8080/files/',
   })
 }
