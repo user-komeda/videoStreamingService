@@ -6,7 +6,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
       - uses: WillAbides/setup-go-faster@a0ff5217a7d2567ed6ff1aa2b7d8f9d58173b2c9 # v1.14.0
