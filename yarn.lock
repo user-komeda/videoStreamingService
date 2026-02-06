@@ -2376,19 +2376,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/components@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@uppy/components@npm:1.1.0"
+"@uppy/components@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@uppy/components@npm:1.2.0"
   dependencies:
     clsx: "npm:^2.1.1"
     dequal: "npm:^2.0.3"
-    preact: "npm:^10.5.13"
+    preact: "npm:^10.26.10"
     pretty-bytes: "npm:^6.1.1"
   peerDependencies:
-    "@uppy/core": ^5.1.1
-    "@uppy/image-editor": ^4.0.2
-    "@uppy/screen-capture": ^5.0.1
-    "@uppy/webcam": ^5.0.2
+    "@uppy/core": ^5.2.0
+    "@uppy/image-editor": ^4.2.0
+    "@uppy/screen-capture": ^5.1.0
+    "@uppy/webcam": ^5.1.0
   peerDependenciesMeta:
     "@uppy/image-editor":
       optional: true
@@ -2396,7 +2396,7 @@ __metadata:
       optional: true
     "@uppy/webcam":
       optional: true
-  checksum: 10c0/41fdd40060c77948f061898fc1d0955195be887cd861ecf638b5c960e7e006cfae6c9613a07f7b6f76e5c13941d6457c643d1b5881e8da68cb2f8024b6c27395
+  checksum: 10c0/461108c97dcdcd28f57456128d7cab076ec5850225b831cf891ca6ef7395231fe196ad57d65f5e99bf06092432ccc1e35570e03f54783d13f3c68a3ab77b62de
   languageName: node
   linkType: hard
 
@@ -2453,18 +2453,18 @@ __metadata:
   linkType: hard
 
 "@uppy/react@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "@uppy/react@npm:5.1.1"
+  version: 5.2.0
+  resolution: "@uppy/react@npm:5.2.0"
   dependencies:
-    "@uppy/components": "npm:^1.1.0"
-    preact: "npm:^10.5.13"
+    "@uppy/components": "npm:^1.2.0"
+    preact: "npm:^10.26.10"
     use-sync-external-store: "npm:^1.3.0"
   peerDependencies:
-    "@uppy/core": ^5.1.1
-    "@uppy/dashboard": ^5.0.3
-    "@uppy/screen-capture": ^5.0.1
-    "@uppy/status-bar": ^5.0.2
-    "@uppy/webcam": ^5.0.2
+    "@uppy/core": ^5.2.0
+    "@uppy/dashboard": ^5.1.1
+    "@uppy/screen-capture": ^5.1.0
+    "@uppy/status-bar": ^5.1.0
+    "@uppy/webcam": ^5.1.0
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
@@ -2476,7 +2476,7 @@ __metadata:
       optional: true
     "@uppy/webcam":
       optional: true
-  checksum: 10c0/60673a1c302caee1e0ab46f5e968aaf55457334599d972fa09eed85fc52ab2033af9309044e12ab6508ced1708c09c2bb288052756f12d804e1008052ca9c7f2
+  checksum: 10c0/874ae8ab4df4730eebcf8bd72d8736b4fa37c0531bbc8a0fa129160189554bb4cefaebdc2fcfae16c6549ed33eaf674b8a1a019873d742574ed0f7a23a8ee5e2
   languageName: node
   linkType: hard
 
@@ -2488,15 +2488,15 @@ __metadata:
   linkType: hard
 
 "@uppy/tus@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@uppy/tus@npm:5.1.0"
+  version: 5.1.1
+  resolution: "@uppy/tus@npm:5.1.1"
   dependencies:
     "@uppy/companion-client": "npm:^5.1.1"
-    "@uppy/utils": "npm:^7.1.4"
+    "@uppy/utils": "npm:^7.1.5"
     tus-js-client: "npm:^4.2.3"
   peerDependencies:
     "@uppy/core": ^5.2.0
-  checksum: 10c0/9eb9a1ef0d36ec94cb4de3167d984eb23a470ea8917e7b8d7708b04df385f08cad162b309848c834654a42fead48502ba0b0db245eae89ebc8fe96b974f06463
+  checksum: 10c0/b2f7f6bbccea3b5e2052b97f924e04820528f988bec66720420ad4e95488824471267ecc0c5d8333066d85c51198fbef3ff510e508951c68c7bca1cbbbdbf787
   languageName: node
   linkType: hard
 
@@ -2510,7 +2510,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/utils@npm:^7.1.1, @uppy/utils@npm:^7.1.4":
+"@uppy/utils@npm:^7.1.1, @uppy/utils@npm:^7.1.4, @uppy/utils@npm:^7.1.5":
   version: 7.1.5
   resolution: "@uppy/utils@npm:7.1.5"
   dependencies:
@@ -6620,6 +6620,13 @@ __metadata:
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
   checksum: 10c0/5127cc7c91ed7a133a1b7318012d8bfa112da9ef092dddf369ae699a1f10ebbd89b1b9f25f3228795b84585c72aabd5ced5fc11f2ba467eedf7b081a66fad024
+  languageName: node
+  linkType: hard
+
+"preact@npm:^10.26.10":
+  version: 10.28.3
+  resolution: "preact@npm:10.28.3"
+  checksum: 10c0/e8854fae8d8d40c918538f7a90888dd4f8acd388b8ba8e0c612ed0eb1a7d2cc6c15a7dc0a7b7c7bb5c361d2df63aa283e501cf1d47f8eb1413979cee611a38ef
   languageName: node
   linkType: hard
 
