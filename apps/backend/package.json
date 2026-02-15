@@ -2,10 +2,11 @@
   "name": "backend",
   "scripts": {
     "dev": "go run main.go",
-    "check": "concurrently 'make fmt' 'make lint'",
+    "check": "make clean-lint && concurrently 'make fmt' 'make lint'",
     "prepare": "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.8.0",
-    "migrate:diff": "atlas migrate diff --env local --config file://./db/atlas.hcl",
-    "migrate:apply": "atlas migrate apply --env local --config file://./db/atlas.hcl"
+    "migrate": "make clean-migrate && make migrate-diff && make migrate-apply",
+    "migrate:diff": "make migrate-diff",
+    "migrate:apply": "make migrate-apply"
   },
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
