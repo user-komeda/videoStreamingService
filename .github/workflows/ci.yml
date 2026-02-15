@@ -2,35 +2,45 @@ name: "CI"
 on:
   pull_request:
     types: [opened, synchronize]
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0
+
       - uses: actions/setup-go@v6
         with:
           go-version: '1.26'
-      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: 24
           package-manager-cache: false
+
       - name: Install atlas
         run: |
           curl -sSf https://atlasgo.sh | sh -s -- -y
+
       - name: Show backend Makefile in CI
-  　　   run: |
+        run: |
           echo "----- CI Makefile -----"
           cat apps/backend/Makefile
           echo "-----------------------"
+
       - name: enable corepack
         run: corepack enable
+
       - name: yarn set v4
         run: yarn set version stable
+
       - name: yarn install
         run: yarn install
+
       - name: yarn prepare
         run: yarn prepare
+
       - name: yarn check
         run: yarn check
