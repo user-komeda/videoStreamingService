@@ -2,27 +2,39 @@ name: "CI"
 on:
   pull_request:
     types: [opened, synchronize]
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0
-      - uses: WillAbides/setup-go-faster@a0ff5217a7d2567ed6ff1aa2b7d8f9d58173b2c9 # v1.14.0
+
+      - uses: actions/setup-go@v6
         with:
-          go-version: stable
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+          go-version: '1.26'
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238
         with:
           node-version: 24
           package-manager-cache: false
+
+      - name: Install atlas
+        run: |
+          curl -sSf https://atlasgo.sh | sh -s -- -y
+
       - name: enable corepack
         run: corepack enable
+
       - name: yarn set v4
         run: yarn set version stable
+
       - name: yarn install
         run: yarn install
+
       - name: yarn prepare
         run: yarn prepare
+
       - name: yarn check
         run: yarn check
