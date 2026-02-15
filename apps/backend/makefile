@@ -11,7 +11,7 @@ ATLAS_CONFIG := file://./db/atlas.hcl
 .PHONY: prepare-lint prepare-migrate lint fmt migrate-diff migrate-apply
 
 # ---- LINT 用 ----
-prepare-lint:clean-lint install-lint
+prepare-lint:install-lint
 
 install-lint:
 	@echo "Installing golangci-lint..."
@@ -25,7 +25,7 @@ fmt: prepare-lint
 	$(GOLANGCI_LINT) fmt
 
 # ---- MIGRATION 用 ----
-prepare-migrate: clean-migrate install-atlas
+prepare-migrate:install-atlas
 
 install-atlas:
 	@echo "Installing atlas..."
