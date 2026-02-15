@@ -19,6 +19,11 @@ jobs:
       - name: Install atlas
         run: |
           curl -sSf https://atlasgo.sh | sh -s -- -y
+      - name: Show backend Makefile in CI
+  　　   run: |
+          echo "----- CI Makefile -----"
+          cat apps/backend/Makefile
+          echo "-----------------------"
       - name: enable corepack
         run: corepack enable
       - name: yarn set v4
