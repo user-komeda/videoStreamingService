@@ -7,18 +7,16 @@ GOLANGCI_LINT_VERSION := v2.9.0
 ATLAS_CONFIG := file://./db/atlas.hcl
 ATLAS := /usr/local/bin/atlas
 
-.PHONY: prepare install-lint install-atlas lint fmt migrate-diff migrate-apply clean
+.PHONY: prepare lint fmt migrate
 
 # 必ず毎回インストール
 prepare: install-lint install-atlas
 
 install-lint:
-	@echo "Force installing golangci-lint $(GOLANGCI_LINT_VERSION)..."
+	@echo "Force installing golangci-lint"
 	@rm -f $(GOLANGCI_LINT)
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/$(GOLANGCI_LINT_VERSION)/install.sh \
 	| sh -s -- -b $(GOPATH_BIN) $(GOLANGCI_LINT_VERSION)
-	@echo "Installed version:"
-	@$(GOLANGCI_LINT) version
 
 install-atlas:
 	@echo "Installing atlas..."
@@ -35,6 +33,3 @@ migrate-diff: prepare
 
 migrate-apply: prepare
 	$(ATLAS) migrate apply --env local --config $(ATLAS_CONFIG)
-
-clean:
-	rm -f $(GOLANGCI_LINT)
