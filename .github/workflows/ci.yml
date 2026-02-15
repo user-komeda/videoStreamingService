@@ -27,7 +27,7 @@ jobs:
       - name: Show backend Makefile in CI
         run: |
           echo "----- CI Makefile -----"
-          cat apps/backend/Makefile
+          cat apps/backend/makefile
           echo "-----------------------"
 
       - name: enable corepack
