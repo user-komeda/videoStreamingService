@@ -1,36 +1,43 @@
 SHELL := /bin/sh
 
 GOPATH_BIN := $(shell go env GOPATH)/bin
+
 GOLANGCI_LINT := $(GOPATH_BIN)/golangci-lint
 GOLANGCI_LINT_VERSION := v2.9.0
 
+ATLAS := $(GOPATH_BIN)/atlas
 ATLAS_CONFIG := file://./db/atlas.hcl
-ATLAS := $(GOPATH_BIN)/atlas-linux-amd64-latest
 
-.PHONY: prepare lint fmt migrate-apply
+.PHONY: prepare-lint prepare-migrate lint fmt migrate-diff migrate-apply
 
-# 必ず毎回インストール
-prepare: clean install-lint install-atlas
+# ---- LINT 用 ----
+prepare-lint:clean-lint install-lint
 
 install-lint:
-	@echo "Force installing golangci-lint $(GOLANGCI_LINT_VERSION)..."
+	@echo "Installing golangci-lint..."
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/$(GOLANGCI_LINT_VERSION)/install.sh \
 	| sh -s -- -b $(GOPATH_BIN) $(GOLANGCI_LINT_VERSION)
 
-install-atlas:
-	@echo "Installing atlas..."
-	curl -sSf https://atlasgo.sh | sh -s -- -o $(ATLAS) -y
-
-lint: prepare
+lint: prepare-lint
 	$(GOLANGCI_LINT) run -c .golangci.yml
 
-fmt: prepare
+fmt: prepare-lint
 	$(GOLANGCI_LINT) fmt
 
-migrate-diff: prepare
+# ---- MIGRATION 用 ----
+prepare-migrate: clean-migrate install-atlas
+
+install-atlas:
+	@echo "Installing atlas..."
+	curl -sSf https://atlasgo.sh | sh -s -- -b $(GOPATH_BIN) -y
+
+migrate-diff: prepare-migrate
 	$(ATLAS) migrate diff --env local --config $(ATLAS_CONFIG)
 
-migrate-apply: prepare
+migrate-apply: prepare-migrate
 	$(ATLAS) migrate apply --env local --config $(ATLAS_CONFIG)
-clean:
-	rm -f $(GOLANGCI_LINT) && rm -f $(ATLAS)
+
+clean-lint:
+	rm -f $(GOLANGCI_LINT)
+clean-migrate:
+	rm -f $(ATLAS)
