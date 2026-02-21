@@ -3315,15 +3315,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:2.8.9":
-  version: 2.8.9
-  resolution: "eslint-config-turbo@npm:2.8.9"
+"eslint-config-turbo@npm:2.8.10":
+  version: 2.8.10
+  resolution: "eslint-config-turbo@npm:2.8.10"
   dependencies:
-    eslint-plugin-turbo: "npm:2.8.9"
+    eslint-plugin-turbo: "npm:2.8.10"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/30f28ff0d55de2b53efc528814f67a863b9da49f93a1a7ef62757e8a3f9538226fc3b4bad2e15348bdd73792008ec7668bcf883d33072a25d0113c71cabb6c30
+  checksum: 10c0/80d689a8ed7168e5950852b7ed86bc2fe6f2e76b885a35f5c5605b1c544fa8b140c39923ad370a7cadfd68511dd8175d9a84fe731abac7995079bbdc8ecd8139
   languageName: node
   linkType: hard
 
@@ -3530,15 +3530,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.8.9":
-  version: 2.8.9
-  resolution: "eslint-plugin-turbo@npm:2.8.9"
+"eslint-plugin-turbo@npm:2.8.10":
+  version: 2.8.10
+  resolution: "eslint-plugin-turbo@npm:2.8.10"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/3adc299cdd5f98272e6b4d19563349ba546b6c20f5a8b3f779ac4817ca6c7e7c7fea3b5126f6e333f80696622270e4f55ec237595a2e9081c6b03575ae0c2bfd
+  checksum: 10c0/73e78782f9909e64b306fa514af087fc721f0791e7c3dfecd540b5440fe1ed7ef1a9b2965f65bc85fd92399833c196aea650b571203168638f977c5ed411d0f1
   languageName: node
   linkType: hard
 
@@ -3897,7 +3897,7 @@ __metadata:
     concurrently: "npm:9.2.1"
     eslint: "npm:9.39.2"
     eslint-config-prettier: "npm:10.1.8"
-    eslint-config-turbo: "npm:2.8.9"
+    eslint-config-turbo: "npm:2.8.10"
     eslint-import-resolver-typescript: "npm:4.4.4"
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
@@ -7048,23 +7048,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-darwin-64@npm:2.8.9"
-  conditions: os=darwin & cpu=x64
-  languageName: node
-  linkType: hard
-
 "turbo-darwin-arm64@npm:2.8.10":
   version: 2.8.10
   resolution: "turbo-darwin-arm64@npm:2.8.10"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"turbo-darwin-arm64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-darwin-arm64@npm:2.8.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -7076,23 +7062,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-linux-64@npm:2.8.9"
-  conditions: os=linux & cpu=x64
-  languageName: node
-  linkType: hard
-
 "turbo-linux-arm64@npm:2.8.10":
   version: 2.8.10
   resolution: "turbo-linux-arm64@npm:2.8.10"
-  conditions: os=linux & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"turbo-linux-arm64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-linux-arm64@npm:2.8.9"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -7104,13 +7076,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-windows-64@npm:2.8.9"
-  conditions: os=win32 & cpu=x64
-  languageName: node
-  linkType: hard
-
 "turbo-windows-arm64@npm:2.8.10":
   version: 2.8.10
   resolution: "turbo-windows-arm64@npm:2.8.10"
@@ -7118,43 +7083,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo-windows-arm64@npm:2.8.9"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"turbo@npm:2.8.9":
-  version: 2.8.9
-  resolution: "turbo@npm:2.8.9"
-  dependencies:
-    turbo-darwin-64: "npm:2.8.9"
-    turbo-darwin-arm64: "npm:2.8.9"
-    turbo-linux-64: "npm:2.8.9"
-    turbo-linux-arm64: "npm:2.8.9"
-    turbo-windows-64: "npm:2.8.9"
-    turbo-windows-arm64: "npm:2.8.9"
-  dependenciesMeta:
-    turbo-darwin-64:
-      optional: true
-    turbo-darwin-arm64:
-      optional: true
-    turbo-linux-64:
-      optional: true
-    turbo-linux-arm64:
-      optional: true
-    turbo-windows-64:
-      optional: true
-    turbo-windows-arm64:
-      optional: true
-  bin:
-    turbo: bin/turbo
-  checksum: 10c0/43a8c3761235e7d6194fc7268fc401196e3092297940b4f460bea2f0b3869609e646525e1958c7686e82b92fcd27abf924b0e409b0326a9e4bec03e791a563da
-  languageName: node
-  linkType: hard
-
-"turbo@npm:^2.8.0":
+"turbo@npm:2.8.10, turbo@npm:^2.8.0":
   version: 2.8.10
   resolution: "turbo@npm:2.8.10"
   dependencies:
@@ -7496,7 +7425,7 @@ __metadata:
   resolution: "videoStreamingService@workspace:."
   dependencies:
     "@uppy/file-input": "npm:^4.2.2"
-    turbo: "npm:2.8.9"
+    turbo: "npm:2.8.10"
   languageName: unknown
   linkType: soft
 
