@@ -21,7 +21,7 @@ services:
       - 8080:8080
   db:
     container_name: db-video-streaming-service
-    image: postgres:18@sha256:9b5bd946f3a507db72c55959700e517463e8d5dbb6f7eb30d920d5bcf6951431
+    image: postgres:18@sha256:55586516b2fd477faa8f0f05ec0a72b196fb7e2bce8df3adfb9c6a0ed607214f
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
