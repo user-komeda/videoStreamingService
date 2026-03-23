@@ -4,7 +4,7 @@
     "apps/*"
   ],
   "devDependencies": {
-    "turbo": "2.8.19"
+    "turbo": "2.8.20"
   },
   "scripts": {
     "build": "turbo run build",
