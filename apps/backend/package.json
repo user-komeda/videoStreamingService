@@ -8,7 +8,7 @@
     "migrate:diff": "make migrate-diff",
     "migrate:apply": "make migrate-apply"
   },
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.14.1",
   "devDependencies": {
     "concurrently": "9.2.1"
   }
