@@ -3,7 +3,7 @@
 #   Refer for explanation to following link:
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
- pre-commit:
-   commands:
-     check:
-       run: "yarn check"
+pre-commit:
+  commands:
+    check:
+      run: "PATH=$HOME/sdk/go1.26.2/bin:$HOME/go/bin:$PATH yarn check"
