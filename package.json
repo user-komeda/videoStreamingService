@@ -12,9 +12,9 @@
     "check": "turbo run check",
     "prepare": "turbo run prepare"
   },
-  "packageManager": "yarn@4.14.1",
+  "packageManager": "yarn@4.15.0",
   "dependencies": {
     "@uppy/file-input": "^4.2.2",
-    "lefthook": "^2.1.6"
+    "lefthook": "^2.1.8"
   }
 }
