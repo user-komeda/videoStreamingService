@@ -44,7 +44,7 @@
     "@typescript-eslint/type-utils": "8.60.0",
     "@typescript-eslint/types": "8.60.0",
     "@vitest/eslint-plugin": "1.6.19",
-    "concurrently": "10.0.0",
+    "concurrently": "10.0.1",
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-turbo": "2.9.16",
