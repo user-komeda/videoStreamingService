@@ -6982,7 +6982,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:2.9.16, turbo@npm:^2.9.14":
+"turbo@npm:^2.9.14, turbo@npm:^2.9.16":
   version: 2.9.16
   resolution: "turbo@npm:2.9.16"
   dependencies:
@@ -7323,7 +7323,7 @@ __metadata:
   dependencies:
     "@uppy/file-input": "npm:^4.2.2"
     lefthook: "npm:^2.1.8"
-    turbo: "npm:2.9.16"
+    turbo: "npm:^2.9.16"
   languageName: unknown
   linkType: soft
 
