@@ -2,7 +2,7 @@
   "name": "backend",
   "scripts": {
     "dev": "go run main.go",
-    "check": "make clean-lint && concurrently 'make fmt' 'make lint'",
+    "check": "make clean-lint && make fmt && make lint",
     "prepare": "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.8.0",
     "migrate": "make clean-migrate && make migrate-diff && make migrate-apply",
     "migrate:diff": "make migrate-diff",
