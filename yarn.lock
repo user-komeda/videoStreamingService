@@ -753,9 +753,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-router/dev@npm:8.0.1":
-  version: 8.0.1
-  resolution: "@react-router/dev@npm:8.0.1"
+"@react-router/dev@npm:8.1.0":
+  version: 8.1.0
+  resolution: "@react-router/dev@npm:8.1.0"
   dependencies:
     "@babel/core": "npm:^7.29.7"
     "@babel/generator": "npm:^7.29.7"
@@ -764,9 +764,8 @@ __metadata:
     "@babel/preset-typescript": "npm:^7.29.7"
     "@babel/traverse": "npm:^7.29.7"
     "@babel/types": "npm:^7.29.7"
-    "@react-router/node": "npm:8.0.1"
+    "@react-router/node": "npm:8.1.0"
     "@remix-run/node-fetch-server": "npm:^0.13.3"
-    arg: "npm:^5.0.1"
     babel-dead-code-elimination: "npm:^1.0.12"
     chokidar: "npm:^5.0.0"
     dedent: "npm:^1.7.2"
@@ -785,9 +784,9 @@ __metadata:
     tinyglobby: "npm:^0.2.16"
     valibot: "npm:^1.4.1"
   peerDependencies:
-    "@react-router/serve": ^8.0.1
+    "@react-router/serve": ^8.1.0
     "@vitejs/plugin-rsc": ~0.5.26
-    react-router: ^8.0.1
+    react-router: ^8.1.0
     react-server-dom-webpack: ^19.2.7
     typescript: ^5.1.0 || ^6.0.0
     vite: ^7.0.0 || ^8.0.0
@@ -805,58 +804,57 @@ __metadata:
       optional: true
   bin:
     react-router: bin.cjs
-  checksum: 10c0/807a47a0b04fd204f64e0ca20bafe6dadb2d89a41ae38cb062e62157efc8ffbe8bc756e36b5ef5a3c3c1a53fb906d34cfa4b325dd0e7b347fd7e5c74716c4bf9
+  checksum: 10c0/5daaac8d1ea1420dc73257f1018a7fbeee8796802b95225e326cfb80b5482553052d4fac369ee132d96630ad49884996934b2c09f9bde53e06d61efc9feeea1a
   languageName: node
   linkType: hard
 
-"@react-router/express@npm:8.0.1":
-  version: 8.0.1
-  resolution: "@react-router/express@npm:8.0.1"
+"@react-router/express@npm:8.1.0":
+  version: 8.1.0
+  resolution: "@react-router/express@npm:8.1.0"
   dependencies:
-    "@react-router/node": "npm:8.0.1"
+    "@react-router/node": "npm:8.1.0"
   peerDependencies:
     express: ^4.22.2 || ^5
-    react-router: 8.0.1
+    react-router: 8.1.0
     typescript: ^5.1.0 || ^6.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/9d10135a1bbdb7dcddceda96d131d00c7f5315562a92c1cfcdc24fcb76deb1b0bb6839549ccf041bf8ad85b902dcda7809bc50752a9c4405d572e4448a2b14f8
+  checksum: 10c0/9c18dc542261a6f629a965a8e90d1d3e8e4ca6820eb05ece6149de2b6815cd463870ad7d8638458015d292f285c613d3791127e940e69f59f04b83b499541866
   languageName: node
   linkType: hard
 
-"@react-router/node@npm:8.0.1, @react-router/node@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "@react-router/node@npm:8.0.1"
+"@react-router/node@npm:8.1.0, @react-router/node@npm:^8.0.0":
+  version: 8.1.0
+  resolution: "@react-router/node@npm:8.1.0"
   dependencies:
     "@remix-run/node-fetch-server": "npm:^0.13.3"
   peerDependencies:
-    react-router: 8.0.1
+    react-router: 8.1.0
     typescript: ^5.1.0 || ^6.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/7cd098d699527636973fa13aba4723234d18bf98d29a55f798d1af380472a600d9e004780a65b01b2bffe677185d9a656ff21a92b9f013e111acbdeaa9c5ef31
+  checksum: 10c0/ba6369d799006f6e9acebe8821d7a3755c18141aaa8083583bbb1a196dc2de1296289a02db3c76c91c55ec2a9923d59d4f2c6ebdc801098774da0939d9898a6d
   languageName: node
   linkType: hard
 
 "@react-router/serve@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "@react-router/serve@npm:8.0.1"
+  version: 8.1.0
+  resolution: "@react-router/serve@npm:8.1.0"
   dependencies:
-    "@react-router/express": "npm:8.0.1"
-    "@react-router/node": "npm:8.0.1"
+    "@react-router/express": "npm:8.1.0"
+    "@react-router/node": "npm:8.1.0"
     "@remix-run/node-fetch-server": "npm:^0.13.3"
     compression: "npm:^1.8.1"
     express: "npm:^5.2.1"
-    get-port: "npm:7.2.0"
     morgan: "npm:^1.10.1"
     source-map-support: "npm:^0.5.21"
   peerDependencies:
-    react-router: 8.0.1
+    react-router: 8.1.0
   bin:
     react-router-serve: bin.cjs
-  checksum: 10c0/f4bd83bc87276a586aed747c8aefa20556703ee7439c5b3b1c2bbb373e4818d9d9c15bb916d5ae24896473e15bb24e6dd2ff0ec36dea6c0b1c0499bb36c8ae73
+  checksum: 10c0/1bf6a86dc097d6356489f0cf1255beb502dedb8b63805e6e2fe178c426d06248b54daed89459743ca2e4cbe6ef012fc763b3d78d70ec18fe7e4a0a0e24ef7291
   languageName: node
   linkType: hard
 
@@ -2193,13 +2191,6 @@ __metadata:
   version: 6.2.3
   resolution: "ansi-styles@npm:6.2.3"
   checksum: 10c0/23b8a4ce14e18fb854693b95351e286b771d23d8844057ed2e7d083cd3e708376c3323707ec6a24365f7d7eda3ca00327fe04092e29e551499ec4c8b7bfac868
-  languageName: node
-  linkType: hard
-
-"arg@npm:^5.0.1":
-  version: 5.0.2
-  resolution: "arg@npm:5.0.2"
-  checksum: 10c0/ccaf86f4e05d342af6666c569f844bec426595c567d32a8289715087825c2ca7edd8a3d204e4d2fb2aa4602e09a57d0c13ea8c9eea75aac3dbb4af5514e6800e
   languageName: node
   linkType: hard
 
@@ -3770,7 +3761,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:9.39.4"
     "@playwright/test": "npm:1.61.1"
-    "@react-router/dev": "npm:8.0.1"
+    "@react-router/dev": "npm:8.1.0"
     "@react-router/node": "npm:^8.0.0"
     "@react-router/serve": "npm:^8.0.0"
     "@tailwindcss/vite": "npm:4.3.2"
@@ -3937,13 +3928,6 @@ __metadata:
     hasown: "npm:^2.0.2"
     math-intrinsics: "npm:^1.1.0"
   checksum: 10c0/9f4ab0cf7efe0fd2c8185f52e6f637e708f3a112610c88869f8f041bb9ecc2ce44bf285dfdbdc6f4f7c277a5b88d8e94a432374d97cca22f3de7fc63795deb5d
-  languageName: node
-  linkType: hard
-
-"get-port@npm:7.2.0":
-  version: 7.2.0
-  resolution: "get-port@npm:7.2.0"
-  checksum: 10c0/4ed741d9008ad15a24e2098c8971918025cc8241624245e704ecc62bb65160db5c79de5d7112acdaabccbe0714cd0704008c74d43a1f7a24a5875e58b84621be
   languageName: node
   linkType: hard
 
@@ -5790,8 +5774,8 @@ __metadata:
   linkType: hard
 
 "react-router@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "react-router@npm:8.0.1"
+  version: 8.1.0
+  resolution: "react-router@npm:8.1.0"
   dependencies:
     cookie-es: "npm:^3.1.1"
   peerDependencies:
@@ -5800,7 +5784,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10c0/7ffcac5caf209b6988a0e045fd044f5f8e91e7f677475f707becd514f316f6c2d556f90e371c5a41f6033da891a2d97370b1c5d443ba96991ab0f4f71252c8ba
+  checksum: 10c0/28c336a5c32ad011a305b82fb27ae1abb892a971591618d3dcb4c8ff3fef3440c215e2b9b365217dd43774db4b3d526c4a95e5d3faecacf42ed9356402bab03f
   languageName: node
   linkType: hard
 
