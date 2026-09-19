@@ -1,8 +1,3 @@
-const Layout = () => {
-  return (
-    <>
-      <div>layout</div>
-    </>
-  )
-}
-export default Layout
+import UploadLayout from '~/feature/upload/layout'
+
+export default UploadLayout

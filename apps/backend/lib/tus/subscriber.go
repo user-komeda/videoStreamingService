@@ -3,9 +3,10 @@ package tus
 import (
 	"context"
 	"encoding/base64"
+	"strconv"
 	"strings"
 
-	"videoStreaming/domain/event"
+	"videoStreaming/domain/event/upload"
 )
 
 type Subscriber struct {
@@ -23,21 +24,47 @@ func NewSubscriber(
 func (s *Subscriber) WatchCompletedUploads() {
 	go func() {
 		for e := range s.h.CompleteUploads {
-			filename := ""
-			if v, ok := e.Upload.MetaData["filename"]; ok {
-				filename = decode(v)
+			print("uploadID")
+			print(e.Upload.ID)
+			uploadID, _, _ := strings.Cut(e.Upload.ID, "+")
+			print(uploadID)
+			filename := extractMeta(e.Upload.MetaData, "filename")
+			videoID := extractMeta(e.Upload.MetaData, "videoId", "video_id")
+			mimeType := extractMeta(e.Upload.MetaData, "filetype", "type")
+			durationMsStr := extractMeta(e.Upload.MetaData, "durationMs", "duration_ms", "duration")
+
+			var durationMs int64
+			if durationMsStr != "" {
+				if d, parseErr := strconv.ParseInt(durationMsStr, 10, 64); parseErr == nil {
+					durationMs = d
+				} else if f, floatErr := strconv.ParseFloat(durationMsStr, 64); floatErr == nil {
+					durationMs = int64(f)
+				}
 			}
 
 			// ★ event 発火
 			s.bus.Publish(
 				context.Background(),
-				event.UploadCompletedEvent{
-					ID:       e.Upload.ID,
-					Filename: filename,
+				upload.CompletedEvent{
+					ID:         uploadID,
+					VideoID:    videoID,
+					Filename:   filename,
+					Size:       e.Upload.Size,
+					DurationMs: durationMs,
+					MimeType:   mimeType,
 				},
 			)
 		}
 	}()
+}
+
+func extractMeta(meta map[string]string, keys ...string) string {
+	for _, k := range keys {
+		if v, ok := meta[k]; ok {
+			return decode(v)
+		}
+	}
+	return ""
 }
 
 func decode(v string) string {

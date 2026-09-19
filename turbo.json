@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": ["DEV", "CI", "NODE_ENV", "VITE_API_URL"],
   "tasks": {
     "dev": {
       "dependsOn": ["^dev"],
@@ -18,6 +19,13 @@
     "prepare": {
       "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
     },
-    "test": {}
+    "test": {
+      "outputs": ["coverage/**", "coverage.out"]
+    },
+    "swagger": {},
+    "codegen": {
+      "dependsOn": ["^swagger"],
+      "outputs": ["src/api/generated/**"]
+    }
   }
 }
