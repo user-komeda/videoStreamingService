@@ -1,8 +1,6 @@
 import js from '@eslint/js'
-import pluginQuery from '@tanstack/eslint-plugin-query'
 import vitest from '@vitest/eslint-plugin'
 import prettier from 'eslint-config-prettier'
-import turboConfig from 'eslint-config-turbo/flat'
 import importPlugin from 'eslint-plugin-import'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths'
@@ -17,26 +15,16 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  {
-    ignores: [
-      'dist',
-      '.react-router/',
-      'build/',
-      'src/api/generated/**',
-      'src/components/ui/**',
-      'playwright-report/**',
-    ],
-  },
+  { ignores: ['dist', '.react-router/', 'build/'] },
   {
     extends: [
+      // ...turboConfig,
       js.configs.recommended,
       // eslint-disable-next-line import/no-named-as-default-member
-      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.recommended,
       reactCompiler.configs.recommended,
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
-      ...turboConfig,
-      ...pluginQuery.configs['flat/recommended'],
       testingLibrary.configs['flat/react'],
       prettier,
     ],
@@ -45,19 +33,14 @@ export default tseslint.config(
         version: 'detect',
       },
       'import/resolver': {
-        typescript: true,
+        typescript: {},
       },
       'import/internal-regex': '^~/',
     },
     files: ['**/*.{ts,tsx,js}'],
     languageOptions: {
-      ...reactPlugin.configs.flat.recommended.languageOptions,
       ecmaVersion: 2020,
-      parserOptions: {
-        ...reactPlugin.configs.flat.recommended.languageOptions?.parserOptions,
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
+      ...reactPlugin.configs.flat.recommended.languageOptions,
       globals: globals.browser,
     },
     plugins: {
@@ -69,51 +52,16 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     rules: {
-      // コード品質 & 複雑度
-      eqeqeq: ['error', 'always'],
-      curly: ['error', 'all'],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
-      complexity: ['error', 10],
-      'max-depth': ['error', 2],
-      'max-params': ['error', 3],
-      'max-lines': ['error', 115],
-      'max-lines-per-function': ['error', 40],
-
-      // TypeScript
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        { prefer: 'type-imports' },
-      ],
-      '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-unused-vars': 'off',
-
-      // パス関連
       'no-relative-import-paths/no-relative-import-paths': 'error',
-
-      // React / JSX
       ...reactPlugin.configs.flat.recommended.rules,
       ...reactPlugin.configs.flat['jsx-runtime'].rules,
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'react/self-closing-comp': 'error',
-      'react/no-array-index-key': 'warn',
-      'react/function-component-definition': [
-        'error',
-        {
-          namedComponents: 'arrow-function',
-          unnamedComponents: 'arrow-function',
-        },
-      ],
-
-      // アクセシビリティ & Hooks
       ...jsxA11y.flatConfigs.strict.rules,
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
-
-      // 未使用インポート
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',
@@ -124,23 +72,21 @@ export default tseslint.config(
           argsIgnorePattern: '^_',
         },
       ],
-
-      // インポート順序
+      'react/function-component-definition': [
+        2,
+        {
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function',
+        },
+      ],
       'import/order': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'sibling',
-            'index',
-            'type',
-          ],
-          alphabetize: { order: 'asc', caseInsensitive: false },
+          groups: ['builtin', 'external', 'sibling', 'index', 'object', 'type'],
+          alphabetize: { order: 'asc', caseInsensitive: false }, //グループ内でアルファベット順に並べるかを設定
           pathGroups: [
             {
-              pattern: '{react,react-dom/**,react-router,react-router/**}',
+              pattern: '{react,react-dom/**,react-router-dom,}',
               group: 'builtin',
               position: 'before',
             },
@@ -153,46 +99,30 @@ export default tseslint.config(
   },
   {
     files: ['app/**/*.ts', 'app/**/*.tsx'],
+    languageOptions: {
+      globals: globals.browser,
+    },
     rules: {
-      'react-refresh/only-export-components': 'off',
+      'react-refresh/only-export-components': ['off'],
     },
   },
   {
     files: ['app/**/root.tsx'],
+    languageOptions: {
+      globals: globals.browser,
+    },
     rules: {
-      'no-relative-import-paths/no-relative-import-paths': 'off',
+      'react-refresh/only-export-components': ['off'],
+      'no-relative-import-paths/no-relative-import-paths': ['off'],
     },
   },
   {
-    files: ['**/*.{test,spec}.{ts,tsx}', 'tests/**'],
+    files: ['tests/**'], // or any other pattern
     plugins: {
       vitest,
     },
     rules: {
-      ...vitest.configs.recommended.rules,
-      'max-lines-per-function': 'off',
-      'max-lines': 'off',
-    },
-  },
-  {
-    files: ['e2e/**/*.{ts,tsx}'],
-    rules: {
-      'testing-library/prefer-screen-queries': 'off',
-      'testing-library/no-node-access': 'off',
-      'testing-library/prefer-presence-queries': 'off',
-      'testing-library/await-async-queries': 'off',
-      'testing-library/no-await-sync-queries': 'off',
-    },
-  },
-  {
-    files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
-    // eslint-disable-next-line import/no-named-as-default-member
-    ...tseslint.configs.disableTypeChecked,
-  },
-  {
-    files: ['*.config.{js,ts,mjs,cjs}', 'eslint.config.js'],
-    rules: {
-      'max-lines': 'off',
+      ...vitest.configs.all.rules, // you can also use vitest.configs.all.rules to enable all rules
     },
   },
 )

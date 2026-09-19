@@ -1,22 +1,16 @@
 package config
 
-import (
-	"strings"
-)
-
 type Config struct {
-	ServerPort         string
-	AppEnv             string
-	CORSAllowedOrigins []string
-	MinIO              MinIOConfig
-	Tus                TusConfig
-	DB                 DBConfig
+	ServerPort string
+	MinIO      MinIOConfig
+	Tus        TusConfig
+	DB         DBConfig
 }
-
 type DBConfig struct {
+	// DSN example (MySQL):
+	//   user:pass@tcp(127.0.0.1:3306)/app?parseTime=true&loc=Local
 	DSN string
 }
-
 type MinIOConfig struct {
 	Endpoint  string
 	AccessKey string
@@ -29,51 +23,21 @@ type TusConfig struct {
 	BasePath string
 }
 
-func parseStringSlice(s string) []string {
-	if s == "" {
-		return nil
-	}
-	var res []string
-	for p := range strings.SplitSeq(s, ",") {
-		trimmed := strings.TrimSpace(p)
-		if trimmed != "" {
-			res = append(res, trimmed)
-		}
-	}
-	return res
-}
-
-// DefaultConfig returns the default configuration loaded with environment variable overrides.
 func DefaultConfig() Config {
-	port := GetEnv("PORT")
-	if port != "" && !strings.Contains(port, ":") {
-		port = ":" + port
-	}
-
 	return Config{
-		ServerPort:         port,
-		AppEnv:             GetEnv("APP_ENV"),
-		CORSAllowedOrigins: parseStringSlice(GetEnv("CORS_ALLOWED_ORIGINS")),
+		ServerPort: ":8080",
 		DB: DBConfig{
-			DSN: GetEnv("DATABASE_URL"),
+			DSN: "postgres://localhost:5432/sample_db?sslmode=disable",
 		},
 		MinIO: MinIOConfig{
-			Endpoint:  GetEnv("MINIO_ENDPOINT"),
-			AccessKey: GetEnv("MINIO_ACCESS_KEY"),
-			SecretKey: GetEnv("MINIO_SECRET_KEY"),
-			Region:    GetEnv("MINIO_REGION"),
-			Bucket:    GetEnv("MINIO_BUCKET"),
+			Endpoint:  "http://192.168.11.8:9000",
+			AccessKey: "minio",
+			SecretKey: "DUMMY_SECRET_KEY",
+			Region:    "us-east-1",
+			Bucket:    "tus-uploads",
 		},
 		Tus: TusConfig{
-			BasePath: GetEnv("TUS_BASE_PATH"),
+			BasePath: "/files/",
 		},
 	}
-}
-
-// NewConfig validates required environment variables and returns Config.
-func NewConfig() (Config, error) {
-	if err := Validate(); err != nil {
-		return Config{}, err
-	}
-	return DefaultConfig(), nil
 }

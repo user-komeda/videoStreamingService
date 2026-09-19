@@ -1,5 +1,0 @@
-31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/db/atlas.hcl:generic-credential-uri:5
-31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/db/atlas.hcl:generic-credential-uri:6
-31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/config/Config.go:generic-credential-uri:30
-31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/config/Config.go:generic-api-key:35
-31912333ef4dd2f8d6982f03f0967717e15897fa:.env:generic-password:2

@@ -1,24 +1,9 @@
 
-data "external_schema" "gorm" {
-  program = [
-    "go",
-    "run",
-    "-mod=mod",
-    "ariga.io/atlas-provider-gorm",
-    "load",
-    "--path",
-    "./db/schema",
-    "--dialect",
-    "postgres",
-  ]
-}
-
 env "local" {
-  src = data.external_schema.gorm.url
+  src = "file://./db/schema/schema.hcl"
 
-
-  dev = "docker://postgres/16/dev"
-  url = getenv("DATABASE_URL")
+  dev = "postgres://localhost:5432/sample_db_dev?sslmode=disable"
+  url = "postgres://localhost:5432/sample_db?sslmode=disable"
 
   migration {
     dir = "file://./db/migration"

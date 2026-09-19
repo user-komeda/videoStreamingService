@@ -31,26 +31,5 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
-  minio:
-    image: quay.io/minio/minio
-    command: server /data --console-address ":9001"
-
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
-      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
-
-    volumes:
-      - minio_data:/data
-
 volumes:
   postgres_data:
-  minio_data:
-    driver: local
-    driver_opts:
-      type: cifs
-      device: "//192.168.11.83/minio$"
-      o: "username=${NAS_USERNAME},password=${NAS_PASSWORD},vers=3.0,file_mode=0660,dir_mode=0770"

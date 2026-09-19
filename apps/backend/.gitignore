@@ -24,8 +24,3 @@ go.work.sum
 # env file
 .env
 .idea/
-/lint_clean.txt
-/lint_current.txt
-/lint_out.txt
-/lint_results.txt
-/coverage

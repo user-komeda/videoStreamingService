@@ -11,7 +11,7 @@ import (
 )
 
 func NewMinio3Client(ctx app.Context, cfg config.MinIOConfig) (*s3.Client, error) {
-	awsCfg, _ := awsconfig.LoadDefaultConfig(
+	awsCfg, err := awsconfig.LoadDefaultConfig(
 		ctx,
 		awsconfig.WithRegion(cfg.Region),
 		awsconfig.WithCredentialsProvider(
@@ -22,6 +22,9 @@ func NewMinio3Client(ctx app.Context, cfg config.MinIOConfig) (*s3.Client, error
 			),
 		),
 	)
+	if err != nil {
+		return nil, err
+	}
 
 	return s3.NewFromConfig(awsCfg, func(o *s3.Options) {
 		o.BaseEndpoint = aws.String(cfg.Endpoint)

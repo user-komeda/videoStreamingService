@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import { Outlet } from 'react-router'
 
+import Uppy from '@uppy/core'
 import { UppyContextProvider } from '@uppy/react'
-
-import { createUppy } from '~/feature/upload/uppy'
-
+import Tus from '@uppy/tus'
+import { Outlet } from 'react-router'
+const createUppy = () => {
+  return new Uppy({ debug: true, autoProceed: false }).use(Tus, {
+    endpoint: 'http://localhost:8080/files/',
+  })
+}
 const Layout = () => {
   const [uppy] = useState(createUppy)
   return (
@@ -13,5 +17,4 @@ const Layout = () => {
     </UppyContextProvider>
   )
 }
-
 export default Layout

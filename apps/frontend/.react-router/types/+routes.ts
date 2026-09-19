@@ -14,14 +14,6 @@ type Pages = {
   "/": {
     params: {};
   };
-  "/videos": {
-    params: {};
-  };
-  "/videos/:id": {
-    params: {
-      "id": string;
-    };
-  };
   "/upload": {
     params: {};
   };
@@ -30,35 +22,25 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/videos" | "/videos/:id" | "/upload";
+    page: "/" | "/upload";
   };
-  "routes/home/route.tsx": {
-    id: "routes/home/route";
+  "routes/home.tsx": {
+    id: "routes/home";
     page: "/";
   };
-  "routes/video/route.tsx": {
-    id: "routes/video/route";
-    page: "/videos";
-  };
-  "routes/video/[id]/route.tsx": {
-    id: "routes/video/[id]/route";
-    page: "/videos/:id";
-  };
-  "layout/upload/layout.tsx": {
-    id: "layout/upload/layout";
+  "../src/feature/upload/layout.tsx": {
+    id: "../src/feature/upload/layout";
     page: "/upload";
   };
-  "routes/upload/route.tsx": {
-    id: "routes/upload/route";
+  "routes/upload.tsx": {
+    id: "routes/upload";
     page: "/upload";
   };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
-  "routes/home/route": typeof import("./app/routes/home/route.tsx");
-  "routes/video/route": typeof import("./app/routes/video/route.tsx");
-  "routes/video/[id]/route": typeof import("./app/routes/video/[id]/route.tsx");
-  "layout/upload/layout": typeof import("./app/layout/upload/layout.tsx");
-  "routes/upload/route": typeof import("./app/routes/upload/route.tsx");
+  "routes/home": typeof import("./app/routes/home.tsx");
+  "../src/feature/upload/layout": unknown;
+  "routes/upload": typeof import("./app/routes/upload.tsx");
 };

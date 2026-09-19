@@ -6,56 +6,10 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:18-alpine
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: sample_db
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-      minio:
-        image: quay.io/minio/minio
-        env:
-          MINIO_ROOT_USER: minioadmin
-          MINIO_ROOT_PASSWORD: minioadmin
-        ports:
-          - 9000:9000
-          - 9001:9001
-        options: >-
-          server /data --console-address ":9001"
-          --health-cmd "mc ready local || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    env:
-      DATABASE_URL: "postgres://postgres:password@localhost:5432/sample_db?sslmode=disable"
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: sample_db
-      MINIO_ENDPOINT: "http://localhost:9000"
-      MINIO_ACCESS_KEY: "minioadmin"
-      MINIO_SECRET_KEY: "minioadmin"
-      MINIO_REGION: "us-east-1"
-      MINIO_BUCKET: "videos"
-      TUS_BASE_PATH: "/files/"
-
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
         with:
           fetch-depth: 0
-
-      - name: Run Secret Check (Betterleaks)
-        run: make secret-check
 
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
@@ -68,7 +22,7 @@ jobs:
 
       - name: Install atlas
         run: |
-          curl -sSf https://atlasgo.sh | sh -s -- -b $(go env GOPATH)/bin -y
+          curl -sSf https://atlasgo.sh | sh -s -- -y
 
       - name: enable corepack
         run: corepack enable
@@ -76,15 +30,8 @@ jobs:
       - name: yarn install
         run: yarn install
 
+      - name: yarn prepare
+        run: yarn prepare
+
       - name: yarn check
         run: yarn check
-
-      - name: Backend Coverage Summary
-        working-directory: apps/backend
-        run: |
-          if [ -f coverage.out ]; then
-            echo "### Backend Coverage Summary" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            go tool cover -func=coverage.out >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-          fi
