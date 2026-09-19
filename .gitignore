@@ -1,4 +1,13 @@
 /node_modules/
+/.bin/
 .turbo
 .yarn/install-state.gz
 apps/frontend/.gitignore
+/apps/frontend/node_modules/
+/apps/backend/lib/tus/strage/minio_test.go
+/apps/backend/domain/errors/repository_error.go
+/apps/backend/container/repository_module.go
+/apps/backend/presentation/request/request_base.go
+/.idea
+
+/NUL

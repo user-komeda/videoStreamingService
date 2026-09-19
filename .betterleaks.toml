@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+  '''apps/backend/\.testcoverage\.yml''',
+  '''node_modules''',
+  '''yarn\.lock''',
+]

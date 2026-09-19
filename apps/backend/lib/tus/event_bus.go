@@ -4,21 +4,21 @@ import (
 	"context"
 	"sync"
 
-	"videoStreaming/domain/event"
+	"videoStreaming/domain/event/upload"
 )
 
 type UploadCompletedBus struct {
 	mu       sync.RWMutex
-	handlers []event.UploadCompletedInvoker
+	handlers []upload.CompletedInvoker
 }
 
 func NewUploadCompletedBus() *UploadCompletedBus {
 	return &UploadCompletedBus{
-		handlers: make([]event.UploadCompletedInvoker, 0),
+		handlers: make([]upload.CompletedInvoker, 0),
 	}
 }
 
-func (b *UploadCompletedBus) Subscribe(h event.UploadCompletedInvoker) {
+func (b *UploadCompletedBus) Subscribe(h upload.CompletedInvoker) {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 	b.handlers = append(b.handlers, h)
@@ -26,7 +26,7 @@ func (b *UploadCompletedBus) Subscribe(h event.UploadCompletedInvoker) {
 
 func (b *UploadCompletedBus) Publish(
 	ctx context.Context,
-	e event.UploadCompletedEvent,
+	e upload.CompletedEvent,
 ) {
 	b.mu.RLock()
 	defer b.mu.RUnlock()

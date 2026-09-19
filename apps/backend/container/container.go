@@ -2,9 +2,13 @@ package container
 
 import "go.uber.org/fx"
 
-//nolint:gochecknoglobals // App is the main entry point for the Fx application container.
-var App = fx.Options(
-	ApplicationModule,
-	PresentationModule,
-	CoreModule,
-)
+// App はアプリケーション全体のFxオプションを返します.
+func App() fx.Option {
+	return fx.Options(
+		CoreModule(),
+		LibModule(),
+		RepositoryModule(),
+		ApplicationModule(),
+		PresentationModule(),
+	)
+}
