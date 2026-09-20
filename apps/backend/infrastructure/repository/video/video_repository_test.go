@@ -161,27 +161,33 @@ func TestVideoRepository_DomainMappingError(t *testing.T) {
 	testOwnerID := uuid.NewString()
 	_ = db.Exec("ALTER TABLE videos DROP CONSTRAINT IF EXISTS chk_videos_visibility").Error
 	insertErr := db.Exec(
-		"INSERT INTO videos (id, owner_id, title, description, visibility, status) VALUES (?, ?, ?, ?, ?, ?)",
+		"INSERT INTO videos (id, owner_id, title, description, visibility, status, file_path, file_size, duration_ms, mime_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 		corruptID,
 		testOwnerID,
 		"Corrupt",
 		"Desc",
 		"invalid_vis",
 		"ready",
+		"",
+		0,
+		0,
+		"",
 	).Error
-	if insertErr == nil {
-		defer func() {
-			db.Exec("DELETE FROM videos WHERE id = ?", corruptID)
-			db.Exec(
-				"ALTER TABLE videos ADD CONSTRAINT chk_videos_visibility CHECK (visibility = ANY (ARRAY['public'::text, 'private'::text]))",
-			)
-		}()
+	if insertErr != nil {
+		t.Fatalf("failed to insert corrupt video: %v", insertErr)
+	}
 
-		if _, err := repo.GetByID(ctx, corruptID); err == nil {
-			t.Errorf("expected error on GetByID for corrupt record")
-		}
-		if _, err := repo.GetAll(ctx); err == nil {
-			t.Errorf("expected error on GetAll for corrupt record")
-		}
+	defer func() {
+		db.Exec("DELETE FROM videos WHERE id = ?", corruptID)
+		db.Exec(
+			"ALTER TABLE videos ADD CONSTRAINT chk_videos_visibility CHECK (visibility = ANY (ARRAY['public'::text, 'private'::text]))",
+		)
+	}()
+
+	if _, err := repo.GetByID(ctx, corruptID); err == nil {
+		t.Errorf("expected error on GetByID for corrupt record")
+	}
+	if _, err := repo.GetAll(ctx); err == nil {
+		t.Errorf("expected error on GetAll for corrupt record")
 	}
 }
