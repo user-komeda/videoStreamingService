@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router build",
+    "build": "infisicalLauncher --path=/videoStreaming/front -- yarn react-router build",
     "dev": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router dev",
-    "start": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router-serve ./build/server/index.js",
+    "start": "react-router-serve ./build/server/index.js",
     "lint": "infisicalLauncher --path=/videoStreaming/front/local -- yarn eslint .",
     "format": "infisicalLauncher --path=/videoStreaming/front/local -- yarn prettier --write .",
     "typecheck": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router typegen && tsc",

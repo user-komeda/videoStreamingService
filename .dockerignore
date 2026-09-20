@@ -1,0 +1,28 @@
+# 依存関係・キャッシュ（Frontend / Node）
+node_modules/
+.yarn/cache/
+.yarn/install-state.gz
+.turbo/
+
+# ビルド生成物（Frontend）
+build/
+dist/
+out/
+.react-router/
+
+# ビルド生成物・テスト成果物（Backend / Go）
+apps/backend/server
+*.out
+coverage.out
+
+# バージョン管理・ドキュメント
+.git/
+.gitignore
+docs/
+*.md
+
+# 環境変数・ログ・OS一時ファイル
+.env*.local
+*.log
+.DS_Store
+Thumbs.db

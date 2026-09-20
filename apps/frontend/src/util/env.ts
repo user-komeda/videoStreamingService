@@ -1,12 +1,13 @@
 import { z } from 'zod'
 
 const EnvSchema = z.object({
-  SESSION_PASSWORD: z.string().min(32),
-  JWT_SECRET: z.string().min(32),
-  BFF_JWT_SECRET: z.string().min(32),
-  JWT_ISSUER: z.string().min(1),
-  JWT_AUDIENCE: z.string().min(1),
-  REDIS_URL: z.url(),
+  API_BASE_URL: z.url(),
+  // SESSION_PASSWORD: z.string().min(32),
+  // JWT_SECRET: z.string().min(32),
+  // BFF_JWT_SECRET: z.string().min(32),
+  // JWT_ISSUER: z.string().min(1),
+  // JWT_AUDIENCE: z.string().min(1),
+  // REDIS_URL: z.url(),
 })
 
 export const getEnv = () => {

@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: ./apps/frontend/Dockerfile
+      ssh:
+        - default
     restart: always
     ports:
       - 3000:3000
@@ -16,9 +18,16 @@ services:
     build:
       context: .
       dockerfile: ./apps/backend/Dockerfile
+      ssh:
+        - default
     restart: always
     ports:
       - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+      migration:
+        condition: service_completed_successfully
   db:
     container_name: db-video-streaming-service
     image: postgres:18@sha256:06cad38a5d9f5d24b4d83d86def30795d5e4b757fedbf5281172b576dedcd941
@@ -31,7 +40,32 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  migration:
+    container_name: migration-video-streaming-service
+    image: arigaio/atlas:latest-alpine
+    profiles:
+      - backend
+      - migration
+    restart: "no"
+    volumes:
+      - ./apps/backend/db/migration:/migrations:ro
+    environment:
+      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable"
+    depends_on:
+      db:
+        condition: service_healthy
+    command:
+      - migrate
+      - apply
+      - --dir=file:///migrations
+      - --url=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable
   minio:
+    container_name: minio-video-streaming-service
     image: quay.io/minio/minio
     command: server /data --console-address ":9001"
 

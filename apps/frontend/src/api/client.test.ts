@@ -82,4 +82,47 @@ describe('customFetch', () => {
       'HTTP error! status: 500',
     )
   })
+
+  it('uses clientEnv VITE_API_BASE_URL when executed in browser environment', async () => {
+    vi.stubGlobal('window', {})
+    const mockHeaders = new Headers({ 'content-type': 'application/json' })
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: mockHeaders,
+      json: vi.fn().mockResolvedValue({ success: true }),
+    })
+
+    await customFetch('/client-test')
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringMatching(/\/client-test$/),
+      expect.anything(),
+    )
+    vi.unstubAllGlobals()
+  })
+  it('uses env API_BASE_URL when executed in server environment', async () => {
+    const originalWindow = globalThis.window
+    // @ts-expect-error - jsdom 環境で window を一時的に undefined にする
+    delete globalThis.window
+
+    const mockHeaders = new Headers({ 'content-type': 'application/json' })
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: mockHeaders,
+      json: vi.fn().mockResolvedValue({ success: true }),
+    })
+
+    try {
+      await customFetch('/server-test')
+
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/\/server-test$/),
+        expect.anything(),
+      )
+    } finally {
+      globalThis.window = originalWindow
+    }
+  })
 })

@@ -5,6 +5,7 @@ ifeq ($(OS),Windows_NT)
     RM := powershell -NoProfile -Command "Remove-Item -Force -Recurse -ErrorAction SilentlyContinue"
     MKDIR := powershell -NoProfile -Command "New-Item -ItemType Directory -Force -Path $(BIN_DIR)"
     DEV_NULL := NUL
+    COMPOSE_FILES := -f docker-compose.yml
 else
     SHELL := /bin/sh
     BIN_DIR := .bin
@@ -12,6 +13,7 @@ else
     RM := rm -rf
     MKDIR := mkdir -p $(BIN_DIR)
     DEV_NULL := /dev/null
+    COMPOSE_FILES := -f docker-compose.yml -f docker-compose.linux.yml
 endif
 
 BETTERLEAKS := $(BIN_DIR)/betterleaks$(BIN_EXT)
@@ -82,13 +84,13 @@ prepare-compose: check-docker check-infisical
 
 # ---- Docker Compose Targets ----
 compose-up: prepare-compose
-	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose up -d
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) up -d
 
 compose-up-all: prepare-compose
-	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose --profile frontend --profile backend up -d --build
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --build
 
 compose-down: check-docker
-	docker compose --profile frontend --profile backend down
+	docker compose $(COMPOSE_FILES) --profile frontend --profile backend down
 
 compose-down-v: check-docker
-	docker compose --profile frontend --profile backend down -v
+	docker compose $(COMPOSE_FILES) --profile frontend --profile backend down -v

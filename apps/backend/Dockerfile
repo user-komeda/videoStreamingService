@@ -1,39 +1,47 @@
-# ======== ビルドステージ ========
-FROM golang:1.27-alpine@sha256:4c9fe60190a2a3350ddc51de80d0224b8a6698d12bdfc999fee45ea9d6c46dbc AS builder
-
-# 作業ディレクトリ
+# ======== 1. Turborepo Prune ステージ ========
+FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS pruner
 WORKDIR /app
+COPY . .
+RUN corepack enable && yarn dlx turbo prune --scope=backend --docker
 
-# 必要なパッケージを追加（gitなど）
+# ======== 2. infisicalLauncher 取得ステージ ========
+FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS launcher-builder
+WORKDIR /app
+RUN microdnf install -y git openssh-clients && \
+    microdnf clean all && \
+    mkdir -p -m 0700 ~/.ssh && \
+    ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+RUN corepack enable
+
+# prune された package.json 群と yarn.lock を配置
+COPY --from=pruner /app/out/json/ .
+COPY .yarn ./.yarn
+
+# 依存関係をインストール
+RUN --mount=type=ssh yarn install --immutable
+
+# ======== 3. Go ビルドステージ ========
+FROM golang:1.27-alpine@sha256:4c9fe60190a2a3350ddc51de80d0224b8a6698d12bdfc999fee45ea9d6c46dbc AS go-builder
+WORKDIR /app
 RUN apk add --no-cache git
-# 依存キャッシュを効かせるために先に go.mod と go.sum をコピー
 COPY /apps/backend/go.mod /apps/backend/go.sum ./
 RUN go mod download
-
-# ソースをコピー
 COPY /apps/backend/ .
-
-# 本番向けビルド（静的リンク、不要なシンボル削除）
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
 
-# ======== 実行ステージ ========
-FROM alpine:3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b AS runner
-
-# 作業ディレクトリ
+# ======== 4. 実行ステージ ========
+FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS runner
 WORKDIR /app
 
-# 必要なら証明書などを追加
-RUN apk add --no-cache ca-certificates && update-ca-certificates
+# Go バイナリ本体のみをコピー
+COPY --from=go-builder /app/server .
 
-# ビルドしたバイナリをコピー
-COPY --from=builder /app/server .
+# infisicalLauncher のバンドル成果物のみをコピー
+COPY --from=launcher-builder /app/node_modules/infisicalLauncher/dist/index.cjs ./infisicalLauncher.cjs
 
-# ポートを開放
-EXPOSE 8080
-
-# 非rootユーザーで実行する場合（任意）
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN groupadd appgroup && useradd -r -g appgroup appuser
 USER appuser
 
-# コンテナ起動時のコマンド
-CMD ["./server"]
+EXPOSE 8080
+
+CMD ["node", "./infisicalLauncher.cjs", "--path=/videoStreaming/backend/", "--", "./server"]

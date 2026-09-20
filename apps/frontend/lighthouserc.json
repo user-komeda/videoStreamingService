@@ -2,6 +2,7 @@
   "ci": {
     "collect": {
       "startServerCommand": "yarn start",
+      "startServerReadyPattern": "react-router-serve|http://localhost",
       "url": ["http://localhost:3000/"],
       "settings": {
         "chromeFlags": "--headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-crash-reporter",
