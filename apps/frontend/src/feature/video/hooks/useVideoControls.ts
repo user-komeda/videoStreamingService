@@ -34,7 +34,7 @@ export const useVideoControls = (
       return
     }
     if (video.paused) {
-      void video.play().then(
+      void video.play()?.then(
         () => setIsPlaying(true),
         () => setIsPlaying(false),
       )

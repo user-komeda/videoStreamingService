@@ -3,12 +3,10 @@ import path from 'node:path'
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [
-    tsconfigPaths(),
     tailwindcss(),
     !process.env.VITEST && reactRouter(),
     visualizer({
@@ -19,6 +17,7 @@ export default defineConfig({
     }),
   ],
   resolve: {
+    tsconfigPaths: true,
     alias: {
       '~': path.resolve(import.meta.dirname, './src'),
       src: path.resolve(import.meta.dirname, './src'),

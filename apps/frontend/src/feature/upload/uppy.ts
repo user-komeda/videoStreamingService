@@ -1,6 +1,8 @@
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 
+import { getEnv } from '~/util/clientEnv'
+
 export const getVideoDurationMs = (file: Blob): Promise<number> => {
   return new Promise((resolve) => {
     const video = document.createElement('video')
@@ -27,7 +29,7 @@ export const getVideoDurationMs = (file: Blob): Promise<number> => {
 
 export const createUppy = () => {
   const uppy = new Uppy({ debug: true, autoProceed: false }).use(Tus, {
-    endpoint: 'http://localhost:8080/files/',
+    endpoint: getEnv().VITE_TUS_ENDPOINT,
   })
 
   uppy.on('file-added', (file) => {
