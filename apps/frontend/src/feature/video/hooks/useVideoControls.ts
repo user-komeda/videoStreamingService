@@ -10,6 +10,16 @@ const setMediaTime = (el: HTMLVideoElement | null, time: number) => {
   }
 }
 
+const seekVideo = (
+  el: HTMLVideoElement | null,
+  e: ChangeEvent<HTMLInputElement>,
+  setCurrentTime: (time: number) => void,
+) => {
+  const time = Number(e.target.value)
+  setMediaTime(el, time)
+  setCurrentTime(time)
+}
+
 export const useVideoControls = (
   videoRef: RefObject<HTMLVideoElement | null>,
   containerRef: RefObject<HTMLDivElement | null>,
@@ -24,8 +34,10 @@ export const useVideoControls = (
       return
     }
     if (video.paused) {
-      void video.play()
-      setIsPlaying(true)
+      void video.play().then(
+        () => setIsPlaying(true),
+        () => setIsPlaying(false),
+      )
     } else {
       video.pause()
       setIsPlaying(false)
@@ -41,11 +53,8 @@ export const useVideoControls = (
     togglePlay,
     handleTimeUpdate: () => setCurrentTime(videoRef.current?.currentTime ?? 0),
     handleLoadedMetadata: () => setDuration(videoRef.current?.duration ?? 0),
-    handleSeek: (e: ChangeEvent<HTMLInputElement>) => {
-      const time = Number(e.target.value)
-      setMediaTime(videoRef.current, time)
-      setCurrentTime(time)
-    },
+    handleSeek: (e: ChangeEvent<HTMLInputElement>) =>
+      seekVideo(videoRef.current, e, setCurrentTime),
     restartVideo: () => setMediaTime(videoRef.current, 0),
   }
 }

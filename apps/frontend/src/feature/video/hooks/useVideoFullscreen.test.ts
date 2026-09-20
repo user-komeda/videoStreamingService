@@ -53,4 +53,32 @@ describe('useVideoFullscreen', () => {
 
     expect(result.current.isFullscreen).toBe(false)
   })
+
+  it('updates isFullscreen when fullscreenchange event is fired', () => {
+    const divEl = document.createElement('div')
+    const containerRef = { current: divEl }
+    const { result } = renderHook(() => useVideoFullscreen(containerRef))
+
+    expect(result.current.isFullscreen).toBe(false)
+
+    // Simulate entering fullscreen externally
+    Object.defineProperty(document, 'fullscreenElement', {
+      value: divEl,
+      configurable: true,
+    })
+    act(() => {
+      document.dispatchEvent(new Event('fullscreenchange'))
+    })
+    expect(result.current.isFullscreen).toBe(true)
+
+    // Simulate exiting fullscreen externally (e.g. Escape key)
+    Object.defineProperty(document, 'fullscreenElement', {
+      value: null,
+      configurable: true,
+    })
+    act(() => {
+      document.dispatchEvent(new Event('fullscreenchange'))
+    })
+    expect(result.current.isFullscreen).toBe(false)
+  })
 })

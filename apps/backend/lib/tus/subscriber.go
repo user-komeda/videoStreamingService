@@ -24,10 +24,7 @@ func NewSubscriber(
 func (s *Subscriber) WatchCompletedUploads() {
 	go func() {
 		for e := range s.h.CompleteUploads {
-			print("uploadID")
-			print(e.Upload.ID)
 			uploadID, _, _ := strings.Cut(e.Upload.ID, "+")
-			print(uploadID)
 			filename := extractMeta(e.Upload.MetaData, "filename")
 			videoID := extractMeta(e.Upload.MetaData, "videoId", "video_id")
 			mimeType := extractMeta(e.Upload.MetaData, "filetype", "type")

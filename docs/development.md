@@ -12,9 +12,10 @@ Root `package.json` manages monorepo tasks with TurboRepo:
 
 ## Infrastructure & Local Environment (Docker)
 - `docker-compose.yml`: Local PostgreSQL and related services.
-- `yarn compose-up`: Start PostgreSQL using `infisicalLauncher`.
-- `yarn compose-up-all`: Start all containers including frontend and backend.
-- `yarn compose-down`: Stop containers.
+- `yarn compose:up`: Start PostgreSQL using `infisicalLauncher`.
+- `yarn compose:upAll`: Start all containers including frontend and backend.
+- `yarn compose:down`: Stop containers.
+- `yarn compose:downV`: Stop containers with volume.
 
 ## Testing
 - Run all monorepo tests: `yarn test`.

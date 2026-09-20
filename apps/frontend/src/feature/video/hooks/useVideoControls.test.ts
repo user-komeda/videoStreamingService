@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { useVideoControls } from '~/feature/video/hooks/useVideoControls'
 
 describe('useVideoControls', () => {
-  it('controls playback, seeking and metadata', () => {
+  it('controls playback, seeking and metadata', async () => {
     const playMock = vi.fn().mockResolvedValue(undefined)
     const pauseMock = vi.fn()
     const videoEl = document.createElement('video')
@@ -25,8 +25,8 @@ describe('useVideoControls', () => {
     expect(result.current.isPlaying).toBe(false)
 
     // Play
-    act(() => {
-      result.current.togglePlay()
+    await act(async () => {
+      await Promise.resolve(result.current.togglePlay())
     })
     expect(playMock).toHaveBeenCalled()
     expect(result.current.isPlaying).toBe(true)
@@ -92,5 +92,29 @@ describe('useVideoControls', () => {
 
     expect(result.current.isPlaying).toBe(false)
     expect(result.current.currentTime).toBe(0)
+  })
+
+  it('handles play rejection by keeping isPlaying false', async () => {
+    const playMock = vi.fn().mockRejectedValue(new Error('Playback rejected'))
+    const videoEl = document.createElement('video')
+    videoEl.play = playMock
+    Object.defineProperty(videoEl, 'paused', {
+      value: true,
+      writable: true,
+    })
+
+    const videoRef = { current: videoEl }
+    const containerRef = { current: document.createElement('div') }
+
+    const { result } = renderHook(() =>
+      useVideoControls(videoRef, containerRef),
+    )
+
+    await act(async () => {
+      await Promise.resolve(result.current.togglePlay())
+    })
+
+    expect(playMock).toHaveBeenCalled()
+    expect(result.current.isPlaying).toBe(false)
   })
 })

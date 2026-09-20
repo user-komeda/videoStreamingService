@@ -27,6 +27,7 @@ export const useVideoVolume = (
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newVolume = Number(e.target.value)
     setMediaVolume(videoRef.current, newVolume)
+    setMediaMuted(videoRef.current, newVolume === 0)
     setVolume(newVolume)
     setIsMuted(newVolume === 0)
   }

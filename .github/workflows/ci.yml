@@ -1,4 +1,5 @@
 name: "CI"
+
 on:
   pull_request:
     types: [opened, synchronize]
@@ -23,7 +24,8 @@ jobs:
           --health-retries 5
 
       minio:
-        image: quay.io/minio/minio
+        image: quay.io/minio/minio:latest
+        command: server /data --console-address ":9001"
         env:
           MINIO_ROOT_USER: minioadmin
           MINIO_ROOT_PASSWORD: minioadmin
@@ -31,22 +33,24 @@ jobs:
           - 9000:9000
           - 9001:9001
         options: >-
-          server /data --console-address ":9001"
-          --health-cmd "mc ready local || exit 1"
+          --health-cmd "curl -f http://localhost:9000/minio/health/live || exit 1"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
     env:
       DATABASE_URL: "postgres://postgres:password@localhost:5432/sample_db?sslmode=disable"
+
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: sample_db
+
       MINIO_ENDPOINT: "http://localhost:9000"
       MINIO_ACCESS_KEY: "minioadmin"
       MINIO_SECRET_KEY: "minioadmin"
       MINIO_REGION: "us-east-1"
       MINIO_BUCKET: "videos"
+
       TUS_BASE_PATH: "/files/"
 
     steps:
@@ -59,7 +63,7 @@ jobs:
 
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
-          go-version: '1.26'
+          go-version: "1.26"
 
       - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
@@ -70,21 +74,24 @@ jobs:
         run: |
           curl -sSf https://atlasgo.sh | sh -s -- -b $(go env GOPATH)/bin -y
 
-      - name: enable corepack
+      - name: Enable corepack
         run: corepack enable
 
-      - name: yarn install
+      - name: Yarn install
         run: yarn install
 
-      - name: yarn check
+      - name: Install Playwright browsers
+        run: yarn workspace frontend exec playwright install --with-deps chromium
+
+      - name: Yarn check
         run: yarn check
 
       - name: Backend Coverage Summary
         working-directory: apps/backend
         run: |
           if [ -f coverage.out ]; then
-            echo "### Backend Coverage Summary" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            go tool cover -func=coverage.out >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "### Backend Coverage Summary" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            go tool cover -func=coverage.out >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
           fi
