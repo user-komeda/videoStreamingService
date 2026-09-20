@@ -39,6 +39,9 @@ jobs:
           --health-retries 5
 
     env:
+      LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
+      LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
+      LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
       DATABASE_URL: "postgres://postgres:password@localhost:5432/sample_db?sslmode=disable"
 
       POSTGRES_USER: postgres
