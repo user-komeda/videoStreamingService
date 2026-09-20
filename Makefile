@@ -47,8 +47,7 @@ else
 	@OS_NAME=$$(uname -s | tr '[:upper:]' '[:lower:]'); \
 	ARCH=$$(uname -m); \
 	if [ "$$ARCH" = "x86_64" ]; then ARCH="x64"; elif [ "$$ARCH" = "aarch64" ] || [ "$$ARCH" = "arm64" ]; then ARCH="arm64"; fi; \
-	URL="https://github.com/betterleaks/betterleaks/releases/download/v$(BETTERLEAKS_VERSION)/betterleaks_$${BETTERLEAKS_VERSION}_$${OS_NAME}_$${ARCH}.tar.gz"; \
-	curl -sSfL "$$URL" | tar -xz -C $(BIN_DIR) betterleaks
++	URL="https://github.com/betterleaks/betterleaks/releases/download/v$(BETTERLEAKS_VERSION)/betterleaks_$(BETTERLEAKS_VERSION)_$${OS_NAME}_$${ARCH}.tar.gz"; \	curl -sSfL "$$URL" | tar -xz -C $(BIN_DIR) betterleaks
 	@chmod +x $(BETTERLEAKS)
 endif
 

@@ -11,6 +11,7 @@ import { VideoInfo } from '~/feature/video/components/info/VideoInfo'
 import { VideoPlayer } from '~/feature/video/components/player/VideoPlayer'
 import { RelatedVideos } from '~/feature/video/components/related/RelatedVideos'
 import { videoDetailQuery } from '~/feature/video/queries'
+import { getEnv } from '~/util/clientEnv'
 
 import type { VideoResponse } from '~/api/generated/models'
 
@@ -24,7 +25,9 @@ const VideoMainContent = ({
   setIsExpanded: (expanded: boolean | ((prev: boolean) => boolean)) => void
 }) => (
   <div className="min-w-0 flex-1 space-y-4">
-    <VideoPlayer src={`http://localhost:8080/videos/${video.id}/stream`} />
+    <VideoPlayer
+      src={`${getEnv().VITE_API_BASE_URL}/videos/${video.id}/stream`}
+    />
     <VideoInfo video={video} />
     <VideoDescription
       isExpanded={isExpanded}

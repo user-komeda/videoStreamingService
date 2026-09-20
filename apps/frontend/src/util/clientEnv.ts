@@ -6,7 +6,7 @@ const EnvSchema = z.object({
 })
 
 export const getEnv = () => {
-  const result = EnvSchema.safeParse(process.env)
+  const result = EnvSchema.safeParse(import.meta.env)
 
   if (!result.success) {
     console.error('Invalid frontend env:', result.error.issues)
