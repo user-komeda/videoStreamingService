@@ -1578,7 +1578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lhci/cli@npm:^0.15.1":
+"@lhci/cli@npm:0.15.1":
   version: 0.15.1
   resolution: "@lhci/cli@npm:0.15.1"
   dependencies:
@@ -1906,7 +1906,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.63.0":
+"@playwright/test@npm:1.63.0":
   version: 1.63.0
   resolution: "@playwright/test@npm:1.63.0"
   dependencies:
@@ -2867,7 +2867,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/eslint-plugin-query@npm:^5.102.8":
+"@tanstack/eslint-plugin-query@npm:5.103.1":
   version: 5.103.1
   resolution: "@tanstack/eslint-plugin-query@npm:5.103.1"
   dependencies:
@@ -3164,7 +3164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hls.js@npm:^1.0.0":
+"@types/hls.js@npm:1.0.0":
   version: 1.0.0
   resolution: "@types/hls.js@npm:1.0.0"
   dependencies:
@@ -5959,12 +5959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:0.5.4":
-  version: 0.5.4
-  resolution: "eslint-plugin-react-refresh@npm:0.5.4"
+"eslint-plugin-react-refresh@npm:0.5.7":
+  version: 0.5.7
+  resolution: "eslint-plugin-react-refresh@npm:0.5.7"
   peerDependencies:
     eslint: ^9 || ^10
-  checksum: 10c0/d3946e703a1d0c4e7d2a67bd73cce6def725a1d38839799b7e5d042fba920d5f5600ef30c6fb24ae595aceaa2d71fe95a09c8bb75d551767f29ca748b988a2f7
+  checksum: 10c0/e9de48cd59170e65d0bb3abe4cc6d3a41087ff5d5bd191f87ce8b90fb5a43100ab4ded040dc6b53a6ef175e15945d5586ffca67be68f69e2a6014010f1760cb3
   languageName: node
   linkType: hard
 
@@ -6630,13 +6630,13 @@ __metadata:
     "@base-ui/react": "npm:^1.8.0"
     "@eslint/js": "npm:9.39.5"
     "@fontsource-variable/inter": "npm:^5.3.0"
-    "@lhci/cli": "npm:^0.15.1"
-    "@playwright/test": "npm:^1.63.0"
+    "@lhci/cli": "npm:0.15.1"
+    "@playwright/test": "npm:1.63.0"
     "@react-router/dev": "npm:8.4.0"
     "@react-router/node": "npm:^8.0.0"
     "@react-router/serve": "npm:^8.0.0"
     "@tailwindcss/vite": "npm:4.3.3"
-    "@tanstack/eslint-plugin-query": "npm:^5.102.8"
+    "@tanstack/eslint-plugin-query": "npm:5.103.1"
     "@tanstack/react-form": "npm:^1.33.5"
     "@tanstack/react-query": "npm:^5.102.8"
     "@tanstack/react-table": "npm:^9.2.4"
@@ -6645,7 +6645,7 @@ __metadata:
     "@testing-library/react": "npm:16.3.3"
     "@testing-library/user-event": "npm:14.6.7"
     "@types/eslint-plugin-jsx-a11y": "npm:6.10.1"
-    "@types/hls.js": "npm:^1.0.0"
+    "@types/hls.js": "npm:1.0.0"
     "@types/node": "npm:25.9.7"
     "@types/react": "npm:19.2.18"
     "@types/react-dom": "npm:19.2.5"
@@ -6672,7 +6672,7 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-compiler: "npm:19.1.0-rc.2"
     eslint-plugin-react-hooks: "npm:7.1.1"
-    eslint-plugin-react-refresh: "npm:0.5.4"
+    eslint-plugin-react-refresh: "npm:0.5.7"
     eslint-plugin-testing-library: "npm:7.16.2"
     eslint-plugin-unused-imports: "npm:4.4.1"
     globals: "npm:17.12.0"
@@ -6682,13 +6682,13 @@ __metadata:
     jsdom: "npm:30.1.0"
     lefthook: "npm:2.1.14"
     lucide-react: "npm:^1.43.0"
-    orval: "npm:^8.30.0"
+    orval: "npm:8.33.0"
     prettier: "npm:3.9.8"
     prettier-plugin-tailwindcss: "npm:0.8.1"
     react: "npm:^19.2.6"
     react-dom: "npm:^19.2.6"
     react-router: "npm:^8.0.0"
-    rollup-plugin-visualizer: "npm:^7.1.1"
+    rollup-plugin-visualizer: "npm:7.1.1"
     shadcn: "npm:^4.21.0"
     tailwind-merge: "npm:^3.6.0"
     tailwindcss: "npm:4.3.3"
@@ -8125,7 +8125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lefthook@npm:2.1.14, lefthook@npm:^2.1.8":
+"lefthook@npm:2.1.14":
   version: 2.1.14
   resolution: "lefthook@npm:2.1.14"
   dependencies:
@@ -9414,7 +9414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"orval@npm:^8.30.0":
+"orval@npm:8.33.0":
   version: 8.33.0
   resolution: "orval@npm:8.33.0"
   dependencies:
@@ -10461,7 +10461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:^7.1.1":
+"rollup-plugin-visualizer@npm:7.1.1":
   version: 7.1.1
   resolution: "rollup-plugin-visualizer@npm:7.1.1"
   dependencies:
@@ -12067,7 +12067,7 @@ __metadata:
   resolution: "videoStreamingService@workspace:."
   dependencies:
     infisicalLauncher: "git+ssh://git@github.com:user-komeda/infisicalLauncher.git"
-    lefthook: "npm:^2.1.8"
+    lefthook: "npm:2.1.14"
     turbo: "npm:2.10.13"
   languageName: unknown
   linkType: soft
