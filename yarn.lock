@@ -4728,12 +4728,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cn@npm:^0.2.4, cn@npm:^0.2.6":
+"cn@npm:^0.2.4":
   version: 0.2.6
   resolution: "cn@npm:0.2.6"
   bin:
     cn: bin/cn.mjs
   checksum: 10c0/7d5744771e897061e210d5aa49563d254518e7e032ec372991d8e1ebb1d61057b4ec538810de31ac267153e610c141ec54b0befd006c0220e772a652824b9830
+  languageName: node
+  linkType: hard
+
+"cn@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "cn@npm:0.3.0"
+  bin:
+    cn: bin/cn.mjs
+  checksum: 10c0/dbdfb8b5ff7873dd8a094352191a008dbe7adc9bda6ac2c5d9b017b62a98b5201ca7a9bfaaaf0a6e1c6c48925ca9df62028b0225426f5154d9f7f8946ed5390d
   languageName: node
   linkType: hard
 
@@ -6651,7 +6660,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:4.1.11"
     "@vitest/eslint-plugin": "npm:1.6.27"
     class-variance-authority: "npm:^0.7.1"
-    cn: "npm:^0.2.6"
+    cn: "npm:^0.3.0"
     concurrently: "npm:10.0.5"
     eslint: "npm:9.39.5"
     eslint-config-prettier: "npm:10.1.8"
