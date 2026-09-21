@@ -16,7 +16,10 @@ RUN corepack enable
 COPY --from=builder /app/out/json/ .
 RUN --mount=type=ssh yarn install --immutable
 COPY --from=builder /app/out/full/ .
-RUN yarn build
+RUN --mount=type=secret,id=infisical_client_id,env=LOCAL_INFISICAL_CLIENT_ID,required=false \
+    --mount=type=secret,id=infisical_client_secret,env=LOCAL_INFISICAL_CLIENT_SECRET,required=false \
+    --mount=type=secret,id=infisical_project_id,env=LOCAL_INFISICAL_PROJECT_ID,required=false \
+    yarn build
 
 
 # apps/frontend/Dockerfile (runner ステージ)
