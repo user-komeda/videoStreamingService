@@ -1,0 +1,54 @@
+name: "Compose Healthcheck"
+
+on:
+  pull_request:
+    branches: ["dev"]
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  compose-healthcheck:
+    name: "Docker Compose Healthcheck"
+    if: github.head_ref == 'main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
+      LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
+      LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sample_db
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      NAS_USERNAME: dummy
+      NAS_PASSWORD: dummy
+    steps:
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Yarn install
+        run: yarn install
+
+      - name: Create MinIO Mount Directory
+        run: sudo mkdir -p /mnt/minio && sudo chmod 777 /mnt/minio
+
+      - name: Verify Docker Compose Healthcheck
+        run: |
+          node ./node_modules/infisicalLauncher/dist/index.cjs --path=/videoStreaming/container/local -- docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend up -d --build --wait
+          docker compose -f docker-compose.yml -f docker-compose.linux.yml ps
+
+      - name: Docker Compose Down
+        if: always()
+        run: docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend down -v

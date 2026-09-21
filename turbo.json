@@ -1,6 +1,7 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "globalPassThroughEnv": [
+    "OS",
     "LOCAL_INFISICAL_CLIENT_ID",
     "LOCAL_INFISICAL_CLIENT_SECRET",
     "LOCAL_INFISICAL_PROJECT_ID"
