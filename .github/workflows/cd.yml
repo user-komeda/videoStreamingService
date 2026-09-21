@@ -50,6 +50,10 @@ jobs:
           file: ./apps/frontend/Dockerfile
           push: true
           ssh: default
+          secrets: |
+            infisical_client_id=${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
+            infisical_client_secret=${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
+            infisical_project_id=${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
@@ -91,4 +95,3 @@ jobs:
           ssh: default
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
