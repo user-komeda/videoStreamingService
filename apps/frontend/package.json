@@ -86,7 +86,7 @@
     "globals": "17.11.0",
     "infisicalLauncher": "git+ssh://git@github.com:user-komeda/infisicalLauncher.git",
     "jsdom": "30.0.1",
-    "lefthook": "2.1.12",
+    "lefthook": "2.1.14",
     "orval": "^8.30.0",
     "prettier": "3.9.6",
     "prettier-plugin-tailwindcss": "0.8.1",
