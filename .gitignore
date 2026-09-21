@@ -1,4 +1,9 @@
 /node_modules/
+/.bin/
 .turbo
 .yarn/install-state.gz
 apps/frontend/.gitignore
+/apps/frontend/node_modules/
+/.idea
+
+/NUL

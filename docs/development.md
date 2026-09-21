@@ -1,0 +1,24 @@
+# Development & Operations Guide
+
+## Monorepo Commands
+Root `package.json` manages monorepo tasks with TurboRepo:
+
+- `yarn build`: Build all applications.
+- `yarn dev`: Start all applications in development mode.
+- `yarn check`: Run checks (linting / typecheck / formatting) across all packages.
+- `yarn test`: Run unit and integration tests across the monorepo.
+- `yarn secret-check`: Run secret leakage check using `betterleaks`.
+- `yarn swagger`: Generate backend OpenAPI / Swagger documentation (`gen/swagger`).
+
+## Infrastructure & Local Environment (Docker)
+- `docker-compose.yml`: Local PostgreSQL and related services (Windows CIFS volume for MinIO).
+- `docker-compose.linux.yml`: Linux override for MinIO (`/mnt/minio` bind mount).
+- `yarn compose:up`: Start PostgreSQL using `infisicalLauncher`.
+- `yarn compose:upAll`: Start all containers including frontend and backend.
+- `yarn compose:down`: Stop containers.
+- `yarn compose:downV`: Stop containers with volume.
+
+## Testing
+- Run all monorepo tests: `yarn test`.
+- Backend: `yarn test` (inside `apps/backend`).
+- Frontend: `yarn test` (inside `apps/frontend`).

@@ -1,9 +1,19 @@
 
-env "local" {
-  src = "file://./db/schema/schema.hcl"
+data "external_schema" "gorm" {
+  program = [
+    "go",
+    "run",
+    "-mod=mod",
+    "./db/loader",
+  ]
+}
 
-  dev = "postgres://localhost:5432/sample_db_dev?sslmode=disable"
-  url = "postgres://localhost:5432/sample_db?sslmode=disable"
+env "local" {
+  src = data.external_schema.gorm.url
+
+
+  dev = "docker://postgres/16/dev"
+  url = getenv("DATABASE_URL")
 
   migration {
     dir = "file://./db/migration"

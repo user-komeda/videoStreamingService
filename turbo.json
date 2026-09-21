@@ -1,11 +1,28 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalPassThroughEnv": [
+    "LOCAL_INFISICAL_CLIENT_ID",
+    "LOCAL_INFISICAL_CLIENT_SECRET",
+    "LOCAL_INFISICAL_PROJECT_ID"
+  ],
+  "globalEnv": [
+    "VITE_API_BASE_URL",
+    "API_BASE_URL",
+    "VITE_TUS_ENDPOINT",
+    "SESSION_PASSWORD",
+    "JWT_SECRET",
+    "BFF_JWT_SECRET",
+    "JWT_ISSUER",
+    "JWT_AUDIENCE",
+    "REDIS_URL",
+    "DEV",
+    "CI"
+  ],
   "tasks": {
     "dev": {
       "dependsOn": ["^dev"],
       "persistent": true,
-      "cache": false,
-      "env": ["GOPATH", "GOMODCACHE"]
+      "cache": false
     },
     "build": {
       "dependsOn": ["^build"],
@@ -13,11 +30,16 @@
       "cache": true
     },
     "check": {
-      "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
+      "env": [],
+      "cache": true
     },
-    "prepare": {
-      "env": ["GOPATH", "GOMODCACHE", "GOLANGCI_LINT_CACHE"]
+    "test": {
+      "outputs": ["coverage/**", "coverage.out"]
     },
-    "test": {}
+    "swagger": {},
+    "codegen": {
+      "dependsOn": ["^swagger"],
+      "outputs": ["src/api/generated/**"]
+    }
   }
 }

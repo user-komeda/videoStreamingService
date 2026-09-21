@@ -18,14 +18,11 @@ func NewHandler(cfg config.TusConfig, s3Client *s3.Client, bucket string) (*Hand
 	composer := tusd.NewStoreComposer()
 	store.UseIn(composer)
 
-	h, err := tusd.NewHandler(tusd.Config{
+	h, _ := tusd.NewHandler(tusd.Config{
 		BasePath:              cfg.BasePath,
 		StoreComposer:         composer,
 		NotifyCompleteUploads: true,
 	})
-	if err != nil {
-		return nil, err
-	}
 
 	return &Handler{Handler: h}, nil
 }
