@@ -105,3 +105,27 @@ func TestHealthController_DBUnreachable(t *testing.T) {
 		t.Errorf("expected 503 Service Unavailable, got %d", w.Code)
 	}
 }
+
+func TestHealthController_FailedToGetDB(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	// Config を初期化し、ConnPool が未設定（nil）の状態にすることで安全に c.db.DB() のエラー分岐を発生させる
+	ctrl := health.NewController(&gorm.DB{Config: &gorm.Config{}})
+
+	w := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(w)
+	c.Request = httptest.NewRequestWithContext(t.Context(), http.MethodGet, "/health", nil)
+
+	ctrl.Check(c)
+
+	if w.Code != http.StatusServiceUnavailable {
+		t.Errorf("expected 503 Service Unavailable, got %d", w.Code)
+	}
+
+	var res map[string]string
+	if err := json.Unmarshal(w.Body.Bytes(), &res); err != nil {
+		t.Fatalf("failed to unmarshal body: %v", err)
+	}
+	if res["error"] != "failed to get database instance" {
+		t.Errorf("expected error 'failed to get database instance', got %s", res["error"])
+	}
+}
