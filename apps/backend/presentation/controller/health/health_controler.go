@@ -9,6 +9,13 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	keyStatus   = "status"
+	keyError    = "error"
+	statusError = "error"
+	pingTimeout = 2 * time.Second
+)
+
 type Controller struct {
 	db *gorm.DB
 }
@@ -29,8 +36,8 @@ func NewController(db *gorm.DB) *Controller {
 func (c *Controller) Check(ctx *gin.Context) {
 	if c.db == nil {
 		ctx.JSON(http.StatusServiceUnavailable, gin.H{
-			"status": "error",
-			"error":  "database client is not initialized",
+			keyStatus: statusError,
+			keyError:  "database client is not initialized",
 		})
 		return
 	}
@@ -38,25 +45,25 @@ func (c *Controller) Check(ctx *gin.Context) {
 	sqlDB, err := c.db.DB()
 	if err != nil {
 		ctx.JSON(http.StatusServiceUnavailable, gin.H{
-			"status": "error",
-			"error":  "failed to get database instance",
+			keyStatus: statusError,
+			keyError:  "failed to get database instance",
 		})
 		return
 	}
 
-	pingCtx, cancel := context.WithTimeout(ctx.Request.Context(), 2*time.Second)
+	pingCtx, cancel := context.WithTimeout(ctx.Request.Context(), pingTimeout)
 	defer cancel()
 
-	if err := sqlDB.PingContext(pingCtx); err != nil {
+	if pingErr := sqlDB.PingContext(pingCtx); pingErr != nil {
 		ctx.JSON(http.StatusServiceUnavailable, gin.H{
-			"status": "error",
-			"error":  "database unreachable: " + err.Error(),
+			keyStatus: statusError,
+			keyError:  "database unreachable: " + pingErr.Error(),
 		})
 		return
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"status": "ok",
-		"db":     "connected",
+		keyStatus: "ok",
+		"db":      "connected",
 	})
 }

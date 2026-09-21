@@ -89,7 +89,7 @@ func TestHealthController_DBUnreachable(t *testing.T) {
 		t.Skipf("skipping test: failed to create db config: %v", err)
 	}
 
-	if sqlDB, err := db.DB(); err == nil {
+	if sqlDB, dbErr := db.DB(); dbErr == nil {
 		_ = sqlDB.Close()
 	}
 
