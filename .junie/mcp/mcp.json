@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "figma": {
+            "url": "https://mcp.figma.com/mcp"
+        },
+        "penpot": {
+            "url": "https://design.penpot.app/mcp/stream?userToken=..."
+        },
+        "playwright": {
+            "command": "npx.cmd",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        }
+    }
+}

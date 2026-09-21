@@ -7,6 +7,7 @@ import {
 
 export default [
   index('routes/home/route.tsx'),
+  route('health', 'routes/health.ts'),
   route('videos', 'routes/video/route.tsx'),
   route('videos/:id', 'routes/video/[id]/route.tsx'),
   layout('layout/upload/layout.tsx', [
