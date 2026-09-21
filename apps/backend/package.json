@@ -1,11 +1,14 @@
 {
   "name": "backend",
   "scripts": {
-    "dev": "go run main.go",
-    "check": "make clean-lint && make prepare-lint && concurrently 'make fmt' 'make lint'",
+    "dev": "make dev",
+    "swagger": "make swagger",
+    "check": "make clean-lint && make prepare-lint && concurrently 'make fmt' 'make lint' 'make test'",
     "migrate": "make clean-migrate && make migrate-diff && make migrate-apply",
     "migrate:diff": "make migrate-diff",
-    "migrate:apply": "make migrate-apply"
+    "migrate:apply": "make migrate-apply",
+    "migrate:hash": "make migrate-hash",
+    "test": "make test"
   },
   "packageManager": "yarn@4.18.0",
   "devDependencies": {

@@ -1,30 +1,40 @@
 package container
 
 import (
+	"videoStreaming/application/usecase/stream"
 	"videoStreaming/application/usecase/upload"
-	"videoStreaming/domain/event"
+	"videoStreaming/application/usecase/video"
+	uploadEvent "videoStreaming/domain/event/upload"
 	"videoStreaming/lib/tus"
 
 	"go.uber.org/fx"
 )
 
-//nolint:gochecknoglobals // Fx modules must be global to be discovered during container initialization.
-var ApplicationModule = fx.Options(
-	fx.Provide(
-		fx.Annotate(
-			upload.NewUsecase,
-			fx.As(new(event.UploadCompletedInvoker)),
+// ApplicationModule はアプリケーション層（ユースケース）の依存関係を管理します.
+func ApplicationModule() fx.Option {
+	return fx.Options(
+		fx.Provide(
+			fx.Annotate(
+				upload.NewUsecase,
+				fx.As(new(uploadEvent.CompletedInvoker)),
+			),
+			video.NewCreateUseCase,
+			video.NewGetAllUseCase,
+			video.NewGetDetailUseCase,
+			video.NewUpdateUseCase,
+			video.NewDeleteUseCase,
+			stream.NewUseCase,
 		),
-	),
-	// wire subscription: EventBus -> Usecase
-	fx.Invoke(func(
-		bus *tus.UploadCompletedBus,
-		uc event.UploadCompletedInvoker,
-		sub *tus.Subscriber,
-	) {
-		// ★ 業務処理を登録
-		bus.Subscribe(uc)
+		// wire subscription: EventBus -> Usecase
+		fx.Invoke(func(
+			bus *tus.UploadCompletedBus,
+			uc uploadEvent.CompletedInvoker,
+			sub *tus.Subscriber,
+		) {
+			// ★ 業務処理を登録
+			bus.Subscribe(uc)
 
-		sub.WatchCompletedUploads()
-	}),
-)
+			sub.WatchCompletedUploads()
+		}),
+	)
+}

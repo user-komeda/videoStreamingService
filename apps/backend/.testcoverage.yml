@@ -1,0 +1,20 @@
+# (mandatory) Path to coverage profile file
+profile: coverage.out
+
+# Holds coverage thresholds percentages, values should be in range [0-100].
+threshold:
+  # (optional; default 0) Minimum coverage percentage required for individual files.
+  file: 100
+  # (optional; default 0) Minimum coverage percentage required for each package.
+  package: 100
+  # (optional; default 0) Minimum overall project coverage percentage required.
+  total: 100
+
+# Holds regexp rules which will exclude matched files or packages from coverage statistics.
+exclude:
+  paths:
+    - ^gen/
+    - ^db/
+    - ^test/
+    - \.pb\.go$
+    - ^main\.go$
