@@ -6,7 +6,7 @@
   "devDependencies": {
     "infisicalLauncher": "git+ssh://git@github.com:user-komeda/infisicalLauncher.git",
     "lefthook": "2.1.14",
-    "turbo": "2.10.13"
+    "turbo": "2.11.2"
   },
   "scripts": {
     "build": "turbo run build",
