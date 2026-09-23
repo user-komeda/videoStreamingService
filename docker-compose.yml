@@ -1,5 +1,5 @@
 services:
-  video-streaming-service-frontend:
+  frontend:
     container_name: video-streaming-service-frontend
     profiles:
       - frontend
@@ -24,7 +24,7 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
-  video-streaming-service-backend:
+  backend:
     container_name: video-streaming-service-backend
     profiles:
       - backend
@@ -53,7 +53,7 @@ services:
       start_period: 15s
   db:
     container_name: db-video-streaming-service
-    image: postgres:18@sha256:86c951e05bf56c93d95d397747fb8820ac76cc3bedb78f43abd83eedbe3666ae
+    image: postgres:18@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -78,7 +78,7 @@ services:
     volumes:
       - ./apps/backend/db/migration:/migrations:ro
     environment:
-      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable"
+      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db-video-streaming-service:5432/${POSTGRES_DB}?sslmode=disable"
     depends_on:
       db:
         condition: service_healthy
