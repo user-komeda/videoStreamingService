@@ -18,7 +18,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U postgres -d sample_db"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -92,6 +92,14 @@ jobs:
 
       - name: Yarn check
         run: yarn check
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: apps/frontend/.lighthouseci/
+          if-no-files-found: warn
 
       - name: Backend Coverage Summary
         working-directory: apps/backend
