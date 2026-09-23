@@ -1,6 +1,7 @@
 {
   "ci": {
     "collect": {
+      "numberOfRuns": 5,
       "startServerCommand": "yarn start",
       "startServerReadyPattern": "react-router-serve|http://localhost",
       "url": ["http://localhost:3000/"],
@@ -19,3 +20,4 @@
     }
   }
 }
+
