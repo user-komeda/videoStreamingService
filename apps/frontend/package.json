@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "infisicalLauncher --path=/videoStreaming/front -- yarn react-router build",
+    "build:lighthouse": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router build",
     "dev": "infisicalLauncher --path=/videoStreaming/front/local -- yarn react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "lint": "infisicalLauncher --path=/videoStreaming/front/local -- yarn eslint .",
@@ -12,7 +13,7 @@
     "test": "infisicalLauncher --path=/videoStreaming/front/local  -- yarn vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "lighthouse": "yarn build && infisicalLauncher --path=/videoStreaming/front/local -- yarn lhci autorun",
+    "lighthouse": "yarn build:lighthouse && infisicalLauncher --path=/videoStreaming/front/local -- yarn lhci autorun",
     "check": "concurrently 'yarn typecheck' 'yarn lint' 'yarn format' 'yarn test' 'yarn lighthouse'",
     "codegen": "orval",
     "codegen:watch": "orval --watch"
