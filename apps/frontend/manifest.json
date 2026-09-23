@@ -1,0 +1,38 @@
+[
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_00.report.html",
+    "jsonPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_00.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_23.report.html",
+    "jsonPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_23.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_12.report.html",
+    "jsonPath": "/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/localhost--2026_09_23_12_41_12.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

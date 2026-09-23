@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1790167067937" clover="3.2.0">
+  <project timestamp="1790167067937" name="All files">
+    <metrics statements="633" coveredstatements="633" conditionals="304" coveredconditionals="304" methods="246" coveredmethods="246" elements="1183" coveredelements="1183" complexity="0" loc="633" ncloc="633" packages="17" files="71" classes="71"/>
+    <package name="api">
+      <metrics statements="15" coveredstatements="15" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>
+      <file name="client.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/api/client.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="6" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="29" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.common">
+      <metrics statements="10" coveredstatements="10" conditionals="15" coveredconditionals="15" methods="3" coveredmethods="3"/>
+      <file name="RootErrorBoundary.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/common/RootErrorBoundary.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="15" coveredconditionals="15" methods="3" coveredmethods="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="5" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.header">
+      <metrics statements="39" coveredstatements="39" conditionals="8" coveredconditionals="8" methods="20" coveredmethods="20"/>
+      <file name="Header.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/Header.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+      </file>
+      <file name="HeaderActions.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/HeaderActions.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="31" count="7" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="70" count="12" type="stmt"/>
+      </file>
+      <file name="HeaderSearch.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/HeaderSearch.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="10" type="stmt"/>
+      </file>
+      <file name="UserMenuAccountGroup.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/UserMenuAccountGroup.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+      </file>
+      <file name="UserMenuDropdown.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/UserMenuDropdown.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="36" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="7" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="46" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+      </file>
+      <file name="UserMenuSettingsGroup.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/UserMenuSettingsGroup.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="37" count="6" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="53" count="18" type="stmt"/>
+        <line num="71" count="6" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+      </file>
+      <file name="headerLeft.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/header/headerLeft.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="10" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.sidebar">
+      <metrics statements="24" coveredstatements="24" conditionals="6" coveredconditionals="6" methods="10" coveredmethods="10"/>
+      <file name="Sidebar.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/sidebar/Sidebar.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="15" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+      </file>
+      <file name="SidebarCollapsed.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/sidebar/SidebarCollapsed.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+      <file name="SidebarExpanded.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/sidebar/SidebarExpanded.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="68" count="5" type="stmt"/>
+      </file>
+      <file name="SidebarSubscriptions.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/sidebar/SidebarSubscriptions.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+      <file name="SidebarUserSection.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/components/sidebar/SidebarUserSection.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="53" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.home">
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <file name="home.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/home/home.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.home.components">
+      <metrics statements="16" coveredstatements="16" conditionals="10" coveredconditionals="10" methods="8" coveredmethods="8"/>
+      <file name="CategoryPills.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/home/components/CategoryPills.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+      <file name="ShortsSection.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/home/components/ShortsSection.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+      </file>
+      <file name="VideoCard.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/home/components/VideoCard.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.upload">
+      <metrics statements="33" coveredstatements="33" conditionals="8" coveredconditionals="8" methods="10" coveredmethods="10"/>
+      <file name="formOptions.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/formOptions.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+      </file>
+      <file name="layout.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/layout.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="upload.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/upload.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+      </file>
+      <file name="uppy.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/uppy.ts">
+        <metrics statements="22" coveredstatements="22" conditionals="8" coveredconditionals="8" methods="7" coveredmethods="7"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.upload.components">
+      <metrics statements="143" coveredstatements="143" conditionals="88" coveredconditionals="88" methods="63" coveredmethods="63"/>
+      <file name="DeleteConfirmDialog.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/DeleteConfirmDialog.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="16" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+      </file>
+      <file name="UploadArea.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadArea.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+      </file>
+      <file name="UploadFileList.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadFileList.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="22" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="11" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="59" count="11" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+      </file>
+      <file name="UploadFormFields.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadFormFields.tsx">
+        <metrics statements="18" coveredstatements="18" conditionals="16" coveredconditionals="16" methods="8" coveredmethods="8"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="21" type="cond" truecount="3" falsecount="0"/>
+        <line num="12" count="21" type="stmt"/>
+        <line num="14" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="5" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="24" count="21" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="44" count="6" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="7" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="89" count="6" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
+      </file>
+      <file name="UploadFormInputs.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadFormInputs.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="9"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="5" type="stmt"/>
+        <line num="65" count="21" type="stmt"/>
+        <line num="69" count="9" type="stmt"/>
+      </file>
+      <file name="UploadedVideoRow.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadedVideoRow.tsx">
+        <metrics statements="16" coveredstatements="16" conditionals="22" coveredconditionals="22" methods="5" coveredmethods="5"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="39" count="10" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="72" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="76" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="80" count="10" type="stmt"/>
+      </file>
+      <file name="UploadedVideoTable.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadedVideoTable.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="5" coveredconditionals="5" methods="7" coveredmethods="7"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="34" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="43" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="53" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="63" count="5" type="stmt"/>
+        <line num="65" count="5" type="stmt"/>
+      </file>
+      <file name="UploadedVideoTableBody.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/UploadedVideoTableBody.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="28" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="38" count="6" type="stmt"/>
+      </file>
+      <file name="VideoDeleteDialog.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/VideoDeleteDialog.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="54" count="8" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="75" count="14" type="stmt"/>
+        <line num="76" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="77" count="5" type="stmt"/>
+        <line num="80" count="9" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="85" count="9" type="stmt"/>
+      </file>
+      <file name="VideoEditDialog.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/VideoEditDialog.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="77" count="10" type="stmt"/>
+        <line num="78" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="79" count="5" type="stmt"/>
+        <line num="82" count="5" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="84" count="2" type="stmt"/>
+        <line num="91" count="5" type="stmt"/>
+      </file>
+      <file name="VideoEditFormFields.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/VideoEditFormFields.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+      </file>
+      <file name="uploadProgress.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/uploadProgress.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+      </file>
+      <file name="upload_completed.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/upload_completed.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+      <file name="upload_drop_area.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/upload_drop_area.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+      </file>
+      <file name="upload_form.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/components/upload_form.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.upload.hooks">
+      <metrics statements="50" coveredstatements="50" conditionals="15" coveredconditionals="15" methods="19" coveredmethods="19"/>
+      <file name="useEditFormState.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/hooks/useEditFormState.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+      </file>
+      <file name="useUploadForm.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/hooks/useUploadForm.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+      </file>
+      <file name="useUploadState.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/hooks/useUploadState.ts">
+        <metrics statements="28" coveredstatements="28" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="11"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="24" count="10" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="10" type="stmt"/>
+        <line num="32" count="10" type="stmt"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="34" count="10" type="stmt"/>
+        <line num="35" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="10" type="stmt"/>
+        <line num="38" count="10" type="stmt"/>
+        <line num="41" count="10" type="stmt"/>
+        <line num="43" count="10" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="49" count="10" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="10" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+      </file>
+      <file name="useVideoTableMutations.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/upload/hooks/useVideoTableMutations.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video">
+      <metrics statements="27" coveredstatements="27" conditionals="18" coveredconditionals="18" methods="10" coveredmethods="10"/>
+      <file name="queries.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/queries.ts">
+        <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+      <file name="video.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/video.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="10" methods="6" coveredmethods="6"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="5" type="stmt"/>
+        <line num="55" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+        <line num="58" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="5" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video.components.comments">
+      <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="9" coveredmethods="9"/>
+      <file name="VideoCommentForm.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/comments/VideoCommentForm.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="46" count="15" type="stmt"/>
+        <line num="48" count="15" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+      </file>
+      <file name="VideoCommentItem.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/comments/VideoCommentItem.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="59" count="7" type="stmt"/>
+      </file>
+      <file name="VideoComments.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/comments/VideoComments.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+      </file>
+      <file name="VideoCommentsHeader.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/comments/VideoCommentsHeader.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video.components.info">
+      <metrics statements="17" coveredstatements="17" conditionals="16" coveredconditionals="16" methods="9" coveredmethods="9"/>
+      <file name="VideoActionButtons.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/info/VideoActionButtons.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="37" count="9" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
+        <line num="65" count="9" type="stmt"/>
+        <line num="67" count="36" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="89" count="9" type="stmt"/>
+      </file>
+      <file name="VideoChannelInfo.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/info/VideoChannelInfo.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+      </file>
+      <file name="VideoDescription.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/info/VideoDescription.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+      </file>
+      <file name="VideoInfo.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/info/VideoInfo.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video.components.player">
+      <metrics statements="30" coveredstatements="30" conditionals="24" coveredconditionals="24" methods="11" coveredmethods="11"/>
+      <file name="VideoPlayer.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/player/VideoPlayer.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+      </file>
+      <file name="VideoPlayerActionRow.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/player/VideoPlayerActionRow.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="16" coveredconditionals="16" methods="3" coveredmethods="3"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+      </file>
+      <file name="VideoPlayerControls.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/player/VideoPlayerControls.tsx">
+        <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="69" count="4" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
+        <line num="96" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video.components.related">
+      <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
+      <file name="RelatedVideoCard.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/related/RelatedVideoCard.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+      </file>
+      <file name="RelatedVideoFilters.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/related/RelatedVideoFilters.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+      </file>
+      <file name="RelatedVideos.tsx" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/components/related/RelatedVideos.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="21" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="feature.video.hooks">
+      <metrics statements="153" coveredstatements="153" conditionals="59" coveredconditionals="59" methods="50" coveredmethods="50"/>
+      <file name="useAutoHideControls.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useAutoHideControls.ts">
+        <metrics statements="27" coveredstatements="27" conditionals="11" coveredconditionals="11" methods="7" coveredmethods="7"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="43" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="54" count="11" type="stmt"/>
+        <line num="55" count="11" type="stmt"/>
+        <line num="57" count="11" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="59" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="63" count="5" type="stmt"/>
+        <line num="72" count="11" type="stmt"/>
+      </file>
+      <file name="useCommentForm.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useCommentForm.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="23" type="stmt"/>
+        <line num="9" count="23" type="stmt"/>
+        <line num="11" count="23" type="stmt"/>
+        <line num="13" count="23" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="18" count="23" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="29" count="23" type="stmt"/>
+      </file>
+      <file name="useComments.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useComments.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="8"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="42" count="13" type="stmt"/>
+        <line num="44" count="13" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="52" count="13" type="stmt"/>
+        <line num="53" count="3" type="stmt"/>
+        <line num="54" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="13" type="stmt"/>
+      </file>
+      <file name="useHls.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useHls.ts">
+        <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="useSubscription.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useSubscription.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="7" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="12" count="12" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="16" count="12" type="stmt"/>
+      </file>
+      <file name="useVideoControls.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useVideoControls.ts">
+        <metrics statements="26" coveredstatements="26" conditionals="10" coveredconditionals="10" methods="10" coveredmethods="10"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="9" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="9" type="stmt"/>
+        <line num="54" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+      </file>
+      <file name="useVideoFullscreen.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useVideoFullscreen.ts">
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="7" count="16" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="20" count="16" type="stmt"/>
+        <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="33" count="16" type="stmt"/>
+      </file>
+      <file name="useVideoReaction.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useVideoReaction.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="12" coveredconditionals="12" methods="5" coveredmethods="5"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="14" count="16" type="stmt"/>
+        <line num="15" count="16" type="stmt"/>
+        <line num="16" count="16" type="stmt"/>
+        <line num="18" count="16" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="26" count="16" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="34" count="16" type="stmt"/>
+      </file>
+      <file name="useVideoVolume.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/feature/video/hooks/useVideoVolume.ts">
+        <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="19" count="17" type="stmt"/>
+        <line num="20" count="17" type="stmt"/>
+        <line num="22" count="17" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="27" count="17" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="35" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="utils.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/lib/utils.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="37" type="stmt"/>
+      </file>
+    </package>
+    <package name="util">
+      <metrics statements="31" coveredstatements="31" conditionals="12" coveredconditionals="12" methods="7" coveredmethods="7"/>
+      <file name="clientEnv.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/util/clientEnv.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="11" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="21" count="11" type="stmt"/>
+      </file>
+      <file name="env.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/util/env.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="16" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+      </file>
+      <file name="format.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/util/format.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="17" type="cond" truecount="6" falsecount="0"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="12" type="stmt"/>
+        <line num="6" count="12" type="stmt"/>
+        <line num="7" count="12" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="12" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+      </file>
+      <file name="parseFormData.ts" path="/home/runner/work/videoStreamingService/videoStreamingService/apps/frontend/src/util/parseFormData.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
