@@ -16,7 +16,7 @@ yarn install
 ### Development
 ```bash
 # Start local infrastructure
-make compose-up
+make compose:up
 
 # Start dev servers
 yarn dev
