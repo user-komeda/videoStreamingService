@@ -6,6 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize]
   workflow_dispatch:
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -16,6 +17,7 @@ env:
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
+
     steps:
       - name: Install SSH Key
         uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
@@ -37,6 +39,8 @@ jobs:
       - name: "メタデータを作成する"
         id: meta
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
+        env:
+          DOCKER_METADATA_PR_HEAD_SHA: true
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
           tags: |
@@ -59,6 +63,7 @@ jobs:
 
   build-backend:
     runs-on: ubuntu-latest
+
     steps:
       - name: Install SSH Key
         uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
@@ -80,6 +85,8 @@ jobs:
       - name: "メタデータを作成する"
         id: meta
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
+        env:
+          DOCKER_METADATA_PR_HEAD_SHA: true
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend
           tags: |
