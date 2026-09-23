@@ -1,1 +1,0 @@
-var e=e=>{if(e==null||isNaN(e)||e<=0)return`0:00`;let t=Math.floor(e/1e3),n=Math.floor(t/3600),r=Math.floor(t%3600/60),i=t%60,a=e=>e.toString().padStart(2,`0`);return n>0?`${n}:${a(r)}:${a(i)}`:`${r}:${a(i)}`};export{e as t};

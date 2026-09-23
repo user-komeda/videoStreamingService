@@ -4,6 +4,13 @@
 .yarn/install-state.gz
 apps/frontend/.gitignore
 /apps/frontend/node_modules/
+/apps/frontend/.lighthouseci/
+/apps/frontend/build/
+/apps/frontend/coverage/
+/apps/frontend/dist/
+/apps/frontend/localhost--*.report.html
+/apps/frontend/localhost--*.report.json
+/apps/frontend/manifest.json
 /.idea
 
 /NUL

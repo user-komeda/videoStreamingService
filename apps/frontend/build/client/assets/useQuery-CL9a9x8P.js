@@ -1,1 +1,0 @@
-import{l as e,s as t}from"./queries-DLt0hZ3c.js";function n(n,r){return t(n,e,r)}export{n as t};
