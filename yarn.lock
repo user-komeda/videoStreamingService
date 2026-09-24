@@ -4645,11 +4645,11 @@ __metadata:
   linkType: hard
 
 "cn@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "cn@npm:0.3.0"
+  version: 0.3.2
+  resolution: "cn@npm:0.3.2"
   bin:
     cn: bin/cn.mjs
-  checksum: 10c0/dbdfb8b5ff7873dd8a094352191a008dbe7adc9bda6ac2c5d9b017b62a98b5201ca7a9bfaaaf0a6e1c6c48925ca9df62028b0225426f5154d9f7f8946ed5390d
+  checksum: 10c0/0bfee99ed9cae5554e45b2d3563fc720fd871a1b26ef855556f0b45043b838b01705160302e86dc21a149fe4262cafe10fd3651e9f7ef6563b47a40d53503a7d
   languageName: node
   linkType: hard
 
