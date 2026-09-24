@@ -88,7 +88,7 @@
     "infisicalLauncher": "git+ssh://git@github.com:user-komeda/infisicalLauncher.git",
     "jsdom": "30.1.0",
     "lefthook": "2.1.14",
-    "orval": "8.34.0",
+    "orval": "8.35.0",
     "prettier": "3.9.8",
     "prettier-plugin-tailwindcss": "0.8.1",
     "rollup-plugin-visualizer": "7.1.1",
