@@ -12,6 +12,10 @@ services:
         - infisical_client_id
         - infisical_client_secret
         - infisical_project_id
+    environment:
+      LOCAL_INFISICAL_CLIENT_ID: ${LOCAL_INFISICAL_CLIENT_ID}
+      LOCAL_INFISICAL_CLIENT_SECRET: ${LOCAL_INFISICAL_CLIENT_SECRET}
+      LOCAL_INFISICAL_PROJECT_ID: ${LOCAL_INFISICAL_PROJECT_ID}
     restart: always
     ports:
       - 3000:3000
@@ -38,6 +42,10 @@ services:
       dockerfile: ./apps/backend/Dockerfile
       ssh:
         - default
+    environment:
+      LOCAL_INFISICAL_CLIENT_ID: ${LOCAL_INFISICAL_CLIENT_ID}
+      LOCAL_INFISICAL_CLIENT_SECRET: ${LOCAL_INFISICAL_CLIENT_SECRET}
+      LOCAL_INFISICAL_PROJECT_ID: ${LOCAL_INFISICAL_PROJECT_ID}
     restart: always
     ports:
       - 8080:8080
