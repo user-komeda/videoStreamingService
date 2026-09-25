@@ -15,6 +15,8 @@ jobs:
       LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
       LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
       LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
+      AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
+      MINIO_LICENSE_PATH: /home/deploy/minio/minio.license
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: sample_db
@@ -41,14 +43,21 @@ jobs:
       - name: Yarn install
         run: yarn install
 
+      - name: Create MinIO License
+        shell: bash
+        run: |
+          sudo mkdir -p /home/deploy/minio
+          printf '%s' "$AISTOR_LICENSE" | sudo tee /home/deploy/minio/minio.license > /dev/null
+          sudo chmod 644 /home/deploy/minio/minio.license
+
       - name: Create MinIO Mount Directory
         run: sudo mkdir -p /mnt/minio && sudo chmod 777 /mnt/minio
 
       - name: Verify Docker Compose Healthcheck
         run: |
-          node ./node_modules/infisicalLauncher/dist/index.cjs --path=/videoStreaming/container/local -- docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend up -d --build --wait
-          docker compose -f docker-compose.yml -f docker-compose.linux.yml ps
+          node ./node_modules/infisicalLauncher/dist/index.cjs --path=/videoStreaming/container -- docker compose -f docker-compose.yml --profile frontend --profile backend up -d --build --wait
+          docker compose -f docker-compose.yml ps
 
       - name: Docker Compose Down
         if: always()
-        run: docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend down -v
+        run: docker compose -f docker-compose.yml --profile frontend --profile backend down -v

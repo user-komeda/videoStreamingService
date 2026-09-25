@@ -11,8 +11,7 @@ Root `package.json` manages monorepo tasks with TurboRepo:
 - `yarn swagger`: Generate backend OpenAPI / Swagger documentation (`gen/swagger`).
 
 ## Infrastructure & Local Environment (Docker)
-- `docker-compose.yml`: Local PostgreSQL and related services (Windows CIFS volume for MinIO).
-- `docker-compose.linux.yml`: Linux override for MinIO (`/mnt/minio` bind mount).
+- `docker-compose.yml`: Local PostgreSQL and related services.
 - `yarn compose:up`: Start PostgreSQL using `infisicalLauncher`.
 - `yarn compose:upAll`: Start all containers including frontend and backend.
 - `yarn compose:down`: Stop containers.
