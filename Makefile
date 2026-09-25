@@ -13,7 +13,7 @@ else
     RM := rm -rf
     MKDIR := mkdir -p $(BIN_DIR)
     DEV_NULL := /dev/null
-    COMPOSE_FILES := -f docker-compose.yml -f docker-compose.linux.yml
+    COMPOSE_FILES := -f docker-compose.yml
 endif
 
 BETTERLEAKS := $(BIN_DIR)/betterleaks$(BIN_EXT)
@@ -90,7 +90,7 @@ compose-up-all: prepare-compose
 	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --build
 
 compose-down: check-docker
-	docker compose $(COMPOSE_FILES) --profile frontend --profile backend down
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend down
 
 compose-down-v: check-docker
-	docker compose $(COMPOSE_FILES) --profile frontend --profile backend down -v
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend down -v
