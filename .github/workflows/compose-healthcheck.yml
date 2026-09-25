@@ -16,15 +16,15 @@ jobs:
       LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
       AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
 
-      MINIO_LICENSE_PATH: /home/deploy/minio/minio.license
-      MINIO_DATA_PATH: /mnt/minio
+      MINIO_LICENSE_PATH: ${{ secrets.MINIO_LICENSE_PATH }}
+      MINIO_DATA_PATH: ${{ secrets.MINIO_DATA_PATH }}
 
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: sample_db
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
 
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin
+      MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
+      MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
 
       NAS_USERNAME: dummy
       NAS_PASSWORD: dummy
