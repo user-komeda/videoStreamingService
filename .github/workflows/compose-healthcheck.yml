@@ -17,6 +17,7 @@ jobs:
       LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
       AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
       MINIO_LICENSE_PATH: /home/deploy/minio/minio.license
+      MINIO_DATA_PATH: /mnt/minio
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: sample_db
