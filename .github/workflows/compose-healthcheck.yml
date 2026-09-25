@@ -2,53 +2,89 @@ name: "Compose Healthcheck"
 
 on:
   pull_request:
-    branches: ["dev"]
     types: [opened, synchronize]
   workflow_dispatch:
 
 jobs:
   compose-healthcheck:
     name: "Docker Compose Healthcheck"
-    if: github.head_ref == 'main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+
     env:
       LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
       LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
       LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: sample_db
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin
+      AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
+
+      MINIO_LICENSE_PATH: ${{ secrets.MINIO_LICENSE_PATH }}
+      MINIO_DATA_PATH: ${{ secrets.MINIO_DATA_PATH }}
+
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
+      MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
+      MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
+
       NAS_USERNAME: dummy
       NAS_PASSWORD: dummy
+
     steps:
       - name: Install SSH Key
         uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+      - name: Checkout
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
 
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
+      - name: Setup Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: 24
-          package-manager-cache: false
 
-      - name: Enable corepack
+      - name: Enable Corepack
         run: corepack enable
 
-      - name: Yarn install
+      - name: Yarn Install
         run: yarn install
 
+      - name: Create MinIO License
+        shell: bash
+        run: |
+          sudo mkdir -p /home/deploy/minio
+          printf '%s' "$AISTOR_LICENSE" \
+            | sudo tee /home/deploy/minio/minio.license > /dev/null
+          sudo chmod 644 /home/deploy/minio/minio.license
+
       - name: Create MinIO Mount Directory
-        run: sudo mkdir -p /mnt/minio && sudo chmod 777 /mnt/minio
+        run: |
+          sudo mkdir -p /mnt/minio
+          sudo chmod 777 /mnt/minio
 
       - name: Verify Docker Compose Healthcheck
         run: |
-          node ./node_modules/infisicalLauncher/dist/index.cjs --path=/videoStreaming/container/local -- docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend up -d --build --wait
-          docker compose -f docker-compose.yml -f docker-compose.linux.yml ps
+          node ./node_modules/infisicalLauncher/dist/index.cjs \
+            --path=/videoStreaming/container \
+            -- docker compose \
+            -f docker-compose.yml \
+            --profile frontend \
+            --profile backend \
+            up -d --build --wait
+
+          docker compose -f docker-compose.yml ps
+
+      - name: Dump Compose Diagnostics
+        if: failure()
+        run: |
+          docker compose -f docker-compose.yml ps -a
+          docker compose -f docker-compose.yml logs --no-color backend migration db minio
 
       - name: Docker Compose Down
         if: always()
-        run: docker compose -f docker-compose.yml -f docker-compose.linux.yml --profile frontend --profile backend down -v
+        run: |
+          docker compose \
+            -f docker-compose.yml \
+            --profile frontend \
+            --profile backend \
+            down -v
