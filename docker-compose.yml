@@ -38,6 +38,10 @@ services:
       dockerfile: ./apps/backend/Dockerfile
       ssh:
         - default
+      secrets:
+        - infisical_client_id
+        - infisical_client_secret
+        - infisical_project_id
     restart: always
     ports:
       - 8080:8080
