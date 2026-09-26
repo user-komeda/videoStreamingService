@@ -127,7 +127,7 @@ services:
 
   minio-init:
     container_name: minio-init-video-streaming-service
-    image: quay.io/minio/mc:latest
+    image: quay.io/minio/aistor/minio:latest
     restart: "no"
     environment:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
