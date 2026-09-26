@@ -1,161 +1,102 @@
-services:
-  frontend:
-    container_name: video-streaming-service-frontend
-    profiles:
-      - frontend
-    build:
-      context: .
-      dockerfile: ./apps/frontend/Dockerfile
-      ssh:
-        - default
-      secrets:
-        - infisical_client_id
-        - infisical_client_secret
-        - infisical_project_id
-    environment:
-      LOCAL_INFISICAL_CLIENT_ID: ${LOCAL_INFISICAL_CLIENT_ID}
-      LOCAL_INFISICAL_CLIENT_SECRET: ${LOCAL_INFISICAL_CLIENT_SECRET}
-      LOCAL_INFISICAL_PROJECT_ID: ${LOCAL_INFISICAL_PROJECT_ID}
-    restart: always
-    ports:
-      - 3000:3000
-    depends_on:
-      backend:
-        condition: service_healthy
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "node -e \"fetch('http://localhost:3000/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 20s
+name: "Compose Healthcheck"
 
-  backend:
-    container_name: video-streaming-service-backend
-    profiles:
-      - backend
-    build:
-      context: .
-      dockerfile: ./apps/backend/Dockerfile
-      ssh:
-        - default
-    environment:
-      LOCAL_INFISICAL_CLIENT_ID: ${LOCAL_INFISICAL_CLIENT_ID}
-      LOCAL_INFISICAL_CLIENT_SECRET: ${LOCAL_INFISICAL_CLIENT_SECRET}
-      LOCAL_INFISICAL_PROJECT_ID: ${LOCAL_INFISICAL_PROJECT_ID}
-    restart: always
-    ports:
-      - 8080:8080
-    depends_on:
-      db:
-        condition: service_healthy
-      migration:
-        condition: service_completed_successfully
-      minio-init:
-        condition: service_completed_successfully
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "node -e \"fetch('http://localhost:8080/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 15s
+on:
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
 
-  db:
-    container_name: db-video-streaming-service
-    image: postgres:18@sha256:86c951e05bf56c93d95d397747fb8820ac76cc3bedb78f43abd83eedbe3666ae
-    restart: always
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+jobs:
+  compose-healthcheck:
+    name: "Docker Compose Healthcheck"
+    runs-on: ubuntu-latest
 
-  migration:
-    container_name: migration-video-streaming-service
-    image: arigaio/atlas:latest-alpine@sha256:f03346d1c36cdb90154370103673cbf96c6700d64de2ff6a2f1f2ffa4fed33e6
-    profiles:
-      - backend
-      - migration
-    restart: "no"
-    volumes:
-      - ./apps/backend/db/migration:/migrations:ro
-    environment:
-      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db-video-streaming-service:5432/${POSTGRES_DB}?sslmode=disable"
-    depends_on:
-      db:
-        condition: service_healthy
-    command:
-      - migrate
-      - apply
-      - --dir=file:///migrations
-      - --url=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable
+    env:
+      LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
+      LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
+      LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
 
-  minio:
-    container_name: minio-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest
-    command: server /data --console-address ":9001" --license /minio.license
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
-      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
-    volumes:
-      - ${MINIO_DATA_PATH}:/data
-      - ${MINIO_LICENSE_PATH}:/minio.license:ro
-    healthcheck:
-      test: ["CMD-SHELL", "mc ready local || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
+      AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
+      MINIO_LICENSE_PATH: /home/runner/minio/minio.license
+      MINIO_DATA_PATH: /tmp/minio-data
 
-  minio-init:
-    container_name: minio-init-video-streaming-service
-    image: quay.io/minio/aistor/mc:latest
-    restart: "no"
-    environment:
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
-      MINIO_BUCKET: ${MINIO_BUCKET}
-    depends_on:
-      minio:
-        condition: service_healthy
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        mc alias set local http://minio:9000 "$$MINIO_ACCESS_KEY" "$$MINIO_SECRET_KEY" &&
-        mc mb --ignore-existing "local/$$MINIO_BUCKET"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sample_db
 
-secrets:
-  infisical_client_id:
-    environment: LOCAL_INFISICAL_CLIENT_ID
-  infisical_client_secret:
-    environment: LOCAL_INFISICAL_CLIENT_SECRET
-  infisical_project_id:
-    environment: LOCAL_INFISICAL_PROJECT_ID
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      MINIO_BUCKET: videos
 
-volumes:
-  postgres_data:
+      NAS_USERNAME: dummy
+      NAS_PASSWORD: dummy
 
-  minio_data:
-    driver: local
-    driver_opts:
-      type: cifs
-      device: "//192.168.11.83/minio$"
-      o: "username=${NAS_USERNAME},password=${NAS_PASSWORD},vers=3.0,file_mode=0660,dir_mode=0770"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare MinIO
+        run: |
+          mkdir -p /home/runner/minio
+          mkdir -p /tmp/minio-data
+          echo "${AISTOR_LICENSE}" > /home/runner/minio/minio.license
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Start containers
+        run: |
+          set +e
+
+          node ./node_modules/infisicalLauncher/dist/index.cjs \
+            --path=/videoStreaming/container \
+            -- \
+            docker compose \
+              -f docker-compose.yml \
+              --profile frontend \
+              --profile backend \
+              up -d --build --wait
+
+          STATUS=$?
+
+          if [ "$STATUS" -ne 0 ]; then
+            echo "========================================"
+            echo "docker compose ps"
+            echo "========================================"
+
+            docker compose \
+              -f docker-compose.yml \
+              --profile frontend \
+              --profile backend \
+              ps -a || true
+
+            echo "========================================"
+            echo "docker compose logs"
+            echo "========================================"
+
+            docker compose \
+              -f docker-compose.yml \
+              --profile frontend \
+              --profile backend \
+              logs \
+              --no-color || true
+
+            exit "$STATUS"
+          fi
+
+      - name: Show container status
+        run: |
+          docker compose \
+            -f docker-compose.yml \
+            --profile frontend \
+            --profile backend \
+            ps
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker compose \
+            -f docker-compose.yml \
+            --profile frontend \
+            --profile backend \
+            down \
+            --remove-orphans
