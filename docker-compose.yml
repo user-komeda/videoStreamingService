@@ -107,7 +107,7 @@ services:
 
   minio:
     container_name: minio-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest
+    image: quay.io/minio/aistor/minio:latest@sha256:107cf2014a9583c74c11e3cdbd6903d89c2244355886b89ce532f4ecae9c23f3
     command: server /data --console-address ":9001" --license /minio.license
     ports:
       - "9000:9000"
@@ -127,7 +127,7 @@ services:
 
   minio-init:
     container_name: minio-init-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest
+    image: quay.io/minio/aistor/minio:latest@sha256:107cf2014a9583c74c11e3cdbd6903d89c2244355886b89ce532f4ecae9c23f3
     restart: "no"
     environment:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
