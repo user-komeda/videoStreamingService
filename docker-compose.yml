@@ -125,22 +125,22 @@ services:
       retries: 3
       start_period: 10s
 
-minio-init:
-  container_name: minio-init-video-streaming-service
-  image: quay.io/minio/aistor/mc:latest
-  restart: "no"
-  environment:
-    MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-    MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
-    MINIO_BUCKET: ${MINIO_BUCKET}
-  depends_on:
-    minio:
-      condition: service_healthy
-  entrypoint: ["/bin/sh", "-c"]
-  command:
-    - |
-      mc alias set local http://minio:9000 "$$MINIO_ACCESS_KEY" "$$MINIO_SECRET_KEY" &&
-      mc mb --ignore-existing "local/$$MINIO_BUCKET"
+  minio-init:
+    container_name: minio-init-video-streaming-service
+    image: quay.io/minio/aistor/mc:latest
+    restart: "no"
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_BUCKET: ${MINIO_BUCKET}
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mc alias set local http://minio:9000 "$$MINIO_ACCESS_KEY" "$$MINIO_SECRET_KEY" &&
+        mc mb --ignore-existing "local/$$MINIO_BUCKET"
 
 secrets:
   infisical_client_id:
