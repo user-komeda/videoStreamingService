@@ -3,3 +3,5 @@
 31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/config/Config.go:generic-credential-uri:30
 31912333ef4dd2f8d6982f03f0967717e15897fa:apps/backend/config/Config.go:generic-api-key:35
 31912333ef4dd2f8d6982f03f0967717e15897fa:.env:generic-password:2
+a75386fb7dc1408a5e97029900fa29d6d534e413:docker-compose.yml:generic-password:23
+a75386fb7dc1408a5e97029900fa29d6d534e413:docker-compose.yml:generic-password:31

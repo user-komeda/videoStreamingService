@@ -25,6 +25,7 @@ jobs:
 
       MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
       MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
+      MINIO_BUCKET: ${{ secrets.MINIO_BUCKET }}
 
       NAS_USERNAME: dummy
       NAS_PASSWORD: dummy
@@ -78,7 +79,7 @@ jobs:
         if: failure()
         run: |
           docker compose -f docker-compose.yml ps -a
-          docker compose -f docker-compose.yml logs --no-color backend migration db minio
+          docker compose -f docker-compose.yml logs --no-color backend migration db minio minio-init
 
       - name: Docker Compose Down
         if: always()
