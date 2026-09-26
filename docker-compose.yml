@@ -54,6 +54,8 @@ services:
         condition: service_healthy
       migration:
         condition: service_completed_successfully
+      minio-init:
+        condition: service_completed_successfully
     healthcheck:
       test:
         [
@@ -105,27 +107,40 @@ services:
 
   minio:
     container_name: minio-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest@sha256:107cf2014a9583c74c11e3cdbd6903d89c2244355886b89ce532f4ecae9c23f3
+    image: quay.io/minio/aistor/minio:latest
     command: server /data --console-address ":9001" --license /minio.license
-
     ports:
       - "9000:9000"
       - "9001:9001"
-
     environment:
       MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
       MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
-
     volumes:
       - ${MINIO_DATA_PATH}:/data
       - ${MINIO_LICENSE_PATH}:/minio.license:ro
-
     healthcheck:
       test: ["CMD-SHELL", "mc ready local || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 3
       start_period: 10s
+
+  minio-init:
+    container_name: minio-init-video-streaming-service
+    image: quay.io/minio/mc:latest
+    restart: "no"
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_BUCKET: ${MINIO_BUCKET}
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mc alias set local http://minio:9000 "$$MINIO_ACCESS_KEY" "$$MINIO_SECRET_KEY" &&
+        mc mb --ignore-existing "local/$$MINIO_BUCKET"
 
 secrets:
   infisical_client_id:
