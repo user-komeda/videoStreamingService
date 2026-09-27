@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { ShortsSection } from '~/feature/home/components/ShortsSection'
+import { ShortsSection } from '~/feature/video/components/list/ShortsSection'
 
-import type { ShortItem } from '~/feature/home/components/ShortsSection'
+import type { ShortItem } from '~/feature/video/components/list/ShortsSection'
 
 describe('ShortsSection', () => {
   const shorts: ShortItem[] = [

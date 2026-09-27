@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.47.0
 	github.com/aws/aws-sdk-go-v2/config v1.33.5
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.5
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.113.2
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.113.3
 	github.com/gabriel-vasile/mimetype v1.4.15
 	github.com/gin-contrib/cors v1.7.9
 	github.com/gin-gonic/gin v1.12.0
@@ -16,7 +16,6 @@ require (
 	github.com/jackc/pgx/v5 v5.11.0
 	github.com/stretchr/testify v1.12.1
 	github.com/swaggo/files v1.0.1
-	github.com/swaggo/files/v2 v2.0.2
 	github.com/swaggo/gin-swagger v1.6.1
 	github.com/swaggo/swag v1.16.6
 	github.com/tus/tusd/v2 v2.10.1
@@ -46,7 +45,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.19 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.14.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.20.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.10.0 // indirect
@@ -131,7 +130,6 @@ require (
 	go.uber.org/dig v1.19.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
-	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/arch v0.30.0 // indirect
 	golang.org/x/crypto v0.56.0 // indirect

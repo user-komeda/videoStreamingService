@@ -10,15 +10,13 @@ import { VideoDetail } from '~/feature/video/video'
 import type * as TanstackReactQuery from '@tanstack/react-query'
 
 let mockQueryData: unknown = null
-let mockIsLoading = false
 
 vi.mock('@tanstack/react-query', async (importOriginal) => {
   const actual = await importOriginal<typeof TanstackReactQuery>()
   return {
     ...actual,
-    useQuery: () => ({
+    useSuspenseQuery: () => ({
       data: mockQueryData,
-      isLoading: mockIsLoading,
     }),
   }
 })
@@ -28,21 +26,7 @@ vi.mock('~/feature/video/components/player/VideoPlayer', () => ({
 }))
 
 describe('VideoDetail', () => {
-  it('renders loading state when isLoading is true', () => {
-    mockIsLoading = true
-    mockQueryData = null
-
-    render(
-      <MemoryRouter>
-        <VideoDetail />
-      </MemoryRouter>,
-    )
-
-    expect(screen.getByText('動画情報を読み込み中...')).toBeDefined()
-  })
-
   it('renders not found state when video is not present', () => {
-    mockIsLoading = false
     mockQueryData = null
 
     render(
@@ -56,7 +40,6 @@ describe('VideoDetail', () => {
   })
 
   it('renders video detail, player, description and related videos', () => {
-    mockIsLoading = false
     mockQueryData = {
       id: 'vid-123',
       title: 'Detailed Video',
