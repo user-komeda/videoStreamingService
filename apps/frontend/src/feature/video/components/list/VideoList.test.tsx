@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
-import { Home } from '~/feature/home/home'
+import { VideoList } from '~/feature/video/components/list/VideoList'
 
 import type * as TanstackReactQuery from '@tanstack/react-query'
 
@@ -30,11 +30,11 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   }
 })
 
-describe('Home', () => {
-  it('renders home layout and toggles login/sidebar', () => {
+describe('VideoList', () => {
+  it('renders video list layout and toggles login/sidebar', () => {
     render(
       <MemoryRouter>
-        <Home />
+        <VideoList />
       </MemoryRouter>,
     )
 
