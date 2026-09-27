@@ -11,6 +11,10 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: true
+
 jobs:
   deploy:
     if: github.event.pull_request.merged == true
@@ -28,9 +32,8 @@ jobs:
               --fail \
               --silent \
               --show-error \
-              -H \
-                "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
-              "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://deploy.example.com" \
+              -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+              "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://deploy.komedajob.com" \
             | jq -r '.value'
           )"
 
@@ -40,9 +43,7 @@ jobs:
           fi
 
           echo "::add-mask::${TOKEN}"
-
-          echo "token=${TOKEN}" \
-            >> "${GITHUB_OUTPUT}"
+          echo "token=${TOKEN}" >> "${GITHUB_OUTPUT}"
 
       - name: Deploy
         env:
@@ -61,9 +62,7 @@ jobs:
               --silent \
               --show-error \
               -X POST \
-              -H \
-                "Authorization: Bearer ${OIDC_TOKEN}" \
-              -H \
-                "Content-Type: application/json" \
+              -H "Authorization: Bearer ${OIDC_TOKEN}" \
+              -H "Content-Type: application/json" \
               --data-binary @- \
-              https://deploy.example.com/hooks/deploy-dev
+              https://deploy.komedajob.com/hooks/deploy-dev
