@@ -4,9 +4,9 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 
 import { Header } from '~/components/header/Header'
 import { Sidebar } from '~/components/sidebar/Sidebar'
-import { CategoryPills } from '~/feature/home/components/CategoryPills'
-import { ShortsSection } from '~/feature/home/components/ShortsSection'
-import { VideoCard } from '~/feature/home/components/VideoCard'
+import { CategoryPills } from '~/feature/video/components/list/CategoryPills'
+import { ShortsSection } from '~/feature/video/components/list/ShortsSection'
+import { VideoCard } from '~/feature/video/components/list/VideoCard'
 import { videoListQuery } from '~/feature/video/queries'
 
 import type { VideoResponse } from '~/api/generated/models'
@@ -25,7 +25,7 @@ const MainContent = ({ videos }: { videos: VideoResponse[] }) => (
   </main>
 )
 
-export const Home = () => {
+export const VideoList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true)
 

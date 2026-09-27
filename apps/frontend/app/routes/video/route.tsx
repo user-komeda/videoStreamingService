@@ -1,22 +1,35 @@
-import type { ActionFunctionArgs } from 'react-router'
+import { Suspense } from 'react'
+import type { ActionFunctionArgs, MetaFunction } from 'react-router'
+import { useLoaderData } from 'react-router'
 
-import { QueryClient } from '@tanstack/react-query'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query'
 
 import { postVideos } from '~/api/generated/endpoints'
 import { PostVideosBody } from '~/api/generated/zod'
+import { VideoList } from '~/feature/video/components/list/VideoList'
 import { videoListQuery } from '~/feature/video/queries'
 import { parseFormData } from '~/util/parseFormData'
 
 import type { VideoActionResult } from '~/feature/video/types/type'
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Video Streaming Service' },
+    { name: 'description', content: 'Explore and watch the latest videos.' },
+  ]
+}
+
 export const loader = async () => {
   const queryClient = new QueryClient()
-  const query = videoListQuery()
+  await queryClient.prefetchQuery(videoListQuery())
 
-  return (
-    queryClient.getQueryData(query.queryKey) ??
-    (await queryClient.fetchQuery(query))
-  )
+  return {
+    dehydratedState: dehydrate(queryClient),
+  }
 }
 
 export const action = async ({
@@ -44,3 +57,23 @@ export const action = async ({
     return { success: false, error: '通信エラーが発生しました' }
   }
 }
+
+const Route = () => {
+  const { dehydratedState } = useLoaderData<typeof loader>()
+
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <Suspense
+        fallback={
+          <div className="text-muted-foreground py-10 text-center">
+            動画を読み込み中...
+          </div>
+        }
+      >
+        <VideoList />
+      </Suspense>
+    </HydrationBoundary>
+  )
+}
+
+export default Route
