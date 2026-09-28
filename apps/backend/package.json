@@ -10,7 +10,7 @@
     "migrate:hash": "make migrate-hash",
     "test": "make test"
   },
-  "packageManager": "yarn@4.18.0",
+  "packageManager": "yarn@4.18.1",
   "devDependencies": {
     "concurrently": "10.0.5"
   }

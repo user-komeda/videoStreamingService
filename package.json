@@ -26,7 +26,7 @@
   "engines": {
     "node": ">=24"
   },
-  "packageManager": "yarn@4.18.0",
+  "packageManager": "yarn@4.18.1",
   "resolutions": {
     "chrome-launcher@npm:^0.13.4": "patch:chrome-launcher@npm%3A1.2.1#~/.yarn/patches/chrome-launcher-npm-1.2.1-4db2d4d499.patch",
     "chrome-launcher@npm:^1.2.0": "patch:chrome-launcher@npm%3A1.2.1#~/.yarn/patches/chrome-launcher-npm-1.2.1-4db2d4d499.patch"
