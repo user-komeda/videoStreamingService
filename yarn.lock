@@ -3609,19 +3609,19 @@ __metadata:
   linkType: hard
 
 "@uppy/core@npm:^6.0.0":
-  version: 6.0.1
-  resolution: "@uppy/core@npm:6.0.1"
+  version: 6.0.2
+  resolution: "@uppy/core@npm:6.0.2"
   dependencies:
     "@transloadit/prettier-bytes": "npm:^2.0.0"
     classnames: "npm:^2.5.1"
     lodash: "npm:^4.18.1"
     mime-match: "npm:^1.0.2"
     namespace-emitter: "npm:^2.0.1"
-    nanoid: "npm:^5.1.11"
+    nanoid: "npm:^6.0.1"
     p-queue: "npm:^9.3.3"
     p-retry: "npm:^6.1.0"
     preact: "npm:^10.29.2"
-  checksum: 10c0/220f06fa513e7f8d8b0110cdf9ab1500aac2a507727da9d9a209dc94bfece29991df923d722e46dbd8723f7cfeb6cee9810722c7f2dfa28060023f4c6269e26d
+  checksum: 10c0/0567de8d8b434d7b3ed090ea1ff8ca408ff5e07240b88e147125844845a3f602ec947e70ec854b6f35ca470772623427ae052e62a3630bd679dcdf80d1b5fc09
   languageName: node
   linkType: hard
 
@@ -8969,12 +8969,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^5.1.11, nanoid@npm:^5.1.6":
+"nanoid@npm:^5.1.6":
   version: 5.1.16
   resolution: "nanoid@npm:5.1.16"
   bin:
     nanoid: bin/nanoid.js
   checksum: 10c0/04b4f96237f5639716da0e98f453361b313bebaf458bb67dea2d384724fc8b3340a28f032a4373052150bcf3b801d122e291d81ae4fc522969f55c134f4401a3
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "nanoid@npm:6.0.1"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 10c0/5b362ad9822388dfebdf655849c76d3539e074d1003fbe6eb5dff8687faf93a9abbb19bdc5d134b9b8599f875f9b091feacfd7099b34b5fef23bc3f5be41dd10
   languageName: node
   linkType: hard
 
