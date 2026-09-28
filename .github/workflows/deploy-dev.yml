@@ -48,7 +48,7 @@ jobs:
       - name: Deploy
         env:
           OIDC_TOKEN: ${{ steps.oidc.outputs.token }}
-          COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
 
