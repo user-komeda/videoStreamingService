@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
-import { VideoCard } from '~/feature/home/components/VideoCard'
+import { VideoCard } from '~/feature/video/components/list/VideoCard'
 
 import type { VideoResponse } from '~/api/generated/models'
 

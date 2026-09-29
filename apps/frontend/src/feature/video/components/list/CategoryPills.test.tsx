@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { CategoryPills } from '~/feature/home/components/CategoryPills'
+import { CategoryPills } from '~/feature/video/components/list/CategoryPills'
 
 describe('CategoryPills', () => {
   it('renders categories and changes selected category on click', () => {

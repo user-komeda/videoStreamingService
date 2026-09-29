@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router'
 
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 import { Header } from '~/components/header/Header'
 import { buttonVariants } from '~/components/ui/button'
@@ -55,7 +55,7 @@ export const VideoDetail = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const { data: video, isLoading } = useQuery(videoDetailQuery(id ?? ''))
+  const { data: video } = useSuspenseQuery(videoDetailQuery(id ?? ''))
 
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col">
@@ -65,13 +65,9 @@ export const VideoDetail = () => {
         onToggleSidebar={() => {}}
       />
       <main className="flex-1 p-4 lg:p-6">
-        {isLoading && (
-          <div className="text-muted-foreground p-12 text-center">
-            動画情報を読み込み中...
-          </div>
-        )}
-        {!isLoading && !video && <VideoNotFound />}
-        {!isLoading && video && (
+        {!video ? (
+          <VideoNotFound />
+        ) : (
           <div className="mx-auto flex max-w-[1750px] flex-col gap-6 lg:flex-row">
             <VideoMainContent
               video={video}
