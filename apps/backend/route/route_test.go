@@ -119,6 +119,17 @@ func TestRegisterSwagger(t *testing.T) {
 	if !strings.Contains(string(body), "Swagger UI") {
 		t.Fatal("expected swagger UI page to be served")
 	}
+
+	req = httptest.NewRequest(http.MethodGet, "/swagger/swagger-ui.css", nil)
+	recorder = httptest.NewRecorder()
+	r.ServeHTTP(recorder, req)
+
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("expected swagger CSS status %d, got %d", http.StatusOK, recorder.Code)
+	}
+	if recorder.Body.Len() == 0 {
+		t.Fatal("expected swagger CSS asset to be served")
+	}
 }
 
 func TestRegisterVideo(t *testing.T) {
