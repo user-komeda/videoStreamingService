@@ -1,7 +1,10 @@
 package route_test
 
 import (
+	"io"
 	"net/http"
+	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"videoStreaming/config"
@@ -96,9 +99,30 @@ func TestRegisterSwagger(t *testing.T) {
 	r := gin.New()
 	route.RegisterSwagger(r)
 
-	routes := r.Routes()
-	if len(routes) == 0 {
-		t.Fatal("expected swagger route to be registered")
+	tests := []struct {
+		path string
+		body string
+	}{
+		{path: "/swagger/index.html", body: "Swagger UI"},
+		{path: "/swagger/swagger-ui.css", body: "swagger"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.path, func(t *testing.T) {
+			req := httptest.NewRequest(http.MethodGet, tt.path, nil)
+			recorder := httptest.NewRecorder()
+			r.ServeHTTP(recorder, req)
+
+			if recorder.Code != http.StatusOK {
+				t.Fatalf("expected status %d, got %d", http.StatusOK, recorder.Code)
+			}
+			body, err := io.ReadAll(recorder.Result().Body)
+			if err != nil {
+				t.Fatalf("failed to read response: %v", err)
+			}
+			if !strings.Contains(strings.ToLower(string(body)), strings.ToLower(tt.body)) {
+				t.Fatalf("expected response body to contain %q", tt.body)
+			}
+		})
 	}
 }
 

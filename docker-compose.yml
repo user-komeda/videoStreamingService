@@ -69,7 +69,7 @@ services:
 
   db:
     container_name: db-video-streaming-service
-    image: postgres:18@sha256:86c951e05bf56c93d95d397747fb8820ac76cc3bedb78f43abd83eedbe3666ae
+    image: postgres:18@sha256:5a5a84b19854a9ffaa54082c166ff4ec27473a361e496e5ea167f298f2da9722
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -107,7 +107,7 @@ services:
 
   minio:
     container_name: minio-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest
+    image: quay.io/minio/aistor/minio:latest@sha256:107cf2014a9583c74c11e3cdbd6903d89c2244355886b89ce532f4ecae9c23f3
     command: server /data --console-address ":9001" --license /minio.license
     ports:
       - "9000:9000"
@@ -127,7 +127,7 @@ services:
 
   minio-init:
     container_name: minio-init-video-streaming-service
-    image: quay.io/minio/aistor/minio:latest
+    image: quay.io/minio/aistor/minio:latest@sha256:107cf2014a9583c74c11e3cdbd6903d89c2244355886b89ce532f4ecae9c23f3
     restart: "no"
     environment:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
