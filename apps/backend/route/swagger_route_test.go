@@ -1,3 +1,4 @@
+//nolint:testpackage // These tests need direct access to the unexported read-only filesystem.
 package route
 
 import (
