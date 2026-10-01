@@ -3597,8 +3597,8 @@ __metadata:
   linkType: hard
 
 "@uppy/core@npm:^6.0.0":
-  version: 6.0.2
-  resolution: "@uppy/core@npm:6.0.2"
+  version: 6.1.0
+  resolution: "@uppy/core@npm:6.1.0"
   dependencies:
     "@transloadit/prettier-bytes": "npm:^2.0.0"
     classnames: "npm:^2.5.1"
@@ -3609,7 +3609,7 @@ __metadata:
     p-queue: "npm:^9.3.3"
     p-retry: "npm:^6.1.0"
     preact: "npm:^10.29.2"
-  checksum: 10c0/0567de8d8b434d7b3ed090ea1ff8ca408ff5e07240b88e147125844845a3f602ec947e70ec854b6f35ca470772623427ae052e62a3630bd679dcdf80d1b5fc09
+  checksum: 10c0/ef593e13be0b004c0cc320dda1e628c10747ad5c72ec290f1b29d6ca44f311c79cf0d2d1cab3b80c28b5c648ee8391987cdbeb68e3d9b10fb2c53923523a6987
   languageName: node
   linkType: hard
 
