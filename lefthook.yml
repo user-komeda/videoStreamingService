@@ -8,4 +8,4 @@ pre-commit:
     secret-check:
       run: yarn secret-check:staged
     check:
-      run: "PATH=$HOME/sdk/go1.27.2/bin:$HOME/go/bin:$PATH yarn check"
+      run: "PATH=$HOME/sdk/go1.26.2/bin:$HOME/go/bin:$PATH yarn check"
