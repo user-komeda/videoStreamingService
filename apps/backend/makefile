@@ -41,8 +41,13 @@ migrate-hash: prepare-migrate
 prepare-lint: install-lint
 
 install-lint:
-	@echo "Installing golangci-lint $(GOLANGCI_LINT_VERSION) with the current Go toolchain..."
+ifeq ($(OS),Windows_NT)
+	@echo "Installing golangci-lint $(GOLANGCI_LINT_VERSION) on Windows..."
 	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+else
+	@echo "Installing golangci-lint $(GOLANGCI_LINT_VERSION) on Unix..."
+	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+endif
 
 lint:
 	$(GOLANGCI_LINT) run -c .golangci.yml
