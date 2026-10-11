@@ -13,7 +13,7 @@ GOPATH_BIN := $(shell go env GOPATH)/bin
 export GOLANGCI_LINT_CACHE ?= $(shell go env GOCACHE)/golangci-lint
 
 GOLANGCI_LINT := $(GOPATH_BIN)/golangci-lint$(BIN_EXT)
-GOLANGCI_LINT_VERSION := v2.13.2
+GOLANGCI_LINT_VERSION := v2.14.0
 
 ATLAS := $(GOPATH_BIN)/atlas$(BIN_EXT)
 ATLAS_CONFIG := file://./db/atlas.hcl
