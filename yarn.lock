@@ -2169,10 +2169,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rvf/set-get@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "@rvf/set-get@npm:7.0.3"
-  checksum: 10c0/29a6a176bd6b507ab0d755df6afb997dac5a7c4b177d802af4cbc2113dcf6c890d5faf7208b6f0200ba98338afa80c82510478b161cfd81167d6c71ff5ad47f1
+"@rvf/set-get@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "@rvf/set-get@npm:7.0.4"
+  checksum: 10c0/7954a3ceaef746fd35528e98b742444e3fa1ee7345314b698a007b05462b888691b69e707609891ed85ad8c6ebfa999adb891a6d94cdbf9238f1425e80c9cf84
   languageName: node
   linkType: hard
 
@@ -12641,13 +12641,13 @@ __metadata:
   linkType: hard
 
 "zod-form-data@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "zod-form-data@npm:3.0.3"
+  version: 3.0.4
+  resolution: "zod-form-data@npm:3.0.4"
   dependencies:
-    "@rvf/set-get": "npm:^7.0.3"
+    "@rvf/set-get": "npm:^7.0.4"
   peerDependencies:
     zod: ">= 3.25.0"
-  checksum: 10c0/122a8d0f5f3f50923c55873cef6cae2411c81975b77dddb4b9b77c2ab7509ca145bc000b10e10264e9a2a39cdd7aa4c53b0d186aefe6a871a4ff1c0241197008
+  checksum: 10c0/68e9de380a291f31b9a199d2844366c184b4c90215d962a6fd413dc51fdf30d31e7e7432932572746fc5bbb7912ddf303caa43f23dfe7f6417e040a5eb4d5dc7
   languageName: node
   linkType: hard
 
