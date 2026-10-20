@@ -3082,44 +3082,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/darwin-64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/darwin-64@npm:2.11.8"
+"@turbo/darwin-64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/darwin-64@npm:2.11.9"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/darwin-arm64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/darwin-arm64@npm:2.11.8"
+"@turbo/darwin-arm64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/darwin-arm64@npm:2.11.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/linux-64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/linux-64@npm:2.11.8"
+"@turbo/linux-64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/linux-64@npm:2.11.9"
   conditions: (os=android | os=linux) & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/linux-arm64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/linux-arm64@npm:2.11.8"
+"@turbo/linux-arm64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/linux-arm64@npm:2.11.9"
   conditions: (os=android | os=linux) & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/windows-64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/windows-64@npm:2.11.8"
+"@turbo/windows-64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/windows-64@npm:2.11.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/windows-arm64@npm:2.11.8":
-  version: 2.11.8
-  resolution: "@turbo/windows-arm64@npm:2.11.8"
+"@turbo/windows-arm64@npm:2.11.9":
+  version: 2.11.9
+  resolution: "@turbo/windows-arm64@npm:2.11.9"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -5918,15 +5918,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:2.11.8":
-  version: 2.11.8
-  resolution: "eslint-config-turbo@npm:2.11.8"
+"eslint-config-turbo@npm:2.11.9":
+  version: 2.11.9
+  resolution: "eslint-config-turbo@npm:2.11.9"
   dependencies:
-    eslint-plugin-turbo: "npm:2.11.8"
+    eslint-plugin-turbo: "npm:2.11.9"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/60546a360c319be6b9c1d02d275862079af6f3e0a089ca1b7de4b803cb48b29b96c50de7a2bc958b2e28580d0019ac275b66defafc9dc83a157e2105b49e6f34
+  checksum: 10c0/4c20abf4904c56709a916ff4ee2bc3b86de6aa49e8bf0fd05e264ced257799c4598a08084cd40cdcb7f1407ebb1f2efd3e6aa09cfa7367927c64285d5e1ef896
   languageName: node
   linkType: hard
 
@@ -6133,15 +6133,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.11.8":
-  version: 2.11.8
-  resolution: "eslint-plugin-turbo@npm:2.11.8"
+"eslint-plugin-turbo@npm:2.11.9":
+  version: 2.11.9
+  resolution: "eslint-plugin-turbo@npm:2.11.9"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10c0/d0932045690eb8fb6f2d71aff7f8aed82371f9110ec3d0d4a946f5e5ce286a48edf5b4e8315ddbf9c740c06f34fecfa711c923fe74fac38e2f036d80239bb988
+  checksum: 10c0/0046a9155a5cf474515a10d1434bef8bc0aecc921642609e3b6819e242386161c9ec64685b422318139dd234082addbda3d4b6c4255fd67faea4fcb74342a20c
   languageName: node
   linkType: hard
 
@@ -6779,7 +6779,7 @@ __metadata:
     concurrently: "npm:10.0.6"
     eslint: "npm:9.39.5"
     eslint-config-prettier: "npm:10.1.8"
-    eslint-config-turbo: "npm:2.11.8"
+    eslint-config-turbo: "npm:2.11.9"
     eslint-import-resolver-typescript: "npm:4.4.5"
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-jsx-a11y: "npm:6.10.2"
@@ -11566,16 +11566,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:2.11.8, turbo@npm:^2.9.14":
-  version: 2.11.8
-  resolution: "turbo@npm:2.11.8"
+"turbo@npm:2.11.9, turbo@npm:^2.9.14":
+  version: 2.11.9
+  resolution: "turbo@npm:2.11.9"
   dependencies:
-    "@turbo/darwin-64": "npm:2.11.8"
-    "@turbo/darwin-arm64": "npm:2.11.8"
-    "@turbo/linux-64": "npm:2.11.8"
-    "@turbo/linux-arm64": "npm:2.11.8"
-    "@turbo/windows-64": "npm:2.11.8"
-    "@turbo/windows-arm64": "npm:2.11.8"
+    "@turbo/darwin-64": "npm:2.11.9"
+    "@turbo/darwin-arm64": "npm:2.11.9"
+    "@turbo/linux-64": "npm:2.11.9"
+    "@turbo/linux-arm64": "npm:2.11.9"
+    "@turbo/windows-64": "npm:2.11.9"
+    "@turbo/windows-arm64": "npm:2.11.9"
   dependenciesMeta:
     "@turbo/darwin-64":
       optional: true
@@ -11591,7 +11591,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10c0/717c0ba7b6b19ae672ca17ceeabd7d549664552d626e4543d05c78b3ad0cdd1cdec5c0a2eaed8ec28803f7cc9c63741ee3fef7803a60cf60cd42c32198489f56
+  checksum: 10c0/37d2e452ea36d27281a04771482529d5d7afc97bffe117b0f9f632158fd22633e0c0783c49893506e639ce98c94610e398920dc04d5c33031e495bcd859c352f
   languageName: node
   linkType: hard
 
@@ -12043,7 +12043,7 @@ __metadata:
   dependencies:
     infisicalLauncher: "git+ssh://git@github.com:user-komeda/infisicalLauncher.git"
     lefthook: "npm:2.2.2"
-    turbo: "npm:2.11.8"
+    turbo: "npm:2.11.9"
   languageName: unknown
   linkType: soft
 
