@@ -25,10 +25,9 @@ RUN --mount=type=secret,id=infisical_client_id,env=LOCAL_INFISICAL_CLIENT_ID,req
 # apps/frontend/Dockerfile (runner ステージ)
 FROM base AS runner
 RUN corepack enable
-RUN groupadd appgroup && useradd -m -r -g appgroup appuser
 COPY --from=installer /app/apps/frontend/build/ /app/build/
 COPY --from=installer /app/apps/frontend/package.json /app/
 COPY --from=installer /app/node_modules /app/node_modules/
-USER appuser
+USER 1001:1001
 EXPOSE 3000
 CMD ["node", "./node_modules/infisicalLauncher/dist/index.cjs", "--path=/videoStreaming/front/", "--", "npm", "start"]
