@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"videoStreaming/config"
+	"videoStreaming/presentation/controller/auth"
 	"videoStreaming/presentation/controller/health"
 	"videoStreaming/presentation/controller/tus"
 	"videoStreaming/presentation/controller/video"
@@ -62,7 +63,7 @@ func TestRegisterREST(t *testing.T) {
 func TestRegisterHealth(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 	r := gin.New()
-	c := health.NewController(nil)
+	c := health.NewController(nil, nil)
 	route.RegisterHealth(r, c)
 
 	routes := r.Routes()
@@ -146,5 +147,17 @@ func TestRegisterStream(t *testing.T) {
 	routes := r.Routes()
 	if len(routes) == 0 {
 		t.Errorf("expected stream route to be registered")
+	}
+}
+
+func TestRegisterAuth(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	r := gin.New()
+	c := auth.NewController(nil, nil)
+	route.RegisterAuth(r, c)
+
+	routes := r.Routes()
+	if len(routes) < 2 {
+		t.Errorf("expected at least 2 auth routes registered, got %d", len(routes))
 	}
 }

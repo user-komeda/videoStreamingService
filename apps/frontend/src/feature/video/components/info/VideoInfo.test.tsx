@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -13,24 +14,25 @@ describe('VideoInfo', () => {
     visibility: VideoVisibility.Public,
   }
 
-  it('renders title, handles subscribe toggle, and reaction buttons', () => {
+  it('renders title, handles subscribe toggle, and reaction buttons', async () => {
+    const user = userEvent.setup()
     render(<VideoInfo video={video} />)
 
     expect(screen.getByText('Super Video Title')).toBeDefined()
 
     // Subscribe toggle
     const subBtn = screen.getByText('チャンネル登録')
-    fireEvent.click(subBtn)
+    await user.click(subBtn)
     expect(screen.getByText('登録済み')).toBeDefined()
 
     // Like toggle
     const likeBtn = screen.getByText('0')
-    fireEvent.click(likeBtn)
+    await user.click(likeBtn)
     expect(screen.getByText('1')).toBeDefined()
 
     // Dislike toggle
     const dislikeBtn = screen.getByLabelText('低評価')
-    fireEvent.click(dislikeBtn)
+    await user.click(dislikeBtn)
     expect(screen.getByText('0')).toBeDefined()
   })
 })

@@ -20,6 +20,10 @@ func RequiredEnvKeys() []string {
 		"MINIO_REGION",
 		"MINIO_BUCKET",
 		"TUS_BASE_PATH",
+		"REDIS_ADDR",
+		"REDIS_PASSWORD",
+		"BFF_JWT_SECRET",
+		"USER_JWT_SECRET",
 	}
 }
 

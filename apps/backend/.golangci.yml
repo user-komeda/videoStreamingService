@@ -113,6 +113,7 @@ linters:
     - testableexamples # checks if examples are testable (have an expected output)
     - testifylint # checks usage of github.com/stretchr/testify
     - testpackage # makes you use a separate _test package
+    - thelper # detects golang test helpers without t.Helper() call and checks the consistency of test helpers
     - tparallel # detects inappropriate usage of t.Parallel() method in your Go test codes
     - unconvert # removes unnecessary type conversions
     - unparam # reports unused function parameters
@@ -474,6 +475,8 @@ linters:
           - gochecknoglobals
           - gochecknoinits
           - godot
+          - goimports
+          - golines
           - revive
       - path: '_test\.go'
         linters:

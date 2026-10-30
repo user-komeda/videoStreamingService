@@ -27,9 +27,12 @@ func CoreModule() fx.Option {
 			func(cfg config.Config) config.DBConfig { return cfg.DB },
 			func(cfg config.Config) config.MinIOConfig { return cfg.MinIO },
 			func(cfg config.Config) config.TusConfig { return cfg.Tus },
+			func(cfg config.Config) config.RedisConfig { return cfg.Redis },
+			func(cfg config.Config) config.JWTConfig { return cfg.JWT },
 			func(cfg config.Config) string { return cfg.MinIO.Bucket },
 
 			app.NewGormDB,
+			app.NewRedisClient,
 		),
 		fx.Invoke(app.RegisterHTTPServer),
 	)

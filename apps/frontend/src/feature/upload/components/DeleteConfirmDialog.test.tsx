@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { DeleteConfirmDialog } from '~/feature/upload/components/DeleteConfirmDialog'
@@ -15,7 +16,8 @@ describe('DeleteConfirmDialog', () => {
     expect(container.innerHTML).toBe('')
   })
 
-  it('renders with fileName and triggers onConfirm/onCancel', () => {
+  it('renders with fileName and triggers onConfirm/onCancel', async () => {
+    const user = userEvent.setup()
     const onConfirm = vi.fn()
     const onCancel = vi.fn()
 
@@ -31,10 +33,10 @@ describe('DeleteConfirmDialog', () => {
     expect(screen.getByText('アップロードを取り消しますか？')).toBeDefined()
     expect(screen.getByText('test-video.mp4')).toBeDefined()
 
-    fireEvent.click(screen.getByRole('button', { name: 'キャンセル' }))
+    await user.click(screen.getByRole('button', { name: 'キャンセル' }))
     expect(onCancel).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(screen.getByRole('button', { name: '削除する' }))
+    await user.click(screen.getByRole('button', { name: '削除する' }))
     expect(onConfirm).toHaveBeenCalledTimes(1)
   })
 

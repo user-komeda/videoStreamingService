@@ -11,11 +11,11 @@ func ValidateJSON[T any](validate func(T) error) gin.HandlerFunc {
 		var req T
 
 		if err := ctx.ShouldBindJSON(&req); err != nil {
-			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{ErrorResponseKey: "invalid json"})
 			return
 		}
 		if err := validate(req); err != nil {
-			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{ErrorResponseKey: err.Error()})
 			return
 		}
 

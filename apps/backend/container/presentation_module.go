@@ -1,6 +1,7 @@
 package container
 
 import (
+	"videoStreaming/presentation/controller/auth"
 	"videoStreaming/presentation/controller/health"
 	"videoStreaming/presentation/controller/stream"
 	"videoStreaming/presentation/controller/tus"
@@ -14,12 +15,14 @@ import (
 func PresentationModule() fx.Option {
 	return fx.Options(
 		fx.Provide(
+			auth.NewController,
 			health.NewController,
 			stream.NewController,
 			tus.NewController,
 			video.NewController,
 		),
 		fx.Invoke(
+			route.RegisterAuth,
 			route.RegisterHealth,
 			route.RegisterStream,
 			route.RegisterTus,

@@ -11,10 +11,24 @@ type Config struct {
 	MinIO              MinIOConfig
 	Tus                TusConfig
 	DB                 DBConfig
+	Redis              RedisConfig
+	JWT                JWTConfig
 }
 
 type DBConfig struct {
 	DSN string
+}
+
+type RedisConfig struct {
+	Addr     string
+	Password string
+	DB       int
+}
+
+type JWTConfig struct {
+	Secret     string
+	BFFSecret  string
+	UserSecret string
 }
 
 type MinIOConfig struct {
@@ -66,6 +80,16 @@ func DefaultConfig() Config {
 		},
 		Tus: TusConfig{
 			BasePath: GetEnv("TUS_BASE_PATH"),
+		},
+		Redis: RedisConfig{
+			Addr:     GetEnv("REDIS_ADDR"),
+			Password: GetEnv("REDIS_PASSWORD"),
+			DB:       0,
+		},
+		JWT: JWTConfig{
+			Secret:     GetEnv("JWT_SECRET"),
+			BFFSecret:  GetEnv("BFF_JWT_SECRET"),
+			UserSecret: GetEnv("USER_JWT_SECRET"),
 		},
 	}
 }

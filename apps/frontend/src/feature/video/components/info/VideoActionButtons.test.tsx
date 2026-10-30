@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoActionButtons } from '~/feature/video/components/info/VideoActionButtons'
 
 describe('VideoActionButtons', () => {
-  it('renders like count, triggers like and dislike', () => {
+  it('renders like count, triggers like and dislike', async () => {
+    const user = userEvent.setup()
     const onToggleLike = vi.fn()
     const onToggleDislike = vi.fn()
 
@@ -21,10 +23,10 @@ describe('VideoActionButtons', () => {
     expect(screen.getByText('1,234')).toBeDefined()
     expect(screen.getByText('共有')).toBeDefined()
 
-    fireEvent.click(screen.getByText('1,234'))
+    await user.click(screen.getByText('1,234'))
     expect(onToggleLike).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(screen.getByLabelText('低評価'))
+    await user.click(screen.getByLabelText('低評価'))
     expect(onToggleDislike).toHaveBeenCalledTimes(1)
 
     rerender(

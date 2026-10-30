@@ -1,6 +1,7 @@
 import { MemoryRouter } from 'react-router'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -31,7 +32,8 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
 })
 
 describe('VideoList', () => {
-  it('renders video list layout and toggles login/sidebar', () => {
+  it('renders video list layout and toggles login/sidebar', async () => {
+    const user = userEvent.setup()
     render(
       <MemoryRouter>
         <VideoList />
@@ -43,10 +45,10 @@ describe('VideoList', () => {
 
     // Toggle login
     const loginBtn = screen.getByText('ログイン (切替)')
-    fireEvent.click(loginBtn)
+    await user.click(loginBtn)
 
     // Toggle sidebar
     const toggleSidebarBtn = screen.getByLabelText('メニュー')
-    fireEvent.click(toggleSidebarBtn)
+    await user.click(toggleSidebarBtn)
   })
 })

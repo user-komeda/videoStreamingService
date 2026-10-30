@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import { VideoComments } from '~/feature/video/components/comments/VideoComments'
@@ -16,7 +17,8 @@ describe('VideoComments', () => {
     },
   ]
 
-  it('renders comments, adds comment and toggles like', () => {
+  it('renders comments, adds comment and toggles like', async () => {
+    const user = userEvent.setup()
     render(<VideoComments comments={initialComments} totalCount={1} />)
 
     expect(screen.getByText('コメント 1件')).toBeDefined()
@@ -24,18 +26,18 @@ describe('VideoComments', () => {
 
     // Add comment
     const input = screen.getByPlaceholderText('コメントを追加...')
-    fireEvent.focus(input)
-    fireEvent.change(input, { target: { value: 'Second Comment' } })
+    await user.click(input)
+    await user.type(input, 'Second Comment')
 
     const submitBtn = screen.getByText('コメント')
-    fireEvent.click(submitBtn)
+    await user.click(submitBtn)
 
     expect(screen.getByText('Second Comment')).toBeDefined()
     expect(screen.getByText('コメント 2件')).toBeDefined()
 
     // Toggle like
     const likeButtons = screen.getAllByLabelText('高評価')
-    fireEvent.click(likeButtons[1]) // like c-1
+    await user.click(likeButtons[1]) // like c-1
     expect(screen.getByText('3')).toBeDefined()
   })
 })
