@@ -2,8 +2,10 @@ package container
 
 import (
 	domainUpload "videoStreaming/domain/repository/upload"
+	domainUser "videoStreaming/domain/repository/user"
 	domainVideo "videoStreaming/domain/repository/video"
 	"videoStreaming/infrastructure/repository/upload"
+	"videoStreaming/infrastructure/repository/user"
 	"videoStreaming/infrastructure/repository/video"
 
 	"go.uber.org/fx"
@@ -16,6 +18,10 @@ func RepositoryModule() fx.Option {
 			fx.Annotate(
 				upload.NewRepository,
 				fx.As(new(domainUpload.Repository)),
+			),
+			fx.Annotate(
+				user.NewRepository,
+				fx.As(new(domainUser.Repository)),
 			),
 			fx.Annotate(
 				video.NewRepository,

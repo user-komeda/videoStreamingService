@@ -22,6 +22,15 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli -a password ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
 
     env:
       LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
@@ -41,6 +50,13 @@ jobs:
       MINIO_BUCKET: "videos"
 
       TUS_BASE_PATH: "/files/"
+
+      REDIS_ADDR: "localhost:6379"
+      REDIS_PASSWORD: "password"
+      REDIS_URL: "redis://:password@localhost:6379"
+
+      BFF_JWT_SECRET: "test-bff-jwt-secret-key-32bytes-len"
+      USER_JWT_SECRET: "test-user-jwt-secret-key-32bytes-len"
 
     steps:
       - name: Install SSH Key
@@ -104,6 +120,8 @@ jobs:
 
       - name: Yarn check
         run: yarn check
+        env:
+          DEBUG: pw:webserver
 
       - name: Backend Coverage Summary
         working-directory: apps/backend

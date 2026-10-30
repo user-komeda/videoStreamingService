@@ -1,6 +1,7 @@
 package container
 
 import (
+	infraAuth "videoStreaming/infrastructure/auth"
 	libtus "videoStreaming/lib/tus"
 	"videoStreaming/lib/tus/strage"
 
@@ -15,6 +16,7 @@ func LibModule() fx.Option {
 			libtus.NewHandler,
 			libtus.NewSubscriber,
 			libtus.NewUploadCompletedBus,
+			infraAuth.NewPasswordService,
 		),
 	)
 }

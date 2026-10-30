@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { UploadFileList } from '~/feature/upload/components/UploadFileList'
@@ -37,7 +38,8 @@ describe('UploadFileList', () => {
     { id: '2', name: 'sample2.mp4', size: null },
   ]
 
-  it('renders file items with size and handles delete flow, cancel flow, and fallback', () => {
+  it('renders file items with size and handles delete flow, cancel flow, and fallback', async () => {
+    const user = userEvent.setup()
     const onRemoveFile = vi.fn()
 
     render(<UploadFileList files={files} onRemoveFile={onRemoveFile} />)
@@ -49,24 +51,24 @@ describe('UploadFileList', () => {
 
     // Test handleConfirm when targetFile is null
     const hiddenConfirm = screen.getByTestId('hidden-confirm')
-    fireEvent.click(hiddenConfirm)
+    await user.click(hiddenConfirm)
     expect(onRemoveFile).not.toHaveBeenCalled()
 
     // Click trash button on second file and cancel
     const trashButtons = screen.getAllByTitle('ファイルを削除')
-    fireEvent.click(trashButtons[1])
+    await user.click(trashButtons[1])
     expect(screen.getAllByText('sample2.mp4').length).toBeGreaterThanOrEqual(1)
 
     // Cancel deletion
-    fireEvent.click(screen.getByRole('button', { name: 'キャンセル' }))
+    await user.click(screen.getByRole('button', { name: 'キャンセル' }))
     expect(onRemoveFile).not.toHaveBeenCalled()
 
     // Click trash button on first file and confirm
-    fireEvent.click(trashButtons[0])
+    await user.click(trashButtons[0])
     expect(screen.getByText('アップロードを取り消しますか？')).toBeDefined()
 
     // Confirm deletion
-    fireEvent.click(screen.getByRole('button', { name: '削除する' }))
+    await user.click(screen.getByRole('button', { name: '削除する' }))
     expect(onRemoveFile).toHaveBeenCalledWith('1')
   })
 })

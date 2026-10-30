@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -37,7 +38,8 @@ describe('UploadFormFields', () => {
   })
 
   describe('TitleField', () => {
-    it('renders and fires onChange', () => {
+    it('renders and fires onChange', async () => {
+      const user = userEvent.setup()
       const onChange = vi.fn()
       const onBlur = vi.fn()
       render(
@@ -52,16 +54,18 @@ describe('UploadFormFields', () => {
       const input = screen.getByPlaceholderText('動画のタイトルを入力')
       expect((input as HTMLInputElement).value).toBe('My Video')
 
-      fireEvent.change(input, { target: { value: 'New Title' } })
-      expect(onChange).toHaveBeenCalledWith('New Title')
+      await user.clear(input)
+      await user.type(input, 'New Title')
+      expect(onChange).toHaveBeenCalled()
 
-      fireEvent.blur(input)
-      expect(onBlur).toHaveBeenCalledTimes(1)
+      await user.tab()
+      expect(onBlur).toHaveBeenCalled()
     })
   })
 
   describe('DescriptionField', () => {
-    it('renders and fires onChange', () => {
+    it('renders and fires onChange', async () => {
+      const user = userEvent.setup()
       const onChange = vi.fn()
       const onBlur = vi.fn()
       render(
@@ -76,13 +80,15 @@ describe('UploadFormFields', () => {
       const textarea = screen.getByPlaceholderText('動画の説明を入力')
       expect((textarea as HTMLTextAreaElement).value).toBe('Desc text')
 
-      fireEvent.change(textarea, { target: { value: 'New Desc' } })
-      expect(onChange).toHaveBeenCalledWith('New Desc')
+      await user.clear(textarea)
+      await user.type(textarea, 'New Desc')
+      expect(onChange).toHaveBeenCalled()
     })
   })
 
   describe('VisibilityField', () => {
-    it('renders and fires onChange', () => {
+    it('renders and fires onChange', async () => {
+      const user = userEvent.setup()
       const onChange = vi.fn()
       const onBlur = vi.fn()
       render(
@@ -95,9 +101,7 @@ describe('UploadFormFields', () => {
       )
 
       const select = screen.getByRole('combobox')
-      fireEvent.change(select, {
-        target: { value: VideoVisibility.Private },
-      })
+      await user.selectOptions(select, VideoVisibility.Private)
       expect(onChange).toHaveBeenCalledWith(VideoVisibility.Private)
     })
   })

@@ -172,6 +172,24 @@ export default tseslint.config(
       ...vitest.configs.recommended.rules,
       'max-lines-per-function': 'off',
       'max-lines': 'off',
+
+      // テスト品質・防衛ルール
+      'vitest/expect-expect': 'error', // expect のないテストをエラー
+      'testing-library/prefer-user-event': 'error', // fireEvent ではなく userEvent を強制
+      'testing-library/prefer-explicit-assert': 'error', // 要素取得だけでなく明示的アサーションを強制
+      'testing-library/no-node-access': 'error', // DOM 直接アクセスをエラー
+      'testing-library/prefer-screen-queries': 'error', // screen からのクエリ取得を強制
+
+      // 手動 fetch モックの制限（MSW の利用を強制）
+      'no-restricted-properties': [
+        'error',
+        {
+          object: 'global',
+          property: 'fetch',
+          message:
+            'global.fetch の手動モックは禁止です。MSW (Mock Service Worker) を利用してください。',
+        },
+      ],
     },
   },
   {

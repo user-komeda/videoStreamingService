@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { SidebarUserSection } from '~/components/sidebar/SidebarUserSection'
@@ -12,7 +13,8 @@ describe('SidebarUserSection', () => {
     expect(screen.getByText('高く評価した動画')).toBeDefined()
   })
 
-  it('renders logged out section and handles login click when isLoggedIn is false', () => {
+  it('renders logged out section and handles login click when isLoggedIn is false', async () => {
+    const user = userEvent.setup()
     const onToggleLogin = vi.fn()
     render(
       <SidebarUserSection isLoggedIn={false} onToggleLogin={onToggleLogin} />,
@@ -24,7 +26,7 @@ describe('SidebarUserSection', () => {
     ).toBeDefined()
 
     const loginBtn = screen.getByText('ログイン')
-    fireEvent.click(loginBtn)
+    await user.click(loginBtn)
     expect(onToggleLogin).toHaveBeenCalledTimes(1)
   })
 })

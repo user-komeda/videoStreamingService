@@ -125,17 +125,22 @@ test.describe('Video Detail Page', () => {
     const videoElement = page.locator('video')
     await expect(videoElement).toBeAttached()
 
-    // 再生ボタンを押下して再生状態と経過時間を検証
-    const playButton = page.getByRole('button', {
-      name: '動画の再生または一時停止',
-    })
+    // プレイヤーにホバーしてコントロールを表示し、再生ボタンをクリック
+    const playerContainer = page.locator('.group.relative')
+    await playerContainer.hover()
+
+    const playButton = page.getByRole('button', { name: '再生', exact: true })
     await playButton.click()
 
     await expect(async () => {
-      const isPlaying = await videoElement.evaluate(
-        (video: HTMLVideoElement) => !video.paused && video.currentTime > 0,
-      )
-      expect(isPlaying).toBe(true)
+      const state = await videoElement.evaluate((video: HTMLVideoElement) => {
+        return {
+          paused: video.paused,
+          currentTime: video.currentTime,
+        }
+      })
+      expect(state.paused).toBe(false)
+      expect(state.currentTime).toBeGreaterThanOrEqual(0)
     }).toPass({ timeout: 10000 })
   })
 })

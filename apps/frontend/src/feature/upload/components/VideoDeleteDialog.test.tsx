@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -37,7 +38,8 @@ describe('VideoDeleteDialog', () => {
     expect(container.innerHTML).toBe('')
   })
 
-  it('handles checkbox toggle, confirmation and cancellation', () => {
+  it('handles checkbox toggle, confirmation and cancellation', async () => {
+    const user = userEvent.setup()
     const onConfirm = vi.fn()
     const onClose = vi.fn()
 
@@ -58,14 +60,14 @@ describe('VideoDeleteDialog', () => {
     expect(confirmBtn.hasAttribute('disabled')).toBe(true)
 
     const checkbox = screen.getByRole('checkbox')
-    fireEvent.click(checkbox)
+    await user.click(checkbox)
     expect(confirmBtn.hasAttribute('disabled')).toBe(false)
 
-    fireEvent.click(confirmBtn)
+    await user.click(confirmBtn)
     expect(onConfirm).toHaveBeenCalledTimes(1)
 
     const cancelBtn = screen.getByRole('button', { name: 'キャンセル' })
-    fireEvent.click(cancelBtn)
+    await user.click(cancelBtn)
     expect(onClose).toHaveBeenCalledTimes(1)
 
     rerender(

@@ -1,7 +1,8 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -39,7 +40,8 @@ describe('VideoDetail', () => {
     expect(screen.getByText('アップロード一覧へ戻る')).toBeDefined()
   })
 
-  it('renders video detail, player, description and related videos', () => {
+  it('renders video detail, player, description and related videos', async () => {
+    const user = userEvent.setup()
     mockQueryData = {
       id: 'vid-123',
       title: 'Detailed Video',
@@ -61,14 +63,14 @@ describe('VideoDetail', () => {
 
     // Header interaction (toggle login)
     const loginBtn = screen.getByText('ログイン (切替)')
-    fireEvent.click(loginBtn)
+    await user.click(loginBtn)
 
     // Header interaction (toggle sidebar)
     const sidebarBtn = screen.getByLabelText('メニュー')
-    fireEvent.click(sidebarBtn)
+    await user.click(sidebarBtn)
 
     // Description expand toggle
     const expandBtn = screen.getByText('...もっと見る')
-    fireEvent.click(expandBtn)
+    await user.click(expandBtn)
   })
 })

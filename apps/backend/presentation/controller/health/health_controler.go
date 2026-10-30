@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 )
 
@@ -17,17 +18,18 @@ const (
 )
 
 type Controller struct {
-	db *gorm.DB
+	db  *gorm.DB
+	rdb *redis.Client
 }
 
-func NewController(db *gorm.DB) *Controller {
-	return &Controller{db: db}
+func NewController(db *gorm.DB, rdb *redis.Client) *Controller {
+	return &Controller{db: db, rdb: rdb}
 }
 
 // Check ヘルスチェック (GET /health)
 //
 //	@Summary		ヘルスチェック
-//	@Description	サーバーの稼働状態およびDB接続状態を確認します
+//	@Description	サーバーの稼働状態、DB接続状態およびRedis接続状態を確認します
 //	@Tags			health
 //	@Produce		json
 //	@Success		200	{object}	map[string]string
@@ -62,8 +64,25 @@ func (c *Controller) Check(ctx *gin.Context) {
 		return
 	}
 
+	if c.rdb == nil {
+		ctx.JSON(http.StatusServiceUnavailable, gin.H{
+			keyStatus: statusError,
+			keyError:  "redis client is not initialized",
+		})
+		return
+	}
+
+	if pingErr := c.rdb.Ping(pingCtx).Err(); pingErr != nil {
+		ctx.JSON(http.StatusServiceUnavailable, gin.H{
+			keyStatus: statusError,
+			keyError:  "redis unreachable: " + pingErr.Error(),
+		})
+		return
+	}
+
 	ctx.JSON(http.StatusOK, gin.H{
 		keyStatus: "ok",
 		"db":      "connected",
+		"redis":   "connected",
 	})
 }

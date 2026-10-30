@@ -17,6 +17,12 @@ type Pages = {
   "/health": {
     params: {};
   };
+  "/signin": {
+    params: {};
+  };
+  "/signup": {
+    params: {};
+  };
   "/videos": {
     params: {};
   };
@@ -33,7 +39,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/health" | "/videos" | "/videos/:id" | "/upload";
+    page: "/" | "/health" | "/signin" | "/signup" | "/videos" | "/videos/:id" | "/upload";
   };
   "routes/video/route.tsx": {
     id: "home";
@@ -45,6 +51,14 @@ type RouteFiles = {
   "routes/health.ts": {
     id: "routes/health";
     page: "/health";
+  };
+  "routes/signin/route.tsx": {
+    id: "routes/signin/route";
+    page: "/signin";
+  };
+  "routes/signup/route.tsx": {
+    id: "routes/signup/route";
+    page: "/signup";
   };
   "routes/video/[id]/route.tsx": {
     id: "routes/video/[id]/route";
@@ -64,6 +78,8 @@ type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "home": typeof import("./app/routes/video/route.tsx");
   "routes/health": typeof import("./app/routes/health.ts");
+  "routes/signin/route": typeof import("./app/routes/signin/route.tsx");
+  "routes/signup/route": typeof import("./app/routes/signup/route.tsx");
   "videos": typeof import("./app/routes/video/route.tsx");
   "routes/video/[id]/route": typeof import("./app/routes/video/[id]/route.tsx");
   "layout/upload/layout": typeof import("./app/layout/upload/layout.tsx");

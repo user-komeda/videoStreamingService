@@ -6,6 +6,7 @@ import (
 	"os"
 
 	uploadEntity "videoStreaming/infrastructure/entity/upload"
+	userEntity "videoStreaming/infrastructure/entity/user"
 	videoEntity "videoStreaming/infrastructure/entity/video"
 
 	"ariga.io/atlas-provider-gorm/gormschema"
@@ -14,6 +15,7 @@ import (
 func main() {
 	stmts, err := gormschema.New("postgres").Load(
 		&uploadEntity.Entity{},
+		&userEntity.Entity{},
 		&videoEntity.Entity{},
 	)
 	if err != nil {

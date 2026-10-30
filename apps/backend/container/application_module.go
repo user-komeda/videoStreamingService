@@ -1,6 +1,7 @@
 package container
 
 import (
+	"videoStreaming/application/usecase/auth"
 	"videoStreaming/application/usecase/stream"
 	"videoStreaming/application/usecase/upload"
 	"videoStreaming/application/usecase/video"
@@ -18,6 +19,8 @@ func ApplicationModule() fx.Option {
 				upload.NewUsecase,
 				fx.As(new(uploadEvent.CompletedInvoker)),
 			),
+			auth.NewSignUpUseCase,
+			auth.NewSignInUseCase,
 			video.NewCreateUseCase,
 			video.NewGetAllUseCase,
 			video.NewGetDetailUseCase,

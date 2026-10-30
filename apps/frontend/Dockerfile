@@ -1,4 +1,4 @@
-FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS base
+FROM ghcr.io/user-komeda/docker_node:sha-79897d5@sha256:e61f8ea86e1ca9c598bcec2163cdf0adeb0418b26deb08b637ef4d42bafe79a0 AS base
 WORKDIR /app
 
 
@@ -25,10 +25,9 @@ RUN --mount=type=secret,id=infisical_client_id,env=LOCAL_INFISICAL_CLIENT_ID,req
 # apps/frontend/Dockerfile (runner ステージ)
 FROM base AS runner
 RUN corepack enable
-RUN groupadd appgroup && useradd -m -r -g appgroup appuser
 COPY --from=installer /app/apps/frontend/build/ /app/build/
 COPY --from=installer /app/apps/frontend/package.json /app/
 COPY --from=installer /app/node_modules /app/node_modules/
-USER appuser
+USER 1001:1001
 EXPOSE 3000
 CMD ["node", "./node_modules/infisicalLauncher/dist/index.cjs", "--path=/videoStreaming/front/", "--", "npm", "start"]

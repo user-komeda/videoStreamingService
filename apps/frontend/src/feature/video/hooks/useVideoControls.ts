@@ -20,6 +20,24 @@ const seekVideo = (
   setCurrentTime(time)
 }
 
+const playOrPause = (
+  video: HTMLVideoElement | null,
+  setIsPlaying: (playing: boolean) => void,
+) => {
+  if (!video) {
+    return
+  }
+  if (video.paused) {
+    void video.play()?.then(
+      () => setIsPlaying(true),
+      () => setIsPlaying(false),
+    )
+  } else {
+    video.pause()
+    setIsPlaying(false)
+  }
+}
+
 export const useVideoControls = (
   videoRef: RefObject<HTMLVideoElement | null>,
   containerRef: RefObject<HTMLDivElement | null>,
@@ -28,29 +46,13 @@ export const useVideoControls = (
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
-  const togglePlay = () => {
-    const video = videoRef.current
-    if (!video) {
-      return
-    }
-    if (video.paused) {
-      void video.play()?.then(
-        () => setIsPlaying(true),
-        () => setIsPlaying(false),
-      )
-    } else {
-      video.pause()
-      setIsPlaying(false)
-    }
-  }
-
   return {
     isPlaying,
     currentTime,
     duration,
     ...useVideoVolume(videoRef),
     ...useVideoFullscreen(containerRef),
-    togglePlay,
+    togglePlay: () => playOrPause(videoRef.current, setIsPlaying),
     handleTimeUpdate: () => setCurrentTime(videoRef.current?.currentTime ?? 0),
     handleLoadedMetadata: () => setDuration(videoRef.current?.duration ?? 0),
     handleSeek: (e: ChangeEvent<HTMLInputElement>) =>
