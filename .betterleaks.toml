@@ -9,4 +9,9 @@ paths = [
   '''yarn\.lock''',
   '''\.github/workflows/ci\.yml''',
   '''\.github/workflows/compose-healthcheck.yml''',
+  '''_test\.go$''',
+  '''\.(test|spec)\.(ts|tsx|js|jsx)$''',
+  '''(^|/)test/''',
+  '''(^|/)tests/''',
+  '''(^|/)e2e/''',
 ]
