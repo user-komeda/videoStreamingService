@@ -21,7 +21,7 @@ COPY .yarn ./.yarn
 RUN --mount=type=ssh yarn install --immutable
 
 # ======== 3. Go ビルドステージ ========
-FROM golang:1.27-alpine@sha256:8a5910f31396cd4d89662f56c68b3ae31d374308270a1c3bd96672ee5ed43414 AS go-builder
+FROM golang:1.27-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c AS go-builder
 WORKDIR /app
 RUN apk add --no-cache git
 COPY /apps/backend/go.mod /apps/backend/go.sum ./
