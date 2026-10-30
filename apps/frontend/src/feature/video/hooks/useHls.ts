@@ -16,7 +16,10 @@ export const useHls = (
 
     let hls: Hls | null = null
 
-    if (Hls.isSupported() && src.endsWith('.m3u8')) {
+    if (
+      Hls.isSupported() &&
+      (src.endsWith('.m3u8') || src.includes('/stream'))
+    ) {
       hls = new Hls({
         enableWorker: true,
         lowLatencyMode: true,

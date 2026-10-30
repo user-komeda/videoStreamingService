@@ -36,14 +36,12 @@ func (m *mockRedisClient) Exists(ctx context.Context, keys ...string) *redis.Int
 func createTestUserToken(t *testing.T, secret string, userID, sessionID, jti string, exp time.Duration) string {
 	t.Helper()
 	claims := middleware.TokenClaims{
+		Subject:   userID,
+		ID:        jti,
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(exp)),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
 		SessionID: sessionID,
 		Scope:     "user",
-		RegisteredClaims: jwt.RegisteredClaims{
-			Subject:   userID,
-			ID:        jti,
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(exp)),
-			IssuedAt:  jwt.NewNumericDate(time.Now()),
-		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenStr, err := token.SignedString([]byte(secret))
@@ -54,12 +52,10 @@ func createTestUserToken(t *testing.T, secret string, userID, sessionID, jti str
 func createTestBffToken(t *testing.T, secret string, jti string, exp time.Duration) string {
 	t.Helper()
 	claims := middleware.TokenClaims{
-		Scope: "bff",
-		RegisteredClaims: jwt.RegisteredClaims{
-			ID:        jti,
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(exp)),
-			IssuedAt:  jwt.NewNumericDate(time.Now()),
-		},
+		ID:        jti,
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(exp)),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
+		Scope:     "bff",
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenStr, err := token.SignedString([]byte(secret))
@@ -191,10 +187,8 @@ func TestUserRequired_InvalidJWT(t *testing.T) {
 			name: "unsigned token with none algorithm",
 			token: func() string {
 				claims := middleware.TokenClaims{
-					RegisteredClaims: jwt.RegisteredClaims{
-						Subject: "u",
-						ID:      "t",
-					},
+					Subject: "u",
+					ID:      "t",
 				}
 				token := jwt.NewWithClaims(jwt.SigningMethodNone, claims)
 				tokenStr, _ := token.SignedString(jwt.UnsafeAllowNoneSignatureType)
@@ -267,11 +261,9 @@ func TestBFFRequired_InvalidScope(t *testing.T) {
 			name: "scope other",
 			token: func() string {
 				claims := middleware.TokenClaims{
-					Scope: "invalid-scope",
-					RegisteredClaims: jwt.RegisteredClaims{
-						ID:        "jti_bad",
-						ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute)),
-					},
+					Scope:     "invalid-scope",
+					ID:        "jti_bad",
+					ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute)),
 				}
 				token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 				tokenStr, err := token.SignedString([]byte(secret))

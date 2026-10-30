@@ -15,7 +15,7 @@ export const SignInCard = () => {
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle className="text-center text-2xl font-bold">
-          サインイン
+          ログイン
         </CardTitle>
         <CardDescription className="text-center">
           アカウントにログインしてください

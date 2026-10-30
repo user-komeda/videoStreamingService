@@ -14,7 +14,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "lighthouse": "yarn build:lighthouse && infisicalLauncher --path=/videoStreaming/front/local -- yarn lhci autorun",
-    "check": "concurrently 'yarn typecheck' 'yarn lint' 'yarn format' 'yarn test' 'yarn lighthouse'",
+    "check": "concurrently 'yarn typecheck' 'yarn lint' 'yarn format' 'yarn test' 'yarn test:e2e' 'yarn lighthouse'",
     "codegen": "orval",
     "codegen:watch": "orval --watch"
   },

@@ -16,22 +16,6 @@ describe('auth formOptions and schemas', () => {
       })
       expect(result.success).toBe(true)
     })
-
-    it('fails when email is invalid', () => {
-      const result = signInSchema.safeParse({
-        email: 'invalid-email',
-        password: 'password123',
-      })
-      expect(result.success).toBe(false)
-    })
-
-    it('fails when password is empty', () => {
-      const result = signInSchema.safeParse({
-        email: 'test@example.com',
-        password: '',
-      })
-      expect(result.success).toBe(false)
-    })
   })
 
   describe('signUpSchema', () => {

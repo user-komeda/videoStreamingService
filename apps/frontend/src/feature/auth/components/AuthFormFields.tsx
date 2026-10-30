@@ -48,7 +48,7 @@ export const EmailField = (props: StringFieldProps) => (
       id={props.name}
       name={props.name}
       type="email"
-      value={props.value}
+      defaultValue={props.value}
       onBlur={props.onBlur}
       onChange={(e) => props.onChange(e.target.value)}
       placeholder="example@example.com"

@@ -1,13 +1,12 @@
 import React from 'react'
 
 import { render, renderHook, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
   EmailFormField,
-  PasswordFormField,
-  SignInSubmitFormField,
-  SignUpSubmitFormField,
+  SignInPasswordFormField,
+  SignUpPasswordFormField,
 } from '~/feature/auth/components/AuthFormInputs'
 import { useSignInForm } from '~/feature/auth/hooks/useSignInForm'
 import { useSignUpForm } from '~/feature/auth/hooks/useSignUpForm'
@@ -20,14 +19,12 @@ describe('AuthFormInputs', () => {
     render(
       <form>
         <EmailFormField form={form} />
-        <PasswordFormField form={form} />
-        <SignInSubmitFormField form={form} />
+        <SignInPasswordFormField form={form} />
       </form>,
     )
 
     expect(screen.getByPlaceholderText('example@example.com')).toBeDefined()
     expect(screen.getByPlaceholderText('••••••••')).toBeDefined()
-    expect(screen.getByRole('button', { name: 'サインイン' })).toBeDefined()
   })
 
   it('renders all form field inputs for SignUp correctly', () => {
@@ -37,102 +34,142 @@ describe('AuthFormInputs', () => {
     render(
       <form>
         <EmailFormField form={form} />
-        <PasswordFormField form={form} />
-        <SignUpSubmitFormField form={form} />
+        <SignUpPasswordFormField form={form} />
       </form>,
     )
 
     expect(screen.getByPlaceholderText('example@example.com')).toBeDefined()
     expect(screen.getByPlaceholderText('••••••••')).toBeDefined()
-    expect(screen.getByRole('button', { name: 'アカウント作成' })).toBeDefined()
   })
 
-  it('renders submitting label for SignIn and SignUp forms', () => {
+  it('executes field validators for Email, SignInPassword, and SignUpPassword', () => {
+    type ValidatorFn = (args: { value: string }) => string | undefined
+
+    const capturedValidators: Record<string, ValidatorFn> = {}
+
+    const mockForm = {
+      Field: ({
+        children,
+        name,
+        validators,
+      }: {
+        children: (field: unknown) => React.ReactNode
+        name: string
+        validators?: { onChange: ValidatorFn }
+      }) => {
+        if (validators?.onChange) {
+          capturedValidators[name] = validators.onChange
+        }
+        return children({
+          name,
+          state: {
+            value: '',
+            meta: { isTouched: false, errors: [], isValidating: false },
+          },
+          handleBlur: () => {},
+          handleChange: () => {},
+        })
+      },
+    } as unknown as Parameters<typeof EmailFormField>[0]['form']
+
+    render(
+      <form>
+        <EmailFormField form={mockForm} />
+        <SignInPasswordFormField
+          form={
+            mockForm as Parameters<typeof SignInPasswordFormField>[0]['form']
+          }
+        />
+        <SignUpPasswordFormField
+          form={
+            mockForm as Parameters<typeof SignUpPasswordFormField>[0]['form']
+          }
+        />
+      </form>,
+    )
+
+    // Email validator
+    expect(
+      capturedValidators.email({ value: 'valid@example.com' }),
+    ).toBeUndefined()
+    expect(
+      capturedValidators.email({ value: 123 as unknown as string }),
+    ).toBeDefined()
+
+    // SignInPassword validator (render individually to avoid key collision)
     const mockSignInForm = {
       Field: ({
         children,
         name,
+        validators,
       }: {
         children: (field: unknown) => React.ReactNode
         name: string
-      }) =>
-        children({
+        validators?: { onChange: ValidatorFn }
+      }) => {
+        if (validators?.onChange) {
+          capturedValidators.signinPassword = validators.onChange
+        }
+        return children({
           name,
           state: {
             value: '',
-            meta: { isTouched: true, errors: [], isValidating: false },
+            meta: { isTouched: false, errors: [], isValidating: false },
           },
-          handleBlur: vi.fn(),
-          handleChange: vi.fn(),
-        }),
-      Subscribe: ({
-        children,
-      }: {
-        children: (val: [boolean, boolean, string, string]) => React.ReactNode
-      }) => children([true, true, 'test@example.com', 'password123']),
-    } as unknown as Parameters<typeof SignInSubmitFormField>[0]['form']
-
-    const mockSignUpForm = {
-      Subscribe: ({
-        children,
-      }: {
-        children: (val: [boolean, boolean, string, string]) => React.ReactNode
-      }) => children([true, true, 'test@example.com', 'password123']),
-    } as unknown as Parameters<typeof SignUpSubmitFormField>[0]['form']
+          handleBlur: () => {},
+          handleChange: () => {},
+        })
+      },
+    } as unknown as Parameters<typeof SignInPasswordFormField>[0]['form']
 
     render(
       <form>
-        <SignInSubmitFormField form={mockSignInForm} />
-        <SignUpSubmitFormField form={mockSignUpForm} />
+        <SignInPasswordFormField form={mockSignInForm} />
       </form>,
     )
 
-    expect(screen.getByRole('button', { name: 'ログイン中...' })).toBeDefined()
-    expect(screen.getByRole('button', { name: '登録中...' })).toBeDefined()
-  })
+    expect(
+      capturedValidators.signinPassword({ value: 'password123' }),
+    ).toBeUndefined()
+    expect(
+      capturedValidators.signinPassword({ value: 123 as unknown as string }),
+    ).toBeDefined()
 
-  it('renders disabled submit button when values are whitespace or cannot submit', () => {
-    const cases = [
-      [true, false, '   ', 'valid-password'],
-      [true, false, 'valid@example.com', '   '],
-      [false, false, 'valid@example.com', 'valid-password'],
-      [true, true, 'valid@example.com', 'valid-password'],
-    ] as const
+    // SignUpPassword validator (rerender to capture signup password validator)
+    const mockSignUpForm = {
+      Field: ({
+        children,
+        name,
+        validators,
+      }: {
+        children: (field: unknown) => React.ReactNode
+        name: string
+        validators?: { onChange: ValidatorFn }
+      }) => {
+        if (validators?.onChange) {
+          capturedValidators.signupPassword = validators.onChange
+        }
+        return children({
+          name,
+          state: {
+            value: '',
+            meta: { isTouched: false, errors: [], isValidating: false },
+          },
+          handleBlur: () => {},
+          handleChange: () => {},
+        })
+      },
+    } as unknown as Parameters<typeof SignUpPasswordFormField>[0]['form']
 
-    for (const [canSubmit, isSubmitting, email, password] of cases) {
-      const mockSignInForm = {
-        Subscribe: ({
-          children,
-        }: {
-          children: (val: [boolean, boolean, string, string]) => React.ReactNode
-        }) => children([canSubmit, isSubmitting, email, password]),
-      } as unknown as Parameters<typeof SignInSubmitFormField>[0]['form']
+    render(
+      <form>
+        <SignUpPasswordFormField form={mockSignUpForm} />
+      </form>,
+    )
 
-      const mockSignUpForm = {
-        Subscribe: ({
-          children,
-        }: {
-          children: (val: [boolean, boolean, string, string]) => React.ReactNode
-        }) => children([canSubmit, isSubmitting, email, password]),
-      } as unknown as Parameters<typeof SignUpSubmitFormField>[0]['form']
-
-      const { unmount } = render(
-        <form>
-          <SignInSubmitFormField form={mockSignInForm} />
-          <SignUpSubmitFormField form={mockSignUpForm} />
-        </form>,
-      )
-
-      const signInBtn = screen.getByRole('button', {
-        name: isSubmitting ? 'ログイン中...' : 'サインイン',
-      })
-      const signUpBtn = screen.getByRole('button', {
-        name: isSubmitting ? '登録中...' : 'アカウント作成',
-      })
-      expect(signInBtn.getAttribute('disabled')).toBeDefined()
-      expect(signUpBtn.getAttribute('disabled')).toBeDefined()
-
-      unmount()
-    }
+    expect(
+      capturedValidators.signupPassword({ value: 'valid-password' }),
+    ).toBeUndefined()
+    expect(capturedValidators.signupPassword({ value: '123' })).toBeDefined()
   })
 })

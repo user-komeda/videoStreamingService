@@ -5,7 +5,7 @@
  * Route Streaming Service Backend API.
  * OpenAPI spec version: 1.0.
  */
-import type { GetHealth200 } from '../../models'
+import type { GetHealth200, GetHealth503 } from '../../models'
 
 import { customFetch } from '../../../client'
 
@@ -14,17 +14,27 @@ export type getHealthResponse200 = {
   status: 200
 }
 
+export type getHealthResponse503 = {
+  data: GetHealth503
+  status: 503
+}
+
 export type getHealthResponseSuccess = getHealthResponse200 & {
   headers: Headers
 }
-export type getHealthResponse = getHealthResponseSuccess
+export type getHealthResponseError = getHealthResponse503 & {
+  headers: Headers
+}
+
+export type getHealthResponse =
+  getHealthResponseSuccess | getHealthResponseError
 
 export const getGetHealthUrl = () => {
   return `/health`
 }
 
 /**
- * サーバーの稼働状態を確認します
+ * サーバーの稼働状態、DB接続状態およびRedis接続状態を確認します
  * @summary ヘルスチェック
  */
 export const getHealth = async (

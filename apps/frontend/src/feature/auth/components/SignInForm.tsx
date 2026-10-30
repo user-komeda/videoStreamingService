@@ -5,7 +5,7 @@ import { useStore } from '@tanstack/react-store'
 import { Alert, AlertDescription } from '~/components/ui/alert'
 import {
   EmailFormField,
-  PasswordFormField,
+  SignInPasswordFormField,
   SignInSubmitFormField,
 } from '~/feature/auth/components/AuthFormInputs'
 import { useSignInForm } from '~/feature/auth/hooks/useSignInForm'
@@ -38,7 +38,7 @@ export const SignInForm = () => {
       <SignInFormAlerts submitError={submitError} />
       <fetcher.Form method="post" action="/signin" className="space-y-6">
         <EmailFormField form={form} />
-        <PasswordFormField form={form} />
+        <SignInPasswordFormField form={form} />
         <SignInSubmitFormField form={form} />
       </fetcher.Form>
     </div>

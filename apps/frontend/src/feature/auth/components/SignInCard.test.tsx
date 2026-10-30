@@ -25,7 +25,7 @@ describe('SignInCard', () => {
   it('renders heading, description, form and signup link', () => {
     render(<SignInCard />)
 
-    expect(screen.getByText('サインイン')).toBeDefined()
+    expect(screen.getByRole('heading', { name: 'ログイン' })).toBeDefined()
     expect(screen.getByText('アカウントにログインしてください')).toBeDefined()
     expect(screen.getByText('SignInFormMock')).toBeDefined()
     expect(

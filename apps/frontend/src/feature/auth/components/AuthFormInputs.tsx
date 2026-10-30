@@ -1,18 +1,31 @@
-import { Button } from '~/components/ui/button'
 import {
   EmailField,
   PasswordField,
 } from '~/feature/auth/components/AuthFormFields'
+import { signInSchema, signUpSchema } from '~/feature/auth/formOptions'
 
 import type { SignInFormInstance } from '~/feature/auth/hooks/useSignInForm'
 import type { SignUpFormInstance } from '~/feature/auth/hooks/useSignUpForm'
+
+export {
+  SignInSubmitFormField,
+  SignUpSubmitFormField,
+} from '~/feature/auth/components/AuthSubmitButtons'
 
 export const EmailFormField = ({
   form,
 }: {
   form: SignInFormInstance | SignUpFormInstance
 }) => (
-  <form.Field name="email">
+  <form.Field
+    name="email"
+    validators={{
+      onChange: ({ value }) => {
+        const res = signUpSchema.shape.email.safeParse(value)
+        return res.success ? undefined : res.error.issues[0]?.message
+      },
+    }}
+  >
     {(field) => (
       <EmailField
         name={field.name}
@@ -27,12 +40,20 @@ export const EmailFormField = ({
   </form.Field>
 )
 
-export const PasswordFormField = ({
+export const SignInPasswordFormField = ({
   form,
 }: {
-  form: SignInFormInstance | SignUpFormInstance
+  form: SignInFormInstance
 }) => (
-  <form.Field name="password">
+  <form.Field
+    name="password"
+    validators={{
+      onChange: ({ value }) => {
+        const res = signInSchema.shape.password.safeParse(value)
+        return res.success ? undefined : res.error.issues[0]?.message
+      },
+    }}
+  >
     {(field) => (
       <PasswordField
         name={field.name}
@@ -47,66 +68,30 @@ export const PasswordFormField = ({
   </form.Field>
 )
 
-export const SignInSubmitFormField = ({
-  form,
-}: {
-  form: SignInFormInstance
-}) => (
-  <form.Subscribe
-    selector={(state) =>
-      [
-        state.canSubmit,
-        state.isSubmitting,
-        state.values.email,
-        state.values.password,
-      ] as const
-    }
-  >
-    {([canSubmit, isSubmitting, email, password]) => (
-      <Button
-        type="submit"
-        disabled={
-          !canSubmit ||
-          Boolean(isSubmitting) ||
-          !email?.trim() ||
-          !password?.trim()
-        }
-        className="w-full"
-      >
-        {isSubmitting ? 'ログイン中...' : 'サインイン'}
-      </Button>
-    )}
-  </form.Subscribe>
-)
-
-export const SignUpSubmitFormField = ({
+export const SignUpPasswordFormField = ({
   form,
 }: {
   form: SignUpFormInstance
 }) => (
-  <form.Subscribe
-    selector={(state) =>
-      [
-        state.canSubmit,
-        state.isSubmitting,
-        state.values.email,
-        state.values.password,
-      ] as const
-    }
+  <form.Field
+    name="password"
+    validators={{
+      onChange: ({ value }) => {
+        const res = signUpSchema.shape.password.safeParse(value)
+        return res.success ? undefined : res.error.issues[0]?.message
+      },
+    }}
   >
-    {([canSubmit, isSubmitting, email, password]) => (
-      <Button
-        type="submit"
-        disabled={
-          !canSubmit ||
-          Boolean(isSubmitting) ||
-          !email?.trim() ||
-          !password?.trim()
-        }
-        className="w-full"
-      >
-        {isSubmitting ? '登録中...' : 'アカウント作成'}
-      </Button>
+    {(field) => (
+      <PasswordField
+        name={field.name}
+        value={field.state.value}
+        onBlur={field.handleBlur}
+        onChange={field.handleChange}
+        isTouched={field.state.meta.isTouched}
+        errors={field.state.meta.errors}
+        isValidating={field.state.meta.isValidating}
+      />
     )}
-  </form.Subscribe>
+  </form.Field>
 )
