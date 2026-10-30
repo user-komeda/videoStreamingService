@@ -42,6 +42,8 @@ export default defineConfig({
       cwd: backendDir,
       timeout: 120 * 1000,
       reuseExistingServer: false,
+      stderr: 'pipe',
+      stdout: 'pipe',
     },
     {
       command: 'yarn dev',
@@ -50,6 +52,8 @@ export default defineConfig({
       cwd: frontendDir,
       timeout: 120 * 1000,
       reuseExistingServer: false,
+      stderr: 'pipe',
+      stdout: 'pipe',
     },
   ],
 })
