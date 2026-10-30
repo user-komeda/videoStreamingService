@@ -120,6 +120,8 @@ jobs:
 
       - name: Yarn check
         run: yarn check
+        env:
+          DEBUG: pw:webserver
 
       - name: Backend Coverage Summary
         working-directory: apps/backend
