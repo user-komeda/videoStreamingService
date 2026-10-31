@@ -1,116 +1,59 @@
-name: "CI"
+name: CI
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types:
+      - opened
+      - synchronize
+
+permissions: {}
 
 jobs:
   ci:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:18-alpine@sha256:10a5c69a83035ab5239f5620d708520e8b28f5aa1f2b20143e6024532edadfb5
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: sample_db
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U postgres -d sample_db"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    env:
-      LOCAL_INFISICAL_CLIENT_ID: ${{ secrets.LOCAL_INFISICAL_CLIENT_ID }}
-      LOCAL_INFISICAL_CLIENT_SECRET: ${{ secrets.LOCAL_INFISICAL_CLIENT_SECRET }}
-      LOCAL_INFISICAL_PROJECT_ID: ${{ secrets.LOCAL_INFISICAL_PROJECT_ID }}
-      AISTOR_LICENSE: ${{ secrets.AISTOR_LICENSE }}
-      DATABASE_URL: "postgres://postgres:password@localhost:5432/sample_db?sslmode=disable"
-
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: sample_db
-
-      MINIO_ENDPOINT: "http://localhost:9000"
-      MINIO_ACCESS_KEY: "minioadmin"
-      MINIO_SECRET_KEY: "minioadmin"
-      MINIO_REGION: "us-east-1"
-      MINIO_BUCKET: "videos"
-
-      TUS_BASE_PATH: "/files/"
+    permissions:
+      id-token: write
 
     steps:
-      - name: Install SSH Key
-        uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
-        with:
-          fetch-depth: 0
-
-      - name: Start MinIO AIStor
+      - name: Request local CI
         shell: bash
         run: |
-          printf '%s' "$AISTOR_LICENSE" > "$RUNNER_TEMP/minio.license"
-          chmod 600 "$RUNNER_TEMP/minio.license"
+          set -Eeuo pipefail
 
-          docker run -d \
-            --name minio \
-            -p 9000:9000 \
-            -p 9001:9001 \
-            -e MINIO_ROOT_USER="$MINIO_ACCESS_KEY" \
-            -e MINIO_ROOT_PASSWORD="$MINIO_SECRET_KEY" \
-            -v "$RUNNER_TEMP/minio.license:/minio.license:ro" \
-            quay.io/minio/aistor/minio:latest \
-            server /data --console-address ":9001" --license /minio.license
+          AUDIENCE="https://deploy.komedajob.com"
+          ENDPOINT="https://deploy.komedajob.com/hooks/run-ci"
 
-          for i in {1..30}; do
-            if curl -fsS http://localhost:9000/minio/health/live >/dev/null; then
-              exit 0
-            fi
-            sleep 2
-          done
+          TOKEN="$(
+            curl -fsS \
+              --get \
+              --data-urlencode "audience=${AUDIENCE}" \
+              -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+              "${ACTIONS_ID_TOKEN_REQUEST_URL}" \
+              | jq -er '.value'
+          )"
 
-          docker logs minio
-          exit 1
+          echo "::add-mask::${TOKEN}"
 
-      - name: Run Secret Check (Betterleaks)
-        run: make secret-check
+          jq -ce '{
+            action: .action,
+            repository: {
+              full_name: .repository.full_name
+            },
+            pull_request: {
+              head: {
+                sha: .pull_request.head.sha
+              }
+            }
+          }' "$GITHUB_EVENT_PATH" > "$RUNNER_TEMP/ci-payload.json"
 
-      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
-        with:
-          go-version: "1.27"
+          curl --fail-with-body -sS \
+            --connect-timeout 10 \
+            --max-time 30 \
+            -X POST "$ENDPOINT" \
+            -H "Authorization: Bearer ${TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data-binary @"$RUNNER_TEMP/ci-payload.json"
 
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
-        with:
-          node-version: 24
-          package-manager-cache: false
-
-      - name: Install atlas
-        run: |
-          curl -sSf https://atlasgo.sh | sh -s -- -b $(go env GOPATH)/bin -y
-
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Yarn install
-        run: yarn install
-
-      - name: Install Playwright browsers
-        run: yarn workspace frontend exec playwright install --with-deps chromium
-
-      - name: Yarn check
-        run: yarn check
-
-      - name: Backend Coverage Summary
-        working-directory: apps/backend
-        run: |
-          if [ -f coverage.out ]; then
-            echo "### Backend Coverage Summary" >> "$GITHUB_STEP_SUMMARY"
-            echo '```' >> "$GITHUB_STEP_SUMMARY"
-            go tool cover -func=coverage.out >> "$GITHUB_STEP_SUMMARY"
-            echo '```' >> "$GITHUB_STEP_SUMMARY"
-          fi
+          echo "Local CI request accepted"
