@@ -94,7 +94,7 @@ compose-build: prepare-compose
 	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend build
 
 compose-healthcheck: prepare-compose
-	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --wait
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --wait
 
 ci-run:
 	yarn check && yarn compose:build && yarn compose:healthcheck
