@@ -23,7 +23,8 @@ INFISICAL_LAUNCHER := node ./node_modules/infisicalLauncher/dist/index.cjs
 
 .PHONY: prepare-betterleaks install-betterleaks secret-check secret-check-staged clean-betterleaks \
         check-docker check-infisical prepare-compose \
-        compose-up compose-up-all compose-down compose-down-v
+        compose-up compose-up-all compose-build compose-healthcheck ci-run \
+        compose-down compose-down-v
 
 # ---- Betterleaks (Secret Check) ----
 prepare-betterleaks:
@@ -88,6 +89,15 @@ compose-up: prepare-compose
 
 compose-up-all: prepare-compose
 	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --build
+
+compose-build: prepare-compose
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend build
+
+compose-healthcheck: prepare-compose
+	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend up -d --wait
+
+ci-run:
+	yarn check && yarn compose:build && yarn compose:healthcheck
 
 compose-down: check-docker
 	$(INFISICAL_LAUNCHER) --path=/videoStreaming/container/local -- docker compose $(COMPOSE_FILES) --profile frontend --profile backend down
