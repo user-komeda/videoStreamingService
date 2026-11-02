@@ -1,5 +1,7 @@
+
 FROM ghcr.io/user-komeda/docker_node:sha-79897d5@sha256:e61f8ea86e1ca9c598bcec2163cdf0adeb0418b26deb08b637ef4d42bafe79a0 AS base
 WORKDIR /app
+ENV NODE_USE_ENV_PROXY=1
 
 
 FROM base AS builder
@@ -22,7 +24,6 @@ RUN --mount=type=secret,id=infisical_client_id,env=LOCAL_INFISICAL_CLIENT_ID,req
     yarn build
 
 
-# apps/frontend/Dockerfile (runner ステージ)
 FROM base AS runner
 RUN corepack enable
 COPY --from=installer /app/apps/frontend/build/ /app/build/
