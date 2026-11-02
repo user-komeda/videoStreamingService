@@ -13,6 +13,7 @@
     "SESSION_PASSWORD",
     "JWT_SECRET",
     "BFF_JWT_SECRET",
+    "USER_JWT_SECRET",
     "JWT_ISSUER",
     "JWT_AUDIENCE",
     "REDIS_URL",

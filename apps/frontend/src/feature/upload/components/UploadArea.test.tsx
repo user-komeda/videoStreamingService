@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { UploadArea } from '~/feature/upload/components/UploadArea'
@@ -28,7 +29,8 @@ describe('UploadArea', () => {
     expect((uploadBtn as HTMLButtonElement).disabled).toBe(true)
   })
 
-  it('renders files list and triggers upload when files exist', () => {
+  it('renders files list and triggers upload when files exist', async () => {
+    const user = userEvent.setup()
     const uploadMock = vi.fn().mockResolvedValue(undefined)
     const mockUppy = {
       upload: uploadMock,
@@ -48,7 +50,7 @@ describe('UploadArea', () => {
     const uploadBtn = screen.getByRole('button', { name: 'アップロード開始' })
     expect((uploadBtn as HTMLButtonElement).disabled).toBe(false)
 
-    fireEvent.click(uploadBtn)
+    await user.click(uploadBtn)
     expect(uploadMock).toHaveBeenCalledTimes(1)
   })
 })

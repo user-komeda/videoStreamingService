@@ -6,7 +6,11 @@
  * OpenAPI spec version: 1.0.
  */
 
+export * from './authResponse'
+export * from './authSignInRequest'
+export * from './authSignUpRequest'
 export * from './getHealth200'
+export * from './getHealth503'
 export * from './responseErrorResponse'
 export * from './videoCreateVideoRequest'
 export * from './videoResponse'

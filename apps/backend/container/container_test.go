@@ -3,6 +3,7 @@ package container_test
 import (
 	"testing"
 
+	"videoStreaming/config"
 	"videoStreaming/container"
 
 	"go.uber.org/fx"
@@ -38,9 +39,30 @@ func TestModules(t *testing.T) {
 }
 
 func TestAppGraph(t *testing.T) {
+	for key, val := range map[string]string{
+		"DATABASE_URL":     "postgres://postgres:password@localhost:5432/sample_db?sslmode=disable",
+		"MINIO_ENDPOINT":   "http://localhost:9000",
+		"MINIO_ACCESS_KEY": "test_access",
+		"MINIO_SECRET_KEY": "test_secret",
+		"MINIO_REGION":     "us-east-1",
+		"MINIO_BUCKET":     "test_bucket",
+		"TUS_BASE_PATH":    "/files/",
+		"REDIS_ADDR":       "localhost:6379",
+		"REDIS_PASSWORD":   "test_password",
+		"BFF_JWT_SECRET":   "bff-test-secret-12345",
+		"USER_JWT_SECRET":  "user-test-secret-12345",
+	} {
+		t.Setenv(key, val)
+	}
+
 	app := fxtest.New(
 		t,
 		container.App(),
+		fx.Invoke(func(jwtCfg config.JWTConfig) {
+			if jwtCfg.BFFSecret == "" {
+				t.Error("expected non-empty BFFSecret")
+			}
+		}),
 		fx.NopLogger,
 	)
 	if err := app.Err(); err != nil {

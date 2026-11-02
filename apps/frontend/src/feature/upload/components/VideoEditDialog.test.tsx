@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -38,7 +39,8 @@ describe('VideoEditDialog', () => {
     expect(container.innerHTML).toBe('')
   })
 
-  it('handles edit form submit and cancel', () => {
+  it('handles edit form submit and cancel', async () => {
+    const user = userEvent.setup()
     const onConfirm = vi.fn()
     const onClose = vi.fn()
 
@@ -56,10 +58,11 @@ describe('VideoEditDialog', () => {
     expect(screen.getByDisplayValue('Edit Title')).toBeDefined()
 
     const titleInput = screen.getByDisplayValue('Edit Title')
-    fireEvent.change(titleInput, { target: { value: 'Updated Title' } })
+    await user.clear(titleInput)
+    await user.type(titleInput, 'Updated Title')
 
     const saveBtn = screen.getByRole('button', { name: '保存' })
-    fireEvent.click(saveBtn)
+    await user.click(saveBtn)
 
     expect(onConfirm).toHaveBeenCalledWith({
       title: 'Updated Title',
@@ -68,7 +71,7 @@ describe('VideoEditDialog', () => {
     })
 
     const cancelBtn = screen.getByRole('button', { name: 'キャンセル' })
-    fireEvent.click(cancelBtn)
+    await user.click(cancelBtn)
     expect(onClose).toHaveBeenCalledTimes(1)
 
     rerender(

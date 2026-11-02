@@ -1,6 +1,7 @@
 import { MemoryRouter } from 'react-router'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -19,7 +20,8 @@ describe('UploadedVideoRow', () => {
     status: 'Ready',
   }
 
-  it('renders video details and triggers edit/delete handlers', () => {
+  it('renders video details and triggers edit/delete handlers', async () => {
+    const user = userEvent.setup()
     const onEdit = vi.fn()
     const onDelete = vi.fn()
 
@@ -44,11 +46,11 @@ describe('UploadedVideoRow', () => {
     expect(screen.getByText('10 MB')).toBeDefined()
 
     const editBtn = screen.getByTitle('編集')
-    fireEvent.click(editBtn)
+    await user.click(editBtn)
     expect(onEdit).toHaveBeenCalledWith(sampleVideo)
 
     const deleteBtn = screen.getByTitle('削除')
-    fireEvent.click(deleteBtn)
+    await user.click(deleteBtn)
     expect(onDelete).toHaveBeenCalledWith(sampleVideo)
   })
 

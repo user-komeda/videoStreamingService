@@ -52,6 +52,7 @@ func (m *mockRepo) Delete(_ context.Context, _ string) error {
 var _ domainRepo.Repository = (*mockRepo)(nil)
 
 func createMockS3Client(t *testing.T, handler http.HandlerFunc) *s3.Client {
+	t.Helper()
 	server := httptest.NewServer(handler)
 	t.Cleanup(server.Close)
 

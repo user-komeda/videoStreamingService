@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -14,7 +15,8 @@ describe('VideoChannelInfo', () => {
     visibility: VideoVisibility.Public,
   }
 
-  it('renders unsubscribe state and handles toggle', () => {
+  it('renders unsubscribe state and handles toggle', async () => {
+    const user = userEvent.setup()
     const onToggleSubscribe = vi.fn()
     const { rerender } = render(
       <VideoChannelInfo
@@ -25,7 +27,7 @@ describe('VideoChannelInfo', () => {
     )
 
     expect(screen.getByText('チャンネル登録')).toBeDefined()
-    fireEvent.click(screen.getByText('チャンネル登録'))
+    await user.click(screen.getByText('チャンネル登録'))
     expect(onToggleSubscribe).toHaveBeenCalledTimes(1)
 
     rerender(

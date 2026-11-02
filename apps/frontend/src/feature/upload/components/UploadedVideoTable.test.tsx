@@ -1,6 +1,7 @@
 import { MemoryRouter } from 'react-router'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -58,7 +59,8 @@ vi.mock('~/feature/upload/hooks/useVideoTableMutations', () => ({
 }))
 
 describe('UploadedVideoTable', () => {
-  it('renders table headers and rows and handles edit/delete dialog confirmations', () => {
+  it('renders table headers and rows and handles edit/delete dialog confirmations', async () => {
+    const user = userEvent.setup()
     const { rerender } = render(
       <MemoryRouter>
         <UploadedVideoTable />
@@ -78,7 +80,7 @@ describe('UploadedVideoTable', () => {
 
     expect(screen.getByText('この動画を完全に削除しますか？')).toBeDefined()
     const cancelDeleteBtn = screen.getByRole('button', { name: 'キャンセル' })
-    fireEvent.click(cancelDeleteBtn)
+    await user.click(cancelDeleteBtn)
 
     // Reopen delete dialog to test confirm
     currentDeleteTarget = sampleVideos[0]
@@ -89,10 +91,10 @@ describe('UploadedVideoTable', () => {
     )
 
     const checkbox = screen.getByRole('checkbox')
-    fireEvent.click(checkbox)
+    await user.click(checkbox)
 
     const confirmDeleteBtn = screen.getByRole('button', { name: '完全に削除' })
-    fireEvent.click(confirmDeleteBtn)
+    await user.click(confirmDeleteBtn)
     expect(mockDeleteMutate).toHaveBeenCalledWith('vid-1')
 
     // Close delete dialog
@@ -108,7 +110,7 @@ describe('UploadedVideoTable', () => {
 
     expect(screen.getByText('動画の編集')).toBeDefined()
     const cancelEditBtn = screen.getByRole('button', { name: 'キャンセル' })
-    fireEvent.click(cancelEditBtn)
+    await user.click(cancelEditBtn)
 
     // Reopen edit dialog to test save
     currentEditTarget = sampleVideos[0]
@@ -119,7 +121,7 @@ describe('UploadedVideoTable', () => {
     )
 
     const saveBtn = screen.getByRole('button', { name: '保存' })
-    fireEvent.click(saveBtn)
+    await user.click(saveBtn)
     expect(mockEditMutate).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'vid-1' }),
     )

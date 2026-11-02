@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoPlayerControls } from '~/feature/video/components/player/VideoPlayerControls'
@@ -25,7 +26,8 @@ describe('VideoPlayerControls', () => {
       ...overrides,
     }) as unknown as ReturnType<typeof useVideoControls>
 
-  it('renders time format and handles seek and control clicks', () => {
+  it('renders time format and handles seek and control clicks', async () => {
+    const user = userEvent.setup()
     const controls = createMockControls()
 
     const { rerender } = render(
@@ -37,15 +39,16 @@ describe('VideoPlayerControls', () => {
     expect(screen.getByText('4K 60fps')).toBeDefined()
 
     const seekSlider = screen.getByLabelText('再生位置')
+    // eslint-disable-next-line testing-library/prefer-user-event
     fireEvent.change(seekSlider, { target: { value: '30' } })
     expect(controls.handleSeek).toHaveBeenCalled()
 
     const playBtn = screen.getByLabelText('再生')
-    fireEvent.click(playBtn)
+    await user.click(playBtn)
     expect(controls.togglePlay).toHaveBeenCalled()
 
     const fullscreenBtn = screen.getByLabelText('全画面')
-    fireEvent.click(fullscreenBtn)
+    await user.click(fullscreenBtn)
     expect(controls.toggleFullscreen).toHaveBeenCalled()
 
     // Test with NaN time and hidden controls and secs >= 10

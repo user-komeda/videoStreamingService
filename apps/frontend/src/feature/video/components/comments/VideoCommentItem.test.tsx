@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoCommentItem } from '~/feature/video/components/comments/VideoCommentItem'
@@ -14,7 +15,8 @@ describe('VideoCommentItem', () => {
     isLiked: false,
   }
 
-  it('renders comment details and toggles like', () => {
+  it('renders comment details and toggles like', async () => {
+    const user = userEvent.setup()
     const onToggleLike = vi.fn()
     const { rerender } = render(
       <VideoCommentItem comment={comment} onToggleLike={onToggleLike} />,
@@ -26,7 +28,7 @@ describe('VideoCommentItem', () => {
     expect(screen.getByText('3')).toBeDefined()
 
     const likeButton = screen.getByLabelText('高評価')
-    fireEvent.click(likeButton)
+    await user.click(likeButton)
 
     expect(onToggleLike).toHaveBeenCalledWith('c-1')
 
