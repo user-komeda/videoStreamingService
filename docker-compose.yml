@@ -30,7 +30,7 @@ services:
         - |
           fetch('http://127.0.0.1:3000/health')
             .then(r => {
-              console.log(`HTTP status: ${r.status}`);
+              console.log('HTTP status: ' + r.status);
               process.exit(r.ok ? 0 : 1);
             })
             .catch(e => {
@@ -75,7 +75,7 @@ services:
         - |
           fetch('http://127.0.0.1:8080/health')
             .then(r => {
-              console.log(`HTTP status: ${r.status}`);
+              console.log('HTTP status: ' + r.status);
               process.exit(r.ok ? 0 : 1);
             })
             .catch(e => {
