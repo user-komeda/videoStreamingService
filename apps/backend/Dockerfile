@@ -1,23 +1,24 @@
+
 # ======== 1. Turborepo Prune ステージ ========
-FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS pruner
+FROM ghcr.io/user-komeda/docker_node:sha-79897d5@sha256:e61f8ea86e1ca9c598bcec2163cdf0adeb0418b26deb08b637ef4d42bafe79a0 AS pruner
 WORKDIR /app
+ENV NODE_USE_ENV_PROXY=1
 COPY . .
 RUN corepack enable && yarn dlx turbo prune --scope=backend --docker
 
 # ======== 2. infisicalLauncher 取得ステージ ========
-FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS launcher-builder
+FROM ghcr.io/user-komeda/docker_node:sha-79897d5@sha256:e61f8ea86e1ca9c598bcec2163cdf0adeb0418b26deb08b637ef4d42bafe79a0 AS launcher-builder
 WORKDIR /app
+ENV NODE_USE_ENV_PROXY=1
 RUN microdnf install -y git openssh-clients && \
     microdnf clean all && \
     mkdir -p -m 0700 ~/.ssh && \
     ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 RUN corepack enable
 
-# prune された package.json 群と yarn.lock を配置
 COPY --from=pruner /app/out/json/ .
 COPY .yarn ./.yarn
 
-# 依存関係をインストール
 RUN --mount=type=ssh yarn install --immutable
 
 # ======== 3. Go ビルドステージ ========
@@ -30,17 +31,14 @@ COPY /apps/backend/ .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
 
 # ======== 4. 実行ステージ ========
-FROM ghcr.io/user-komeda/docker_node:sha-7b65646@sha256:50422fcfb8c922abcde11dac975ed4d570068438cdb916899010287e03de1b80 AS runner
+FROM ghcr.io/user-komeda/docker_node:sha-79897d5@sha256:e61f8ea86e1ca9c598bcec2163cdf0adeb0418b26deb08b637ef4d42bafe79a0 AS runner
 WORKDIR /app
+ENV NODE_USE_ENV_PROXY=1
 
-# Go バイナリ本体のみをコピー
 COPY --from=go-builder /app/server .
-
-# infisicalLauncher のバンドル成果物のみをコピー
 COPY --from=launcher-builder /app/node_modules/infisicalLauncher/dist/index.cjs ./infisicalLauncher.cjs
 
-RUN groupadd appgroup && useradd -r -g appgroup appuser
-USER appuser
+USER 1001:1001
 
 EXPOSE 8080
 

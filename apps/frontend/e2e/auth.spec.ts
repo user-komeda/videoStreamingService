@@ -27,9 +27,21 @@ test.describe('Authentication Flow', () => {
     await expect(submitButton).toBeEnabled()
     await submitButton.click()
 
-    // 認証成功後にトップページ (/) へリダイレクトされることを確認
-    await page.waitForURL('**/')
-    expect(page.url()).toMatch(/\/$/)
+    
+    await expect
+      .poll(
+        async () => {
+          const cookies = await page.context().cookies()
+          return cookies.some((cookie) => cookie.name === 'sessionId')
+        },
+        { timeout: 30000 },
+      )
+      .toBe(true)
+
+    await expect(page).toHaveURL(
+      (url) => url.pathname === '/',
+      { timeout: 30000 },
+    )
 
     // セッションCookieが設定されていることを確認
     const cookies = await page.context().cookies()
