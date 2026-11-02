@@ -38,8 +38,7 @@ ENV NODE_USE_ENV_PROXY=1
 COPY --from=go-builder /app/server .
 COPY --from=launcher-builder /app/node_modules/infisicalLauncher/dist/index.cjs ./infisicalLauncher.cjs
 
-RUN groupadd appgroup && useradd -r -g appgroup appuser
-USER appuser
+USER 1001:1001
 
 EXPOSE 8080
 
