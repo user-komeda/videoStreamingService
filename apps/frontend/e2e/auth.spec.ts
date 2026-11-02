@@ -37,8 +37,6 @@ test.describe('Authentication Flow', () => {
         { timeout: 30000 },
       )
       .toBe(true)
-  })
-
 
     await expect(page).toHaveURL(
       (url) => url.pathname === '/',
