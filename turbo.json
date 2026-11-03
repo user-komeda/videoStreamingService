@@ -13,11 +13,19 @@
     "SESSION_PASSWORD",
     "JWT_SECRET",
     "BFF_JWT_SECRET",
+    "USER_JWT_SECRET",
     "JWT_ISSUER",
     "JWT_AUDIENCE",
     "REDIS_URL",
     "DEV",
-    "CI"
+    "CI",
+    "HTTP_PROXY",
+    "HTTPS_PROXY",
+    "http_proxy",
+    "https_proxy",
+    "NO_PROXY",
+    "no_proxy",
+    "NODE_USE_ENV_PROXY"
   ],
   "tasks": {
     "dev": {

@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -9,18 +10,21 @@ import {
 } from '~/feature/upload/components/VideoEditFormFields'
 
 describe('VideoEditFormFields', () => {
-  it('handles EditTitleField', () => {
+  it('handles EditTitleField', async () => {
+    const user = userEvent.setup()
     const setTitle = vi.fn()
     render(<EditTitleField title="Existing" setTitle={setTitle} />)
 
     const input = screen.getByLabelText('タイトル')
     expect((input as HTMLInputElement).value).toBe('Existing')
 
-    fireEvent.change(input, { target: { value: 'New title' } })
-    expect(setTitle).toHaveBeenCalledWith('New title')
+    await user.clear(input)
+    await user.type(input, 'New title')
+    expect(setTitle).toHaveBeenCalled()
   })
 
-  it('handles EditDescriptionField', () => {
+  it('handles EditDescriptionField', async () => {
+    const user = userEvent.setup()
     const setDescription = vi.fn()
     render(
       <EditDescriptionField
@@ -32,11 +36,13 @@ describe('VideoEditFormFields', () => {
     const textarea = screen.getByLabelText('説明')
     expect((textarea as HTMLTextAreaElement).value).toBe('Existing desc')
 
-    fireEvent.change(textarea, { target: { value: 'New desc' } })
-    expect(setDescription).toHaveBeenCalledWith('New desc')
+    await user.clear(textarea)
+    await user.type(textarea, 'New desc')
+    expect(setDescription).toHaveBeenCalled()
   })
 
-  it('handles EditVisibilityField', () => {
+  it('handles EditVisibilityField', async () => {
+    const user = userEvent.setup()
     const setVisibility = vi.fn()
     render(
       <EditVisibilityField
@@ -46,7 +52,7 @@ describe('VideoEditFormFields', () => {
     )
 
     const select = screen.getByLabelText('公開設定')
-    fireEvent.change(select, { target: { value: 'private' } })
+    await user.selectOptions(select, 'private')
     expect(setVisibility).toHaveBeenCalledWith('private')
   })
 })

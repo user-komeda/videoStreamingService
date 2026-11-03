@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { UserMenuDropdown } from '~/components/header/UserMenuDropdown'
@@ -11,7 +12,8 @@ describe('UserMenuDropdown', () => {
     expect(container.innerHTML).toBe('')
   })
 
-  it('renders menu and handles closing via backdrop and escape key', () => {
+  it('renders menu and handles closing via backdrop and escape key', async () => {
+    const user = userEvent.setup()
     const onClose = vi.fn()
     const onLogout = vi.fn()
 
@@ -23,13 +25,14 @@ describe('UserMenuDropdown', () => {
     expect(screen.getByText('Google アカウント')).toBeDefined()
 
     const backdrop = screen.getByLabelText('メニューを閉じる')
-    fireEvent.click(backdrop)
+    await user.click(backdrop)
     expect(onClose).toHaveBeenCalledTimes(1)
 
-    fireEvent.keyDown(backdrop, { key: 'Escape' })
+    backdrop.focus()
+    await user.keyboard('{Escape}')
     expect(onClose).toHaveBeenCalledTimes(2)
 
-    fireEvent.keyDown(backdrop, { key: 'Enter' })
+    await user.keyboard('{Enter}')
     expect(onClose).toHaveBeenCalledTimes(2)
   })
 })

@@ -1,12 +1,14 @@
 import type React from 'react'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { HeaderActions } from '~/components/header/HeaderActions'
 
 describe('HeaderActions', () => {
-  it('renders login button when not logged in and toggles login', () => {
+  it('renders login button when not logged in and toggles login', async () => {
+    const user = userEvent.setup()
     const onToggleLogin = vi.fn()
     const setIsMenuOpen =
       vi.fn<(action: React.SetStateAction<boolean>) => void>()
@@ -21,11 +23,12 @@ describe('HeaderActions', () => {
     )
 
     const loginBtn = screen.getByText('ログイン (切替)')
-    fireEvent.click(loginBtn)
+    await user.click(loginBtn)
     expect(onToggleLogin).toHaveBeenCalledTimes(1)
   })
 
-  it('renders logged in actions, opens user menu, and handles logout', () => {
+  it('renders logged in actions, opens user menu, and handles logout', async () => {
+    const user = userEvent.setup()
     const onToggleLogin = vi.fn()
     const setIsMenuOpen =
       vi.fn<(action: React.SetStateAction<boolean>) => void>()
@@ -43,7 +46,7 @@ describe('HeaderActions', () => {
     expect(screen.getByLabelText('通知')).toBeDefined()
 
     const avatarBtn = screen.getByLabelText('ユーザーメニュー')
-    fireEvent.click(avatarBtn)
+    await user.click(avatarBtn)
     expect(setIsMenuOpen).toHaveBeenCalled()
 
     const updater = setIsMenuOpen.mock.calls[0]?.[0]
@@ -60,7 +63,7 @@ describe('HeaderActions', () => {
     )
 
     const logoutBtn = screen.getByText('ログアウト')
-    fireEvent.click(logoutBtn)
+    await user.click(logoutBtn)
 
     expect(setIsMenuOpen).toHaveBeenCalledWith(false)
     expect(onToggleLogin).toHaveBeenCalled()

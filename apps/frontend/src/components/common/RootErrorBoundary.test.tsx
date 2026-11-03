@@ -1,6 +1,7 @@
 import type * as ReactRouter from 'react-router'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { RootErrorBoundary } from '~/components/common/RootErrorBoundary'
@@ -15,7 +16,8 @@ vi.mock('react-router', async (importOriginal) => {
 })
 
 describe('RootErrorBoundary', () => {
-  it('renders generic error details and triggers reload on click', () => {
+  it('renders generic error details and triggers reload on click', async () => {
+    const user = userEvent.setup()
     const originalLocation = window.location
     const reloadMock = vi.fn()
     Object.defineProperty(window, 'location', {
@@ -31,7 +33,7 @@ describe('RootErrorBoundary', () => {
     expect(screen.getByText('Stack Trace')).toBeDefined()
     expect(screen.getByText('Custom failure')).toBeDefined()
 
-    fireEvent.click(screen.getByText('再読み込み'))
+    await user.click(screen.getByText('再読み込み'))
     expect(reloadMock).toHaveBeenCalled()
 
     Object.defineProperty(window, 'location', {

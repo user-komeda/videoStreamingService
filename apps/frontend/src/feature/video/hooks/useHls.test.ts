@@ -48,6 +48,19 @@ describe('useHls', () => {
     expect(mockDestroy).toHaveBeenCalled()
   })
 
+  it('initializes Hls when supported and src contains /stream', () => {
+    mockIsSupported.mockReturnValue(true)
+    const videoEl = document.createElement('video')
+    const videoRef = { current: videoEl }
+
+    renderHook(() => useHls(videoRef, 'http://localhost:8080/stream?id=123'))
+
+    expect(mockLoadSource).toHaveBeenCalledWith(
+      'http://localhost:8080/stream?id=123',
+    )
+    expect(mockAttachMedia).toHaveBeenCalledWith(videoEl)
+  })
+
   it('sets src attribute directly when Hls is not supported or not m3u8', () => {
     mockIsSupported.mockReturnValue(false)
     const videoEl = document.createElement('video')

@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoCommentForm } from '~/feature/video/components/comments/VideoCommentForm'
 
 describe('VideoCommentForm', () => {
-  it('handles focus, typing, submit, and cancel actions', () => {
+  it('handles focus, typing, submit, and cancel actions', async () => {
+    const user = userEvent.setup()
     const onSubmit = vi.fn()
     render(<VideoCommentForm onSubmit={onSubmit} />)
 
@@ -12,24 +14,24 @@ describe('VideoCommentForm', () => {
     expect(screen.queryByText('コメント')).toBeNull()
 
     // Focus input
-    fireEvent.focus(input)
+    await user.click(input)
     expect(screen.getByText('コメント')).toBeDefined()
     expect(screen.getByText('キャンセル')).toBeDefined()
 
     // Type text
-    fireEvent.change(input, { target: { value: 'Awesome content' } })
+    await user.type(input, 'Awesome content')
 
     // Cancel
     const cancelBtn = screen.getByText('キャンセル')
-    fireEvent.click(cancelBtn)
+    await user.click(cancelBtn)
     expect(input.getAttribute('value')).toBe('')
 
     // Type again and submit
-    fireEvent.focus(input)
-    fireEvent.change(input, { target: { value: 'Awesome content' } })
+    await user.click(input)
+    await user.type(input, 'Awesome content')
 
     const submitBtn = screen.getByText('コメント')
-    fireEvent.click(submitBtn)
+    await user.click(submitBtn)
     expect(onSubmit).toHaveBeenCalledWith('Awesome content')
   })
 })

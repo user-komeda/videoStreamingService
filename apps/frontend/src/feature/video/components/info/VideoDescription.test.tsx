@@ -1,6 +1,7 @@
 import type React from 'react'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { VideoVisibility } from '~/api/generated/models/videoVisibility'
@@ -16,7 +17,8 @@ describe('VideoDescription', () => {
     visibility: VideoVisibility.Public,
   }
 
-  it('renders collapsed description and handles toggle expansion', () => {
+  it('renders collapsed description and handles toggle expansion', async () => {
+    const user = userEvent.setup()
     const setIsExpanded =
       vi.fn<(action: React.SetStateAction<boolean>) => void>()
     const { rerender } = render(
@@ -32,7 +34,7 @@ describe('VideoDescription', () => {
     ).toBeDefined()
     expect(screen.getByText('...もっと見る')).toBeDefined()
 
-    fireEvent.click(screen.getByText('...もっと見る'))
+    await user.click(screen.getByText('...もっと見る'))
     expect(setIsExpanded).toHaveBeenCalledTimes(1)
     const updater = setIsExpanded.mock.calls[0]?.[0]
     expect(typeof updater === 'function' ? updater(false) : updater).toBe(true)

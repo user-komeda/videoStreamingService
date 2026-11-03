@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import { CategoryPills } from '~/feature/video/components/list/CategoryPills'
 
 describe('CategoryPills', () => {
-  it('renders categories and changes selected category on click', () => {
+  it('renders categories and changes selected category on click', async () => {
+    const user = userEvent.setup()
     const categories = ['すべて', '音楽', 'ゲーム']
     render(<CategoryPills categories={categories} />)
 
@@ -13,7 +15,7 @@ describe('CategoryPills', () => {
     expect(screen.getByText('ゲーム')).toBeDefined()
 
     const gameBtn = screen.getByText('ゲーム')
-    fireEvent.click(gameBtn)
+    await user.click(gameBtn)
     expect(gameBtn).toBeDefined()
   })
 
