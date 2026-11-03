@@ -4791,11 +4791,11 @@ __metadata:
   linkType: hard
 
 "cn@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "cn@npm:0.5.0"
+  version: 0.5.1
+  resolution: "cn@npm:0.5.1"
   bin:
     cn: bin/cn.mjs
-  checksum: 10c0/d42da934863652c2250e8de76aeb02819009befbe5534b5d9b71b115f8b082d35db96ace32265f73d9fde7974551b23451e21dee8b49e409bcb4c542d59e2da9
+  checksum: 10c0/e8c5da432f38f9de54f5583e035b6ff5f3995105fa1286458c241f6ff03b638e01b2900c8cb3e407d6ea37d4058f0d748c7d66dd01900f03576ebe839f83ffd3
   languageName: node
   linkType: hard
 
