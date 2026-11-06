@@ -3802,21 +3802,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/components@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@uppy/components@npm:2.1.0"
+"@uppy/components@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@uppy/components@npm:2.1.1"
   dependencies:
     clsx: "npm:^2.1.1"
     dequal: "npm:^2.0.3"
     preact: "npm:^10.29.2"
     pretty-bytes: "npm:^7.1.0"
   peerDependencies:
-    "@uppy/core": ^6.3.0
-    "@uppy/google-drive-picker": ^2.0.0
-    "@uppy/google-photos-picker": ^2.0.0
+    "@uppy/core": ^6.3.1
+    "@uppy/google-drive-picker": ^2.0.1
+    "@uppy/google-photos-picker": ^2.0.1
     "@uppy/image-editor": ^5.0.1
-    "@uppy/screen-capture": ^6.0.2
-    "@uppy/webcam": ^6.0.2
+    "@uppy/screen-capture": ^6.0.3
+    "@uppy/webcam": ^6.0.3
   peerDependenciesMeta:
     "@uppy/image-editor":
       optional: true
@@ -3824,13 +3824,13 @@ __metadata:
       optional: true
     "@uppy/webcam":
       optional: true
-  checksum: 10c0/e78c26b493424a30cf19784b09c6511b50224da9a846dcaf554cbe3977e398da09ef76de36a20be71c1952c011f077eea731ab95240007a39c09c21da66dde77
+  checksum: 10c0/f89a2145eb2962ccbff048d8d9d18af403c036a25d6da3e679ec84652181875e4540af4ad2b06c48dc104b6dad3f6790d3eaca1804d968017b50c42e006fa315
   languageName: node
   linkType: hard
 
 "@uppy/core@npm:^6.3.0":
-  version: 6.3.0
-  resolution: "@uppy/core@npm:6.3.0"
+  version: 6.3.1
+  resolution: "@uppy/core@npm:6.3.1"
   dependencies:
     "@transloadit/prettier-bytes": "npm:^2.0.0"
     classnames: "npm:^2.5.1"
@@ -3841,18 +3841,19 @@ __metadata:
     p-queue: "npm:^9.3.3"
     p-retry: "npm:^8.0.0"
     preact: "npm:^10.29.2"
-  checksum: 10c0/c82dd86cb1c1db3360239e777c88843fe061b08d11e52c88e08da66493d73ccb75046043211c9810a5daa32a8c561f7bef86127e747f785cb9ea0ede2e39034c
+    type-fest: "npm:^5.10.0"
+  checksum: 10c0/d374eec34370c0e1390fe9591d41fa3893cd08bf70136eac08dd556fb85e330ec5c996a5928e57fa4fb7d9827e558aab4191fba2a87af6804761c150e32f8b96
   languageName: node
   linkType: hard
 
 "@uppy/drag-drop@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "@uppy/drag-drop@npm:6.0.1"
+  version: 6.0.2
+  resolution: "@uppy/drag-drop@npm:6.0.2"
   dependencies:
     preact: "npm:^10.29.2"
   peerDependencies:
-    "@uppy/core": ^6.3.0
-  checksum: 10c0/36d38dfcc04edc983e322c81c596174acdca403de5f714417e24892851c428957db629989e4cd4a5edb1eead2c865c8c91bf04406c727ea5a74b882f80a0153f
+    "@uppy/core": ^6.3.1
+  checksum: 10c0/334295ea9088b9a96b53bff967e18bd3a75993b4595952425b0205c78c8b58823bafca9922295ccd33ee20d96c5b1555c15f9d9c2a60e19285a7bd45b989e9bc
   languageName: node
   linkType: hard
 
@@ -3881,17 +3882,17 @@ __metadata:
   linkType: hard
 
 "@uppy/react@npm:^6.1.0":
-  version: 6.1.0
-  resolution: "@uppy/react@npm:6.1.0"
+  version: 6.1.1
+  resolution: "@uppy/react@npm:6.1.1"
   dependencies:
-    "@uppy/components": "npm:^2.1.0"
+    "@uppy/components": "npm:^2.1.1"
     use-sync-external-store: "npm:^1.6.0"
   peerDependencies:
-    "@uppy/core": ^6.3.0
-    "@uppy/dashboard": ^6.0.2
-    "@uppy/screen-capture": ^6.0.2
+    "@uppy/core": ^6.3.1
+    "@uppy/dashboard": ^6.0.3
+    "@uppy/screen-capture": ^6.0.3
     "@uppy/status-bar": ^6.0.1
-    "@uppy/webcam": ^6.0.2
+    "@uppy/webcam": ^6.0.3
     react: ^18.0.0 || ^19.0.0
     react-dom: ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
@@ -3903,18 +3904,18 @@ __metadata:
       optional: true
     "@uppy/webcam":
       optional: true
-  checksum: 10c0/6b8dd989ebbf89a9412a524f6aa0e25bb7ba2ad44f66c20172716542cd16f1de182cdc7a7b3f9360c7cb93538e1bf1ec72e8299105d455bbbfcf153a87532a37
+  checksum: 10c0/34d8822ca2bda1e84f5cba2bfb13d63b27784d90bf603b18d48668deda9dfa54f9ea9a1db99d5fa333b8083368c80755ad32af7379f19c2e85e8ffde02acd798
   languageName: node
   linkType: hard
 
 "@uppy/tus@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@uppy/tus@npm:6.0.0"
+  version: 6.0.1
+  resolution: "@uppy/tus@npm:6.0.1"
   dependencies:
     tus-js-client: "npm:^4.3.1"
   peerDependencies:
-    "@uppy/core": ^6.0.0
-  checksum: 10c0/5a0bcb22506840bfac740c924fd7099e0d811325106a44182aef528b4fc1b3f29ffe8130ed47af6a0b3fe88429f0c42e8db0eaaaa3e6e38abcfce80bee07ae30
+    "@uppy/core": ^6.3.1
+  checksum: 10c0/e1735a1cda7eb5c6cb27bb07bbf1c81a0ae6897139c234adf0fae090a61f1ead9a62121933e6305463de10334c79244580ee190d02abe47ac48e477eee5a0338
   languageName: node
   linkType: hard
 
