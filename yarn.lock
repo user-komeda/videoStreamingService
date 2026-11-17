@@ -6716,7 +6716,7 @@ __metadata:
     ioredis: "npm:^6.0.0"
     isbot: "npm:^5.2.2"
     jose: "npm:^6.2.14"
-    jsdom: "npm:31.0.0"
+    jsdom: "npm:31.0.1"
     lefthook: "npm:2.2.2"
     lucide-react: "npm:^1.64.0"
     msw: "npm:3.0.5"
@@ -7898,9 +7898,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:31.0.0":
-  version: 31.0.0
-  resolution: "jsdom@npm:31.0.0"
+"jsdom@npm:31.0.1":
+  version: 31.0.1
+  resolution: "jsdom@npm:31.0.1"
   dependencies:
     "@exodus/bytes": "npm:^1.16.0"
     bcp-47: "npm:^2.1.2"
@@ -7925,7 +7925,7 @@ __metadata:
   peerDependenciesMeta:
     "@napi-rs/canvas":
       optional: true
-  checksum: 10c0/e7240d72bfd6aab3e06ef2bcbd9656e39011707958d57b30c25caf840503a433ba56ba384f43e07938125f49e835f679856db58a9f762496a1811ec6ab580740
+  checksum: 10c0/e0f5567543401f2897984682a4139e42b8190fe8ed3f5d53f7e391333cb98b553870018685dbea5eb98549649ac8d5980800a774729a19aabca6fa0fd2b5f83d
   languageName: node
   linkType: hard
 
