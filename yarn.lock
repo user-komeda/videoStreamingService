@@ -6719,7 +6719,7 @@ __metadata:
     jsdom: "npm:31.0.1"
     lefthook: "npm:2.2.2"
     lucide-react: "npm:^1.64.0"
-    msw: "npm:3.0.5"
+    msw: "npm:3.0.6"
     orval: "npm:8.47.0"
     prettier: "npm:3.10.1"
     prettier-plugin-tailwindcss: "npm:0.8.1"
@@ -8815,9 +8815,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:3.0.5":
-  version: 3.0.5
-  resolution: "msw@npm:3.0.5"
+"msw@npm:3.0.6":
+  version: 3.0.6
+  resolution: "msw@npm:3.0.6"
   dependencies:
     "@inquirer/confirm": "npm:^6.0.11"
     "@msw/url": "npm:^0.1.2"
@@ -8844,7 +8844,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/fefeecb68af18dcf0041d4c58cfad9407e803842fb9c33e0d3da9445ecb01321d8bd59ee517a7b3db71801f2434d43ba79488b459a4aaccad63d5443a6e6501c
+  checksum: 10c0/18e629ef7292f7e16076582acb83e4be0e819db4bf941146e3a85e5148b1be724fc41a3fa5e4f5f6b7f8fec8297b791b8a934522dcf432e810c14559110cdc83
   languageName: node
   linkType: hard
 
