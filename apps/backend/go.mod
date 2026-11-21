@@ -25,7 +25,7 @@ require (
 	github.com/tus/tusd/v2 v2.10.1
 	go.uber.org/fx v1.24.0
 	golang.org/x/crypto v0.59.0
-	golang.org/x/net v0.62.0
+	golang.org/x/net v0.63.0
 	gorm.io/driver/postgres v1.6.3
 	gorm.io/gorm v1.31.2
 )
